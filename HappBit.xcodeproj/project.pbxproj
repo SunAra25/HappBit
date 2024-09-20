@@ -16,6 +16,7 @@
 		C06B0BDB2C9D0E40005451D5 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD42C9A7B6B005451D5 /* Pretendard-Bold.otf */; };
 		C06B0BDC2C9D0E43005451D5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */; };
 		C06B0BE22C9D16DE005451D5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; };
+		C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BE72C9D9445005451D5 /* Habit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		C06B0BD72C9D09A3005451D5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		C06B0BD92C9D09C2005451D5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C06B0BDF2C9D151D005451D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C06B0BE72C9D9445005451D5 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				C06B0BE52C9D647E005451D5 /* App */,
 				C06B0BD62C9A7C5B005451D5 /* Extension */,
+				C06B0BE62C9D64C9005451D5 /* Model */,
 				C06B0BE42C9D645B005451D5 /* Presentation */,
 			);
 			path = Sources;
@@ -129,6 +132,14 @@
 				C06B0BC32C9A76F0005451D5 /* HappBitApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		C06B0BE62C9D64C9005451D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BE72C9D9445005451D5 /* Habit.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C06B0BD82C9D09A3005451D5 /* Font+.swift in Sources */,
+				C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,
 				C06B0BC42C9A76F0005451D5 /* HappBitApp.swift in Sources */,
