@@ -28,7 +28,7 @@
 		C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		C06B0BD72C9D09A3005451D5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		C06B0BD92C9D09C2005451D5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
-		C06B0BDF2C9D151D005451D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C06B0BDF2C9D151D005451D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,12 +62,8 @@
 		C06B0BC22C9A76F0005451D5 /* HappBit */ = {
 			isa = PBXGroup;
 			children = (
-				C06B0BDF2C9D151D005451D5 /* Info.plist */,
-				C06B0BD62C9A7C5B005451D5 /* Extension */,
 				C06B0BD22C9A7B4F005451D5 /* Resources */,
-				C06B0BC32C9A76F0005451D5 /* HappBitApp.swift */,
-				C06B0BC52C9A76F0005451D5 /* ContentView.swift */,
-				C06B0BC92C9A76F2005451D5 /* Preview Content */,
+				C06B0BE32C9D4320005451D5 /* Sources */,
 			);
 			path = HappBit;
 			sourceTree = "<group>";
@@ -83,8 +79,10 @@
 		C06B0BD22C9A7B4F005451D5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C06B0BC92C9A76F2005451D5 /* Preview Content */,
 				C06B0BD32C9A7B60005451D5 /* Font */,
 				C06B0BC72C9A76F2005451D5 /* Assets.xcassets */,
+				C06B0BDF2C9D151D005451D5 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -105,6 +103,32 @@
 				C06B0BD92C9D09C2005451D5 /* Color+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C06B0BE32C9D4320005451D5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BE52C9D647E005451D5 /* App */,
+				C06B0BD62C9A7C5B005451D5 /* Extension */,
+				C06B0BE42C9D645B005451D5 /* Presentation */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		C06B0BE42C9D645B005451D5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BC52C9A76F0005451D5 /* ContentView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C06B0BE52C9D647E005451D5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BC32C9A76F0005451D5 /* HappBitApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
