@@ -11,6 +11,10 @@
 		C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BC52C9A76F0005451D5 /* ContentView.swift */; };
 		C06B0BC82C9A76F2005451D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BC72C9A76F2005451D5 /* Assets.xcassets */; };
 		C06B0BCB2C9A76F2005451D5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BCA2C9A76F2005451D5 /* Preview Assets.xcassets */; };
+		C06B0BD82C9D09A3005451D5 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BD72C9D09A3005451D5 /* Font+.swift */; };
+		C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BD92C9D09C2005451D5 /* Color+.swift */; };
+		C06B0BDB2C9D0E40005451D5 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD42C9A7B6B005451D5 /* Pretendard-Bold.otf */; };
+		C06B0BDC2C9D0E43005451D5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,11 @@
 		C06B0BC52C9A76F0005451D5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C06B0BC72C9A76F2005451D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C06B0BCA2C9A76F2005451D5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C06B0BD42C9A7B6B005451D5 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		C06B0BD72C9D09A3005451D5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		C06B0BD92C9D09C2005451D5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		C06B0BDF2C9D151D005451D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +60,11 @@
 		C06B0BC22C9A76F0005451D5 /* HappBit */ = {
 			isa = PBXGroup;
 			children = (
+				C06B0BDF2C9D151D005451D5 /* Info.plist */,
+				C06B0BD62C9A7C5B005451D5 /* Extension */,
+				C06B0BD22C9A7B4F005451D5 /* Resources */,
 				C06B0BC32C9A76F0005451D5 /* HappBitApp.swift */,
 				C06B0BC52C9A76F0005451D5 /* ContentView.swift */,
-				C06B0BC72C9A76F2005451D5 /* Assets.xcassets */,
 				C06B0BC92C9A76F2005451D5 /* Preview Content */,
 			);
 			path = HappBit;
@@ -65,6 +76,33 @@
 				C06B0BCA2C9A76F2005451D5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C06B0BD22C9A7B4F005451D5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BD32C9A7B60005451D5 /* Font */,
+				C06B0BC72C9A76F2005451D5 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C06B0BD32C9A7B60005451D5 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */,
+				C06B0BD42C9A7B6B005451D5 /* Pretendard-Bold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		C06B0BD62C9A7C5B005451D5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BD72C9D09A3005451D5 /* Font+.swift */,
+				C06B0BD92C9D09C2005451D5 /* Color+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C06B0BCB2C9A76F2005451D5 /* Preview Assets.xcassets in Resources */,
+				C06B0BDB2C9D0E40005451D5 /* Pretendard-Bold.otf in Resources */,
 				C06B0BC82C9A76F2005451D5 /* Assets.xcassets in Resources */,
+				C06B0BDC2C9D0E43005451D5 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +177,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C06B0BD82C9D09A3005451D5 /* Font+.swift in Sources */,
+				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,
 				C06B0BC42C9A76F0005451D5 /* HappBitApp.swift in Sources */,
 			);
@@ -275,6 +317,7 @@
 				DEVELOPMENT_TEAM = TP3YZL7Z8A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HappBit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +347,7 @@
 				DEVELOPMENT_TEAM = TP3YZL7Z8A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HappBit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
