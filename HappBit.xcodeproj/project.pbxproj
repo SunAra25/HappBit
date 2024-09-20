@@ -15,6 +15,7 @@
 		C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BD92C9D09C2005451D5 /* Color+.swift */; };
 		C06B0BDB2C9D0E40005451D5 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD42C9A7B6B005451D5 /* Pretendard-Bold.otf */; };
 		C06B0BDC2C9D0E43005451D5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */; };
+		C06B0BE22C9D16DE005451D5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C06B0BE22C9D16DE005451D5 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +123,9 @@
 			dependencies = (
 			);
 			name = HappBit;
+			packageProductDependencies = (
+				C06B0BE12C9D16DE005451D5 /* RealmSwift */,
+			);
 			productName = HappBit;
 			productReference = C06B0BC02C9A76F0005451D5 /* HappBit.app */;
 			productType = "com.apple.product-type.application";
@@ -149,6 +154,9 @@
 				Base,
 			);
 			mainGroup = C06B0BB72C9A76F0005451D5;
+			packageReferences = (
+				C06B0BE02C9D16DE005451D5 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = C06B0BC12C9A76F0005451D5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -398,6 +406,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C06B0BE02C9D16DE005451D5 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 20.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C06B0BE12C9D16DE005451D5 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C06B0BE02C9D16DE005451D5 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C06B0BB82C9A76F0005451D5 /* Project object */;
 }
