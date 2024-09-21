@@ -17,6 +17,8 @@
 		C06B0BDC2C9D0E43005451D5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */; };
 		C06B0BE22C9D16DE005451D5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; };
 		C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BE72C9D9445005451D5 /* Habit.swift */; };
+		C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEA2C9DD535005451D5 /* HomeView.swift */; };
+		C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		C06B0BD92C9D09C2005451D5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C06B0BDF2C9D151D005451D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06B0BE72C9D9445005451D5 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
+		C06B0BEA2C9DD535005451D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 		C06B0BE42C9D645B005451D5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C06B0BE92C9DD520005451D5 /* Home */,
 				C06B0BC52C9A76F0005451D5 /* ContentView.swift */,
 			);
 			path = Presentation;
@@ -140,6 +145,15 @@
 				C06B0BE72C9D9445005451D5 /* Habit.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C06B0BE92C9DD520005451D5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BEA2C9DD535005451D5 /* HomeView.swift */,
+				C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +237,8 @@
 				C06B0BD82C9D09A3005451D5 /* Font+.swift in Sources */,
 				C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
+				C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */,
+				C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,
 				C06B0BC42C9A76F0005451D5 /* HappBitApp.swift in Sources */,
 			);
@@ -357,11 +373,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"HappBit/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"HappBit/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = TP3YZL7Z8A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HappBit/Info.plist;
+				INFOPLIST_FILE = HappBit/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "햇빛";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -392,11 +408,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"HappBit/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"HappBit/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = TP3YZL7Z8A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HappBit/Info.plist;
+				INFOPLIST_FILE = HappBit/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "햇빛";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

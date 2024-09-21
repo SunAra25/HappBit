@@ -14,4 +14,8 @@ extension Color {
     static let hapMint = Color("Mint")
     static let hapBlue = Color("Blue")
     static let hapPurple = Color("Purple")
+    
+    static let hbPrimary = Color("Primary")
+    static let hbSecondary = Color("Secondary")
+    static let hbThirdary = Color("Thirdary")
 }
