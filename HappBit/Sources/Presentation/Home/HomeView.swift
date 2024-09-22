@@ -33,7 +33,7 @@ struct EmptyHabitView: View {
             .padding(.top, 40)
             
             NavigationLink {
-                
+                AddHabitView()
             } label: {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.hbThirdary)

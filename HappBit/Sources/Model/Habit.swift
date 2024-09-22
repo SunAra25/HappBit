@@ -9,35 +9,35 @@ import Foundation
 import RealmSwift
 
 final class Habit: Object, ObjectKeyIdentifiable {
-  @Persisted(primaryKey: true) var id: ObjectId
-  @Persisted var title: String
-  @Persisted var category: Category
-  @Persisted var createdAt: Date
-  @Persisted var endDate: Date?
-  
-  convenience init(title: String,
-                   category: Category,
-                   createdAt: Date = Date(),
-                   endDate: Date? = nil) {
-      self.init()
-      self.title = title
-      self.category = category
-      self.createdAt = createdAt
-      self.endDate = endDate
-  }
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var title: String
+    @Persisted var color: String
+    @Persisted var createdAt: Date
+    @Persisted var endDate: Date?
+    
+    convenience init(title: String,
+                     color: String,
+                     createdAt: Date = Date(),
+                     endDate: Date? = nil) {
+        self.init()
+        self.title = title
+        self.color = color
+        self.createdAt = createdAt
+        self.endDate = endDate
+    }
 }
 
-final class Category: Object, ObjectKeyIdentifiable {
-  @Persisted(primaryKey: true) var id: ObjectId
-  @Persisted var title: String
-  @Persisted var color: String
-  
-  convenience init(title: String, color: String) {
-      self.init()
-      self.title = title
-      self.color = color
-  }
-}
+//final class Category: Object, ObjectKeyIdentifiable {
+//  @Persisted(primaryKey: true) var id: ObjectId
+//  @Persisted var title: String
+//  @Persisted var color: String
+//  
+//  convenience init(title: String, color: String) {
+//      self.init()
+//      self.title = title
+//      self.color = color
+//  }
+//}
 
 final class PracticeStatus: Object, ObjectKeyIdentifiable {
   @Persisted(primaryKey: true) var id: ObjectId
