@@ -11,12 +11,12 @@ import RealmSwift
 final class Habit: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
-    @Persisted var color: String
+    @Persisted var color: Int
     @Persisted var createdAt: Date
     @Persisted var endDate: Date?
     
     convenience init(title: String,
-                     color: String,
+                     color: Int,
                      createdAt: Date = Date(),
                      endDate: Date? = nil) {
         self.init()

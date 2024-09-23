@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC422C9FBC72001DED55 /* AddHabitView.swift */; };
+		C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC462CA07018001DED55 /* AddHabitViewModel.swift */; };
+		C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC492CA0707C001DED55 /* ViewModelType.swift */; };
 		C06B0BC42C9A76F0005451D5 /* HappBitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BC32C9A76F0005451D5 /* HappBitApp.swift */; };
 		C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BC52C9A76F0005451D5 /* ContentView.swift */; };
 		C06B0BC82C9A76F2005451D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BC72C9A76F2005451D5 /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		C048DC422C9FBC72001DED55 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
+		C048DC462CA07018001DED55 /* AddHabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewModel.swift; sourceTree = "<group>"; };
+		C048DC492CA0707C001DED55 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C06B0BC02C9A76F0005451D5 /* HappBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06B0BC32C9A76F0005451D5 /* HappBitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappBitApp.swift; sourceTree = "<group>"; };
 		C06B0BC52C9A76F0005451D5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +55,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C048DC442CA06A65001DED55 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C06B0BEA2C9DD535005451D5 /* HomeView.swift */,
+				C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */,
+				C048DC422C9FBC72001DED55 /* AddHabitView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C048DC452CA06A6A001DED55 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C048DC462CA07018001DED55 /* AddHabitViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C048DC482CA07064001DED55 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				C048DC492CA0707C001DED55 /* ViewModelType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		C06B0BB72C9A76F0005451D5 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +148,7 @@
 			children = (
 				C06B0BE52C9D647E005451D5 /* App */,
 				C06B0BD62C9A7C5B005451D5 /* Extension */,
+				C048DC482CA07064001DED55 /* Protocol */,
 				C06B0BE62C9D64C9005451D5 /* Model */,
 				C06B0BE42C9D645B005451D5 /* Presentation */,
 			);
@@ -152,9 +183,8 @@
 		C06B0BE92C9DD520005451D5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C06B0BEA2C9DD535005451D5 /* HomeView.swift */,
-				C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */,
-				C048DC422C9FBC72001DED55 /* AddHabitView.swift */,
+				C048DC442CA06A65001DED55 /* View */,
+				C048DC452CA06A6A001DED55 /* ViewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -240,10 +270,12 @@
 				C06B0BD82C9D09A3005451D5 /* Font+.swift in Sources */,
 				C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */,
 				C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */,
+				C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
 				C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */,
 				C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,
+				C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */,
 				C06B0BC42C9A76F0005451D5 /* HappBitApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
