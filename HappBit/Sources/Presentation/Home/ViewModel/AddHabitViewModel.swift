@@ -23,19 +23,18 @@ class AddHabitViewModel: ViewModelType {
 extension AddHabitViewModel {
     struct Input {
         var editingTitle = PassthroughSubject<String, Never>()
-        var selectedColor = PassthroughSubject<Int, Never>()
-        var addHabit = PassthroughSubject<Habit, Never>()
+        var selectedColor = PassthroughSubject<Int?, Never>()
+        var addHabit = PassthroughSubject<Void, Never>()
     }
     
     struct Output {
         var currentTitle: String = ""
+        var currentColorIndex: Int?
         var buttonState: Bool = false
         var popView: Void = ()
     }
     
     func transform() {
-        var currentColorIndex: Int?
-        
         input
             .editingTitle
             .sink { [weak self] text in
@@ -46,22 +45,23 @@ extension AddHabitViewModel {
                 }
                 
                 output.currentTitle = text
-                output.buttonState = ((2...15) ~= text.count) && currentColorIndex != nil
+                output.buttonState = ((2...15) ~= text.count) && output.currentColorIndex != nil
             }.store(in: &cancellables)
         
         input
             .selectedColor
             .sink { [weak self] index in
                 guard let self else { return }
-                currentColorIndex = index
+                output.currentColorIndex = index
                 output.buttonState = ((2...15) ~= output.currentTitle.count)
             }.store(in: &cancellables)
         
         input
             .addHabit
-            .sink { [weak self] text in
-                guard let self else { return }
+            .sink { [weak self] _ in
+                guard let self, let colorIndex = output.currentColorIndex else { return }
                 // TODO: Realm 저장
+                print(output.currentTitle, colorIndex)
             }.store(in: &cancellables)
     }
 }
@@ -70,8 +70,8 @@ extension AddHabitViewModel {
 extension AddHabitViewModel {
     enum Action {
         case editingTitle(text: String)
-        case selectedColor(index: Int)
-        case addHabit(data: Habit)
+        case selectedColor(index: Int?)
+        case addHabit
     }
     
     func action(_ action: Action) {
@@ -80,8 +80,8 @@ extension AddHabitViewModel {
             input.editingTitle.send(text)
         case .selectedColor(let index):
             input.selectedColor.send(index)
-        case .addHabit(let data):
-            input.addHabit.send(data)
+        case .addHabit:
+            input.addHabit.send(())
         }
     }
 }

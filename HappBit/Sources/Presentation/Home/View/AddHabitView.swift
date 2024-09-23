@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddHabitView: View {
+    @StateObject var viewModel = AddHabitViewModel()
     @State private var titleInput = ""
     @State private var selectedColor: Color?
     
@@ -21,7 +22,10 @@ struct AddHabitView: View {
                 .fill(Color.hbThirdary)
                 .frame(height: 60)
                 .overlay {
-                    TextField("title", text: $titleInput, prompt: Text("어떤 습관을 형성해볼까요?"))
+                    TextField("title", text: Binding(
+                        get: { viewModel.output.currentTitle },
+                        set: { viewModel.action(.editingTitle(text: ($0))) } ),
+                        prompt: Text("어떤 습관을 형성해볼까요?"))
                         .font(.body1M)
                         .padding(.horizontal)
                         .tint(.primary)
@@ -38,21 +42,20 @@ struct AddHabitView: View {
                 .font(.body1B)
                 .foregroundStyle(.gray)
             
-            ColorPickerView(selectedColor: $selectedColor)
-            
+            ColorPickerView(viewModel: viewModel)
             
             Spacer()
             
             Button {
-                // TODO: Realm 저장
+                viewModel.action(.addHabit)
             } label: {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.primary)
+                    .fill(viewModel.output.buttonState ? Color.primary : .gray.opacity(0.3))
                     .frame(height: 56)
                     .frame(maxWidth: .infinity)
                     .overlay {
                         Text("확인")
-                            .foregroundStyle(Color.hbPrimary)
+                            .foregroundStyle(viewModel.output.buttonState ? Color.hbPrimary : .gray.opacity(0.8))
                             .font(.body1B)
                     }
             }
@@ -65,20 +68,21 @@ struct AddHabitView: View {
 }
 
 private struct ColorPickerView: View {
-    @Binding var selectedColor: Color?
-    @State private var colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
+    @ObservedObject var viewModel: AddHabitViewModel
+    var colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
         HStack {
             ForEach(colorList, id: \.self) { color in
                 Button {
-                    selectedColor = color
+                    viewModel.action(.selectedColor(index: colorList.firstIndex(of: color)!))
                 } label: {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(color)
                         .frame(height: 40)
                         .overlay {
-                            if color == selectedColor {
+                            if let index = colorList.firstIndex(of: color),
+                               index == viewModel.output.currentColorIndex {
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(.white)
                                     .padding(2.5)
