@@ -22,6 +22,7 @@
 		C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BE72C9D9445005451D5 /* Habit.swift */; };
 		C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEA2C9DD535005451D5 /* HomeView.swift */; };
 		C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */; };
+		C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		C06B0BE72C9D9445005451D5 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		C06B0BEA2C9DD535005451D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
+		C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		C048DC452CA06A6A001DED55 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */,
 				C048DC462CA07018001DED55 /* AddHabitViewModel.swift */,
 			);
 			path = ViewModel;
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C06B0BD82C9D09A3005451D5 /* Font+.swift in Sources */,
+				C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */,
 				C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */,
 				C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */,
 				C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */,

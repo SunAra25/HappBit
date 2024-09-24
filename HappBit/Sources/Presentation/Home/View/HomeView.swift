@@ -8,17 +8,30 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var viewModel = HomeViewModel()
+    
     var body: some View {
-        NavigationView {
-//            ScrollView {
-//                HabitCardView()
-//            }
-//            .navigationTitle("HappBit")
-//            .background(Color.hbSecondary)
-//            .shadow(color: .gray.opacity(0.15), radius: 10)
-            EmptyHabitView()
-                .navigationTitle("HappBit")
-                .background(Color.hbSecondary)
+        ScrollView {
+            if viewModel.output.practiceStatusList.isEmpty {
+                EmptyHabitView()
+                    .scrollDisabled(true)
+            }else {
+                let matchedItems = viewModel.output.habitList.compactMap { habit in
+                    viewModel.output.practiceStatusList.first { status in
+                        status.habitID == habit.id
+                    }.map { (habit, $0) }
+                }
+                
+                ForEach(matchedItems, id: \.0.id) { habit, status in
+                    HabitCardView(habit: habit, status: status)
+                }
+            }
+        }
+        .navigationTitle("HappBit")
+        .background(Color.hbSecondary)
+        .shadow(color: .gray.opacity(0.15), radius: 10)
+        .onAppear {
+            viewModel.action(.viewOnAppear)
         }
     }
 }
@@ -60,5 +73,7 @@ struct EmptyHabitView: View {
 }
 
 #Preview {
-    HomeView()
+    NavigationView {
+        HomeView()
+    }
 }
