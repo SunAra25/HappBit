@@ -31,7 +31,7 @@ extension AddHabitViewModel {
         var currentTitle: String = ""
         var currentColorIndex: Int?
         var buttonState: Bool = false
-        var popView: Void = ()
+        var popView: Bool = false
     }
     
     func transform() {
@@ -60,8 +60,8 @@ extension AddHabitViewModel {
             .addHabit
             .sink { [weak self] _ in
                 guard let self, let colorIndex = output.currentColorIndex else { return }
-                // TODO: Realm 저장
-                print(output.currentTitle, colorIndex)
+                Habit.addHabit(Habit(title: output.currentTitle, color: colorIndex))
+                output.popView = true
             }.store(in: &cancellables)
     }
 }

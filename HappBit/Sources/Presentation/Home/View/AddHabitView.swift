@@ -11,6 +11,7 @@ struct AddHabitView: View {
     @StateObject var viewModel = AddHabitViewModel()
     @State private var titleInput = ""
     @State private var selectedColor: Color?
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -48,6 +49,7 @@ struct AddHabitView: View {
             
             Button {
                 viewModel.action(.addHabit)
+                dismiss()
             } label: {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(viewModel.output.buttonState ? Color.primary : .gray.opacity(0.3))

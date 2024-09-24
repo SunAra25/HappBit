@@ -51,3 +51,45 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
       self.habitID = habitID
   }
 }
+
+extension Habit {
+    private static var realm = try! Realm()
+    
+    static func readAllHabit() -> Results<Habit> {
+        realm.objects(Habit.self)
+    }
+    
+    static func addHabit(_ habit: Habit) {
+        try! realm.write {
+            realm.add(habit)
+        }
+    }
+    
+    static func deleteHabit(_ habit: Habit) {
+        try! realm.write {
+            realm.delete(habit)
+        }
+    }
+}
+
+extension PracticeStatus {
+    private static var realm = try! Realm()
+    
+    static func readPracticeStatus(_ habitID: ObjectId) -> Results<PracticeStatus> {
+        realm.objects(PracticeStatus.self).filter("habitID == %@", habitID)
+    }
+    
+    static func updatePracticeStatus(_ habitID: ObjectId) {
+        try! realm.write {
+            var status = PracticeStatus.readPracticeStatus(habitID)
+            guard let item = status.first else { return }
+            item.practiceDates.append(Date())
+        }
+    }
+    
+    static func deleteHabit(_ habit: Habit) {
+        try! realm.write {
+            realm.delete(habit)
+        }
+    }
+}
