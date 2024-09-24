@@ -44,39 +44,40 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
     @Persisted var habitID: ObjectId
     @Persisted var practiceDates: List<Date> // 실천 날짜
     @Persisted var consecutiveDays: Int = 0 // 연속 실천 일수, 클로버 개수
-    @Persisted var currentIndex: Int = 1 // 현재 인덱스 0~3
+    @Persisted var currentIndex: Int = 0 // 현재 인덱스 0~2
+    @Persisted var isTodayList: List<Bool>
     
     convenience init(habitID: ObjectId) {
         self.init()
         self.habitID = habitID
+        self.isTodayList.append(objectsIn: [false, false, false])
     }
     
-    func recordPractice(date: Date) {
-        if !practiceDates.contains(date) {
-            let calendar = Calendar.current
-            guard let lastDate = practiceDates.last,
-                  let yesterday = calendar.date(byAdding: .day, value: -1, to: date) else { return }
-            
-            if !calendar.isDate(yesterday, inSameDayAs: lastDate) {
-                reset()
-            }
-            consecutiveDays += 1
-            
-            practiceDates.append(date)
-        }
+    func recordPractice() {
+        let realm = try! Realm()
         
-        currentIndex = min(currentIndex, 3)
+        try! realm.write {
+            isTodayList.replace(index: currentIndex, object: true)
+            consecutiveDays += 1
+            currentIndex = (consecutiveDays / 3)
+            practiceDates.append(Date())
+        }
     }
     
     // 오늘 실천 여부 체크
-    func checkTodayPractice(date: Date) -> Bool {
-        return practiceDates.contains(date)
+    func checkTodayPractice() -> Bool {
+        let calendar = Calendar.current
+        return practiceDates.contains(where: { calendar.isDate($0, inSameDayAs: Date()) })
     }
     
     // 동그라미 상태 초기화
     func reset() {
-        consecutiveDays = 0
-        currentIndex = 1
+        let realm = try! Realm()
+        
+        try! realm.write {
+            consecutiveDays = 0
+            currentIndex = 0
+        }
     }
 }
 

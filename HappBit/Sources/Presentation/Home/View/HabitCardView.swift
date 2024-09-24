@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 enum Status: Int {
-    case one = 1
-    case two = 2
-    case three = 3
-    case complete = 0
+    case one = 0
+    case two = 1
+    case three = 2
+    case complete = 3
     
     var name: String {
         switch self {
@@ -25,6 +24,7 @@ enum Status: Int {
 }
 
 struct HabitCardView: View {
+    @ObservedObject var viewModel: HomeViewModel
     let habit: Habit
     var status: PracticeStatus
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
@@ -45,23 +45,15 @@ struct HabitCardView: View {
                     .fontWeight(.semibold)
                 
                 HStack {
-                    ForEach(1..<4) { index in
-                        switch index {
-                        case ..<status.currentIndex:
-                            if let practice = Status(rawValue: 0) {
+                    ForEach(0..<3) { index in
+                        if status.isTodayList[index] {
+                            if let practice = Status(rawValue: 3) {
                                 practiceButton(for: practice, color: colorList[habit.color])
                             }
-                        case status.currentIndex:
-                            let isComplete = status.checkTodayPractice(date: Date())
-                            if let practice = Status(rawValue: isComplete ? 0 : index) {
-                                practiceButton(for: practice, color: isComplete ? colorList[habit.color] : colorList[habit.color].opacity(0.2))
-                            }
-                        case (status.currentIndex + 1)...:
+                        } else {
                             if let practice = Status(rawValue: index) {
-                                practiceButton(for: practice, color: .gray.opacity(0.2))
+                                practiceButton(for: practice, color: status.currentIndex == index ? colorList[habit.color].opacity(0.2) : .gray.opacity(0.2))
                             }
-                        default:
-                            EmptyView()
                         }
                     }
                 }
@@ -76,7 +68,7 @@ struct HabitCardView: View {
     
     func practiceButton(for practice: Status, color: Color) -> some View {
         Button {
-            // 버튼 동작 정의
+            viewModel.action(.completePractice(status: status))
         } label: {
             Image(systemName: practice.name)
                 .resizable()
@@ -85,9 +77,10 @@ struct HabitCardView: View {
                 .padding(.horizontal, 4)
                 .foregroundStyle(color)
         }
+        .disabled(practice == .complete || color == .gray.opacity(0.2))
     }
 }
 
 #Preview {
-    HabitCardView(habit: Habit(title: "야호", color: 2), status: PracticeStatus(habitID: Habit(title: "야호", color: 12).id))
+    HabitCardView(viewModel: HomeViewModel(), habit: Habit(title: "야호", color: 2), status: PracticeStatus(habitID: Habit(title: "야호", color: 2).id))
 }

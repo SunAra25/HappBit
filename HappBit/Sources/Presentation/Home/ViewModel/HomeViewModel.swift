@@ -23,7 +23,7 @@ class HomeViewModel: ViewModelType {
 extension HomeViewModel {
     struct Input {
         var viewOnAppear = PassthroughSubject<Void, Never>()
-//        var practiceHabit = PassthroughSubject<Void, Never>()
+        var completePractice = PassthroughSubject<PracticeStatus, Never>()
 //        var showAddHabitView = PassthroughSubject<Void, Never>()
     }
     
@@ -39,8 +39,14 @@ extension HomeViewModel {
                 guard let self else { return }
                 output.habitList = Habit.readAllHabit().map { $0 }
                 output.practiceStatusList = PracticeStatus.readPracticeStatus().map { $0 }
-                print(output.habitList)
-                print(output.practiceStatusList)
+            }.store(in: &cancellables)
+        
+        input
+            .completePractice
+            .sink { [weak self] status in
+                guard let self else { return }
+                status.recordPractice()
+                output.practiceStatusList = PracticeStatus.readPracticeStatus().map { $0 }
             }.store(in: &cancellables)
     }
 }
@@ -49,12 +55,15 @@ extension HomeViewModel {
 extension HomeViewModel {
     enum Action {
         case viewOnAppear
+        case completePractice(status: PracticeStatus)
     }
     
     func action(_ action: Action) {
         switch action {
         case .viewOnAppear:
             input.viewOnAppear.send(())
+        case .completePractice(let status):
+            input.completePractice.send(status)
         }
     }
 }

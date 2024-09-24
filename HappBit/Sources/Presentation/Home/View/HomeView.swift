@@ -23,7 +23,7 @@ struct HomeView: View {
                 }
                 
                 ForEach(matchedItems, id: \.0.id) { habit, status in
-                    HabitCardView(habit: habit, status: status)
+                    HabitCardView(viewModel: viewModel, habit: habit, status: status)
                 }
             }
         }
