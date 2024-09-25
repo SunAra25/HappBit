@@ -13,7 +13,7 @@ struct HomeView: View {
     var body: some View {
         ScrollView {
             if viewModel.output.practiceStatusList.isEmpty {
-                EmptyHabitView()
+                EmptyHabitView(viewModel: viewModel)
                     .scrollDisabled(true)
             }else {
                 let matchedItems = viewModel.output.habitList.compactMap { habit in
@@ -32,12 +32,24 @@ struct HomeView: View {
         .shadow(color: .gray.opacity(0.15), radius: 10)
         .onAppear {
             viewModel.action(.viewOnAppear)
-            print(Realm.Configuration.defaultConfiguration.fileURL)
+        }
+        .toolbar {
+            Button {
+                viewModel.action(.addButtonTapped)
+            } label: {
+                Image(systemName: "plus")
+                    .foregroundStyle(Color.primary)
+            }
+        }
+        .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
+            AddHabitView()
         }
     }
 }
 
 struct EmptyHabitView: View {
+    let viewModel: HomeViewModel
+    
     var body: some View {
         VStack {
             VStack {
@@ -46,8 +58,8 @@ struct EmptyHabitView: View {
             }
             .padding(.top, 40)
             
-            NavigationLink {
-                AddHabitView()
+            Button {
+                viewModel.action(.addButtonTapped)
             } label: {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.hbThirdary)

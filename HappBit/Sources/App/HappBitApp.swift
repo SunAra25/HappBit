@@ -11,7 +11,7 @@ import SwiftUI
 struct HappBitApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView {
+            NavigationStack {
                 HomeView()
             }
         }
