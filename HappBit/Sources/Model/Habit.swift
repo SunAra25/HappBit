@@ -74,7 +74,7 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(abbreviation: "UTC")!
         
-        return practiceDates.contains(where: { calendar.isDateInYesterday($0) })
+        return practiceDates.isEmpty || practiceDates.contains(where: { calendar.isDateInYesterday($0) })
     }
     
     // 동그라미 상태 초기화
