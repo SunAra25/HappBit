@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var tag = 0
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-                .font(.body1M)
+        TabView(selection: $tag) {
+            NavigationStack {
+                HomeView()
+            }
+            .tabItem {
+                Image(systemName: "house")
+            }
+            .tag(0)
+            
+            EmptyView()
+                .tabItem {
+                    Image(systemName: "archivebox")
+                }
+                .tag(1)
         }
-        .padding()
+        .accentColor(.primary)
     }
 }
 
