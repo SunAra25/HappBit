@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import RealmSwift
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     
@@ -32,6 +32,7 @@ struct HomeView: View {
         .shadow(color: .gray.opacity(0.15), radius: 10)
         .onAppear {
             viewModel.action(.viewOnAppear)
+            print(Realm.Configuration.defaultConfiguration.fileURL)
         }
     }
 }

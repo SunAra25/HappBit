@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0090FDD2CA41D8600827E7A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC422C9FBC72001DED55 /* AddHabitView.swift */; };
 		C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC462CA07018001DED55 /* AddHabitViewModel.swift */; };
 		C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC492CA0707C001DED55 /* ViewModelType.swift */; };
@@ -24,6 +25,20 @@
 		C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */; };
 		C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C0090FDE2CA41D8600827E7A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C0090FDD2CA41D8600827E7A /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C048DC422C9FBC72001DED55 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
@@ -202,6 +217,7 @@
 				C06B0BBC2C9A76F0005451D5 /* Sources */,
 				C06B0BBD2C9A76F0005451D5 /* Frameworks */,
 				C06B0BBE2C9A76F0005451D5 /* Resources */,
+				C0090FDE2CA41D8600827E7A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -52,7 +52,8 @@ struct HabitCardView: View {
                             }
                         } else {
                             if let practice = Status(rawValue: index) {
-                                practiceButton(for: practice, color: status.currentIndex == index ? colorList[habit.color].opacity(0.2) : .gray.opacity(0.2))
+                                let isToday = status.currentIndex == index && status.checkYesterdayPractice()
+                                practiceButton(for: practice, color: isToday ? colorList[habit.color].opacity(0.2) : .gray.opacity(0.2))
                             }
                         }
                     }

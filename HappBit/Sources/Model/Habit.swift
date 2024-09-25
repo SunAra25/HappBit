@@ -59,7 +59,7 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
         try! realm.write {
             isTodayList.replace(index: currentIndex, object: true)
             consecutiveDays += 1
-            currentIndex = (consecutiveDays / 3)
+            currentIndex = (consecutiveDays % 3)
             practiceDates.append(Date())
         }
     }
@@ -68,6 +68,13 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
     func checkTodayPractice() -> Bool {
         let calendar = Calendar.current
         return practiceDates.contains(where: { calendar.isDate($0, inSameDayAs: Date()) })
+    }
+    
+    func checkYesterdayPractice() -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
+        
+        return practiceDates.contains(where: { calendar.isDateInYesterday($0) })
     }
     
     // 동그라미 상태 초기화
