@@ -80,19 +80,35 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
         }
         
         if dateGap > 0 {
-            reset()
+            resetAll()
+        }
+        
+        if !checkTodayPractice() && currentIndex == 0 && consecutiveDays > 0 {
+            resetPracticeStatus()
         }
         
         return calendar.isDateInYesterday(lastDate)
     }
     
-    // 동그라미 상태 초기화
-    func reset() {
+    func resetPracticeStatus() {
         let realm = try! Realm()
         
         try! realm.write {
             consecutiveDays = 0
+            isTodayList.removeAll()
+            isTodayList.append(objectsIn: [false, false, false])
+        }
+    }
+    
+    // 동그라미 상태 초기화
+    func resetAll() {
+        let realm = try! Realm()
+        
+        try! realm.write {
             currentIndex = 0
+            consecutiveDays = 0
+            isTodayList.removeAll()
+            isTodayList.append(objectsIn: [false, false, false])
         }
     }
 }
