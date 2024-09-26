@@ -30,8 +30,12 @@ struct HabitCardView: View {
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.hbThirdary)
+            Button {
+                viewModel.action(.habitDidTap(habit: habit, status: status))
+            } label: {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.hbThirdary)
+            }
             
             Text("☘️ × \(status.consecutiveDays / 3)")
                 .foregroundStyle(.gray)

@@ -14,8 +14,8 @@ enum DetailData: String, CaseIterable {
 }
 
 struct HabitDetailView: View {
-    var habit: Habit = Habit(title: "하루에 물 2L", color: 3)
-    var status: PracticeStatus = PracticeStatus(habitID: Habit(title: "dkfjief", color: 3).id)
+    @Binding var habit: Habit
+    @Binding var status: PracticeStatus
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
@@ -69,8 +69,8 @@ struct HabitDetailView: View {
     }
 }
 
-#Preview {
-    NavigationView {
-        HabitDetailView()
-    }
-}
+//#Preview {
+//    NavigationView {
+//        HabitDetailView()
+//    }
+//}

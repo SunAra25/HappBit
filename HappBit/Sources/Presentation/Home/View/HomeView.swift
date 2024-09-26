@@ -44,6 +44,9 @@ struct HomeView: View {
         .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
             AddHabitView()
         }
+        .navigationDestination(isPresented: $viewModel.output.showDetailView.2) {
+            HabitDetailView(habit: $viewModel.output.showDetailView.0, status: $viewModel.output.showDetailView.1)
+        }
     }
 }
 

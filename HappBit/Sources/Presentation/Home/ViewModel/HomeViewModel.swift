@@ -25,12 +25,14 @@ extension HomeViewModel {
         var viewOnAppear = PassthroughSubject<Void, Never>()
         var completePractice = PassthroughSubject<PracticeStatus, Never>()
         var addButtonTapped = PassthroughSubject<Void, Never>()
+        var habitDidTap = PassthroughSubject<(Habit,PracticeStatus), Never>()
     }
     
     struct Output {
         var habitList: [Habit] = []
         var practiceStatusList: [PracticeStatus] = []
         var showAddHabitView: Bool = false
+        var showDetailView: (Habit, PracticeStatus, Bool) = (Habit(), PracticeStatus(), false)
     }
     
     func transform() {
@@ -56,6 +58,14 @@ extension HomeViewModel {
                 guard let self else { return }
                 output.showAddHabitView = true
             }.store(in: &cancellables)
+        
+        input
+            .habitDidTap
+            .sink { [weak self] values in
+                guard let self else { return }
+                let (habit, status) = values
+                output.showDetailView = (habit, status, true)
+            }.store(in: &cancellables)
     }
 }
 
@@ -65,6 +75,7 @@ extension HomeViewModel {
         case viewOnAppear
         case completePractice(status: PracticeStatus)
         case addButtonTapped
+        case habitDidTap(habit: Habit, status: PracticeStatus)
     }
     
     func action(_ action: Action) {
@@ -75,6 +86,8 @@ extension HomeViewModel {
             input.completePractice.send(status)
         case .addButtonTapped:
             input.addButtonTapped.send(())
+        case .habitDidTap(let habit, let status):
+            input.habitDidTap.send((habit, status))
         }
     }
 }
