@@ -94,7 +94,6 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
         let realm = try! Realm()
         
         try! realm.write {
-            consecutiveDays = 0
             isTodayList.removeAll()
             isTodayList.append(objectsIn: [false, false, false])
         }

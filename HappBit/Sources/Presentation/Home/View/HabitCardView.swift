@@ -51,8 +51,14 @@ struct HabitCardView: View {
                 HStack {
                     ForEach(0..<3) { index in
                         if status.isTodayList[index] {
-                            if let practice = Status(rawValue: 3) {
-                                practiceButton(for: practice, color: colorList[habit.color])
+                            if status.currentIndex > 0 || status.checkTodayPractice() {
+                                if let practice = Status(rawValue: 3) {
+                                    practiceButton(for: practice, color: colorList[habit.color])
+                                }
+                            } else if status.checkYesterdayPractice() {
+                                if let practice = Status(rawValue: index) {
+                                    practiceButton(for: practice, color: colorList[habit.color])
+                                }
                             }
                         } else {
                             if let practice = Status(rawValue: index) {
