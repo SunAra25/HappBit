@@ -11,6 +11,7 @@
 		C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D12CA6C359005FB0B7 /* EstablishedView.swift */; };
 		C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */; };
 		C03760DB2CA717D2005FB0B7 /* PauseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760DA2CA717D2005FB0B7 /* PauseListView.swift */; };
+		C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */; };
 		C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC422C9FBC72001DED55 /* AddHabitView.swift */; };
 		C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC462CA07018001DED55 /* AddHabitViewModel.swift */; };
 		C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC492CA0707C001DED55 /* ViewModelType.swift */; };
@@ -54,6 +55,7 @@
 		C03760D12CA6C359005FB0B7 /* EstablishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedView.swift; sourceTree = "<group>"; };
 		C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedViewModel.swift; sourceTree = "<group>"; };
 		C03760DA2CA717D2005FB0B7 /* PauseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseListView.swift; sourceTree = "<group>"; };
+		C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseListViewModel.swift; sourceTree = "<group>"; };
 		C048DC422C9FBC72001DED55 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		C048DC462CA07018001DED55 /* AddHabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewModel.swift; sourceTree = "<group>"; };
 		C048DC492CA0707C001DED55 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				C03760D82CA71788005FB0B7 /* View */,
+				C03760DE2CA71F9D005FB0B7 /* ViewModel */,
 			);
 			path = Box;
 			sourceTree = "<group>";
@@ -131,6 +134,14 @@
 				C03760DA2CA717D2005FB0B7 /* PauseListView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C03760DE2CA71F9D005FB0B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C048DC442CA06A65001DED55 /* View */ = {
@@ -371,6 +382,7 @@
 				C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */,
 				C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */,
 				C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */,
+				C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */,
 				C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
 				C0E163E12CA54E3A00DB118C /* Date+.swift in Sources */,
