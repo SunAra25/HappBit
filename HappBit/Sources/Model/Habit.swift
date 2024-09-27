@@ -127,8 +127,9 @@ extension Habit {
         }
     }
     
-    static func deleteHabit(_ habit: Habit) {
+    static func deleteHabit(_ habit: Habit, _ status: PracticeStatus) {
         try! realm.write {
+            realm.delete(status)
             realm.delete(habit)
         }
     }
@@ -137,14 +138,19 @@ extension Habit {
 extension PracticeStatus {
     private static var realm = try! Realm()
     
-    static func readPracticeStatus() -> Results<PracticeStatus> {
+    static func readPracticeStatusList() -> Results<PracticeStatus> {
         realm.objects(PracticeStatus.self)
-//            .filter("habitID == %@", habitID)
+    }
+    
+    static func readPracticeStatus(_ habitID: ObjectId) -> PracticeStatus {
+        guard let status = realm.objects(PracticeStatus.self)
+            .filter("habitID == %@", habitID).first else { return PracticeStatus(habitID: habitID) }
+        return status
     }
     
     static func updatePracticeStatus(_ habitID: ObjectId) {
         try! realm.write {
-            var status = PracticeStatus.readPracticeStatus()
+            var status = PracticeStatus.readPracticeStatusList()
             guard let item = status.first else { return }
             item.practiceDates.append(Date())
         }

@@ -24,8 +24,8 @@ enum Status: Int {
 }
 
 struct HabitCardView: View {
-    @ObservedObject var viewModel: HomeViewModel
-    let habit: Habit
+    @StateObject var viewModel: HomeViewModel
+    var habit: Habit
     var status: PracticeStatus
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     var body: some View {
@@ -69,6 +69,9 @@ struct HabitCardView: View {
         .frame(height: 180)
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
+        .onAppear {
+            print(habit, status)
+        }
     }
     
     func practiceButton(for practice: Status, color: Color) -> some View {
@@ -86,6 +89,6 @@ struct HabitCardView: View {
     }
 }
 
-#Preview {
-    HabitCardView(viewModel: HomeViewModel(), habit: Habit(title: "야호", color: 2), status: PracticeStatus(habitID: Habit(title: "야호", color: 2).id))
-}
+//#Preview {
+//    HabitCardView(viewModel: HomeViewModel(), habit: Habit(title: "야호", color: 2), status: PracticeStatus(habitID: Habit(title: "야호", color: 2).id))
+//}

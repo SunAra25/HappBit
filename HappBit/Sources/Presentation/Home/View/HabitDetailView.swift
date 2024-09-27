@@ -14,18 +14,20 @@ enum DetailData: String, CaseIterable {
 }
 
 struct HabitDetailView: View {
+    @StateObject var  viewModel = HabitDetailViewModel()
     @Binding var habit: Habit
     @Binding var status: PracticeStatus
+    @Environment(\.dismiss) private var dismiss
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
         ScrollView {
-            Text(habit.title)
+            Text(viewModel.output.data.0.title)
                 .font(.head)
             
             HStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(colorList[habit.color].opacity(0.15))
+                    .fill(colorList[viewModel.output.data.0.color].opacity(0.15))
                     .frame(height: 120)
                     .overlay {
                         HStack {
@@ -38,12 +40,33 @@ struct HabitDetailView: View {
             .padding()
         }
         .toolbar {
-            Button {
+            Menu {
+                Button {
+                    viewModel.action(.editBtnDidTap(habit: viewModel.output.data.0))
+                } label: {
+                    Text("수정")
+                }
                 
+                Button {
+                    viewModel.action(.deleteBtnDidTap)
+                } label: {
+                    Text("삭제")
+                }
             } label: {
                 Image(systemName: "ellipsis")
             }
-            .foregroundStyle(.primary)
+        }
+        .alert(Text("☘️\(viewModel.output.data.0.title)☘️ 삭제"), isPresented: $viewModel.output.showDeleteAlert, actions: {
+            Button("삭제", role: .destructive) {
+                viewModel.action(.deleteAgreeBtnDidTap(habit: viewModel.output.data.0, status: viewModel.output.data.1))
+                dismiss()
+            }
+            Button("취소", role: .cancel) {}
+        }, message: {
+            Text("습관 실천 기록이 모두 지워집니다.")
+        })
+        .onAppear {
+            viewModel.action(.viewOnAppear(habit: habit, status: status))
         }
     }
     
@@ -56,13 +79,13 @@ struct HabitDetailView: View {
                 .padding(.vertical, 4)
             switch data {
             case .all:
-                Text("\(status.practiceDates.count)")
+                Text("\(viewModel.output.data.1.practiceDates.count)")
                     .font(.head)
             case .sequence:
-                Text("\(status.consecutiveDays)")
+                Text("\(viewModel.output.data.1.consecutiveDays)")
                     .font(.head)
             case .clover:
-                Text("\(status.consecutiveDays / 3)")
+                Text("\(viewModel.output.data.1.consecutiveDays / 3)")
                     .font(.head)
             }
         }

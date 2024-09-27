@@ -40,8 +40,9 @@ extension HomeViewModel {
             .viewOnAppear
             .sink { [weak self] _ in
                 guard let self else { return }
+                output.showDetailView = (Habit(), PracticeStatus(), false)
                 output.habitList = Habit.readAllHabit().map { $0 }
-                output.practiceStatusList = PracticeStatus.readPracticeStatus().map { $0 }
+                output.practiceStatusList = PracticeStatus.readPracticeStatusList().map { $0 }
             }.store(in: &cancellables)
         
         input
@@ -49,7 +50,7 @@ extension HomeViewModel {
             .sink { [weak self] status in
                 guard let self else { return }
                 status.recordPractice()
-                output.practiceStatusList = PracticeStatus.readPracticeStatus().map { $0 }
+                output.practiceStatusList = PracticeStatus.readPracticeStatusList().map { $0 }
             }.store(in: &cancellables)
         
         input
