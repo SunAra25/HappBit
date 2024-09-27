@@ -15,6 +15,11 @@ struct AddHabitView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Text("습관 추가하기")
+                .font(.head)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 8)
+            
             Text("습관 이름")
                 .font(.body1B)
                 .foregroundStyle(.gray)
@@ -63,8 +68,6 @@ struct AddHabitView: View {
             }
         }
         .padding()
-        .navigationTitle("새로운 습관")
-        .navigationBarBackButtonHidden()
         .background(Color.hbSecondary)
     }
 }

@@ -12,6 +12,12 @@ struct HomeView: View {
     
     var body: some View {
         ScrollView {
+            Text("행복한 습관을 실천해보아요☘️")
+                .font(.body2M)
+                .foregroundStyle(.gray)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 16)
+            
             if viewModel.output.practiceStatusList.isEmpty {
                 EmptyHabitView(viewModel: viewModel)
                     .scrollDisabled(true)
@@ -27,20 +33,27 @@ struct HomeView: View {
                 }
             }
         }
-        .navigationTitle("HappBit")
         .background(Color.hbSecondary)
         .shadow(color: .gray.opacity(0.15), radius: 10)
         .onAppear {
             viewModel.action(.viewOnAppear)
         }
         .toolbar {
-            Button {
-                viewModel.action(.addButtonTapped)
-            } label: {
-                Image(systemName: "plus")
-                    .foregroundStyle(Color.primary)
+            ToolbarItem(placement: .topBarLeading) {
+                Text("햇빛")
+                    .font(.head)
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    viewModel.action(.addButtonTapped)
+                } label: {
+                    Image(systemName: "plus")
+                        .foregroundStyle(Color.primary)
+                }
             }
         }
+        .navigationTitle("")
         .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
             AddHabitView()
         }
