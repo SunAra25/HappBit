@@ -18,4 +18,5 @@ extension Color {
     static let hbPrimary = Color("Primary")
     static let hbSecondary = Color("Secondary")
     static let hbThirdary = Color("Thirdary")
+    static let hbQuarterly = Color("Quarterly")
 }

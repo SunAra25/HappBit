@@ -115,8 +115,14 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
 extension Habit {
     private static var realm = try! Realm()
     
-    static func readAllHabit() -> Results<Habit> {
+    static func readProgressHabit() -> Results<Habit> {
         realm.objects(Habit.self)
+            .filter("endDate == nil")
+    }
+    
+    static func readEstablishedHabit() -> Results<Habit> {
+        realm.objects(Habit.self)
+            .filter("endDate != nil")
     }
     
     static func addHabit(_ habit: Habit) {

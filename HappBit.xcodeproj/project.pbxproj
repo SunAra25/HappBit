@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C0090FDD2CA41D8600827E7A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D12CA6C359005FB0B7 /* EstablishedView.swift */; };
+		C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */; };
 		C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC422C9FBC72001DED55 /* AddHabitView.swift */; };
 		C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC462CA07018001DED55 /* AddHabitViewModel.swift */; };
 		C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC492CA0707C001DED55 /* ViewModelType.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C03760D12CA6C359005FB0B7 /* EstablishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedView.swift; sourceTree = "<group>"; };
+		C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedViewModel.swift; sourceTree = "<group>"; };
 		C048DC422C9FBC72001DED55 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		C048DC462CA07018001DED55 /* AddHabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewModel.swift; sourceTree = "<group>"; };
 		C048DC492CA0707C001DED55 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
@@ -86,6 +90,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C03760D02CA6C312005FB0B7 /* My */ = {
+			isa = PBXGroup;
+			children = (
+				C03760D32CA6C910005FB0B7 /* View */,
+				C03760D42CA6C915005FB0B7 /* ViewModel */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		C03760D32CA6C910005FB0B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C03760D12CA6C359005FB0B7 /* EstablishedView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C03760D42CA6C915005FB0B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C048DC442CA06A65001DED55 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				C06B0BE92C9DD520005451D5 /* Home */,
+				C03760D02CA6C312005FB0B7 /* My */,
 				C06B0BC52C9A76F0005451D5 /* ContentView.swift */,
 			);
 			path = Presentation;
@@ -321,10 +351,12 @@
 				C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */,
 				C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */,
 				C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */,
+				C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
 				C0E163E12CA54E3A00DB118C /* Date+.swift in Sources */,
 				C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */,
 				C0E163E42CA54E6600DB118C /* DateFormatter.swift in Sources */,
+				C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */,
 				C0E163EA2CA6890B00DB118C /* HabitStore.swift in Sources */,
 				C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,

@@ -20,11 +20,13 @@ struct ContentView: View {
             }
             .tag(0)
             
-            EmptyView()
-                .tabItem {
-                    Image(systemName: "archivebox")
-                }
-                .tag(1)
+            NavigationView {
+                EstablishedView()
+            }
+            .tabItem {
+                Image(systemName: "archivebox")
+            }
+            .tag(1)
         }
         .accentColor(.primary)
     }
