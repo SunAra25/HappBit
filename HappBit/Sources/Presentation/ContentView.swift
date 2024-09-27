@@ -24,9 +24,15 @@ struct ContentView: View {
                 EstablishedView()
             }
             .tabItem {
-                Image(systemName: "archivebox")
+                Image(systemName: "heart.fill")
             }
             .tag(1)
+            
+            EmptyView()
+                .tabItem {
+                    Image(systemName: "archivebox")
+                }
+                .tag(2)
         }
         .accentColor(.primary)
     }
