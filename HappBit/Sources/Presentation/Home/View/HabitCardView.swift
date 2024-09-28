@@ -75,9 +75,6 @@ struct HabitCardView: View {
         .frame(height: 180)
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
-        .onAppear {
-            print(habit, status)
-        }
     }
     
     func practiceButton(for practice: Status, color: Color) -> some View {

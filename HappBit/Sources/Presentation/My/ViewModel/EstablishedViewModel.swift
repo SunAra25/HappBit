@@ -42,7 +42,6 @@ extension EstablishedViewModel {
                         status.habitID == habit.id
                     }.map { (habit, $0) }
                 }
-                print(matchedItems)
                 output.habitList = matchedItems
             }.store(in: &cancellables)
     }
