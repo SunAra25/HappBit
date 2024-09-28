@@ -21,7 +21,6 @@ enum UpdateType {
 
 struct UpdateHabitView: View {
     @StateObject var viewModel = UpdateHabitViewModel()
-    @State private var titleInput = ""
     @State private var selectedColorIndex: Int?
     @Environment(\.dismiss) private var dismiss
     let type: UpdateType
@@ -36,15 +35,15 @@ struct UpdateHabitView: View {
                 .fill(Color.hbThirdary)
                 .frame(height: 60)
                 .overlay {
-                    TextField("title", text: Binding(
-                        get: { viewModel.output.currentTitle },
-                        set: { viewModel.action(.editingTitle(text: ($0))) } ),
-                              prompt: Text("어떤 습관을 형성해볼까요?"))
-                    .font(.body1M)
-                    .padding(.horizontal)
-                    .tint(.primary)
+                    TextField("title", text: $viewModel.output.currentTitle, prompt: Text("어떤 습관을 형성해볼까요?"))
+                        .font(.body1M)
+                        .padding(.horizontal)
+                        .tint(.primary)
+                        .onChange(of: viewModel.output.currentTitle) { newText in
+                            viewModel.action(.editingTitle(text: newText))
+                        }
                     
-                    Text("\(titleInput.count)/15")
+                    Text("\(viewModel.output.currentTitle.count)/15")
                         .font(.body2M)
                         .foregroundStyle(.gray)
                         .frame(maxWidth: .infinity, alignment: .trailing)

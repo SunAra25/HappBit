@@ -54,12 +54,16 @@ extension UpdateHabitViewModel {
             .editingTitle
             .sink { [weak self] text in
                 guard let self else { return }
-                var text = text
-                if text.count > 15 {
-                    text.removeLast()
+                var newText = text
+                while newText.contains("  ") {
+                    newText.replace("  ", with: " ")
                 }
                 
-                output.currentTitle = text
+                if newText.count > 15 {
+                    newText.removeLast()
+                }
+                
+                output.currentTitle = String(newText)
                 output.buttonState = checkButtonEnable()
             }.store(in: &cancellables)
         
