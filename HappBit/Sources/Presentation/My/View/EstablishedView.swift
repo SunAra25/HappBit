@@ -21,6 +21,8 @@ struct EstablishedView: View {
                 ExistEstablishedView(viewModel: viewModel)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.hbSecondary)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Text("햇빛")
@@ -43,8 +45,6 @@ struct EmptyEstablishedView: View {
                 .font(.body2M)
                 .foregroundStyle(.gray)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.hbSecondary)
     }
 }
 
@@ -72,7 +72,6 @@ struct ExistEstablishedView: View {
                 }
             }.padding()
         }
-        .background(Color.hbSecondary)
     }
     
     func rowView(_ habit: Habit) -> some View {
