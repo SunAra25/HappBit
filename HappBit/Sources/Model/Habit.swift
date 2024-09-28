@@ -33,6 +33,14 @@ final class Habit: Object, ObjectKeyIdentifiable {
             endDate = Date()
         }
     }
+    
+    func restartHabit() {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            endDate = nil
+        }
+    }
 }
 
 //final class Category: Object, ObjectKeyIdentifiable {

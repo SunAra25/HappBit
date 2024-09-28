@@ -17,7 +17,7 @@ struct PauseListView: View {
             } else {
                 ScrollView {
                     ForEach(viewModel.output.habitList, id: \.0.id) { values in
-                        PauseCardView(habit: values.0, status: values.1)
+                        PauseCardView(viewModel: viewModel, habit: values.0, status: values.1)
                     }
                 }
             }
@@ -51,6 +51,7 @@ struct EmptyPauseView: View {
 }
 
 struct PauseCardView: View {
+    let viewModel: PauseListViewModel
     let habit: Habit
     let status: PracticeStatus
     
@@ -59,10 +60,7 @@ struct PauseCardView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color.hbThirdary)
             
-            Image(systemName: "ellipsis")
-                .padding(20)
-                .rotationEffect(.degrees(90))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            menuView(viewModel)
             
             VStack {
                 Text(habit.title)
@@ -89,14 +87,30 @@ struct PauseCardView: View {
                         }
                 }
                 
-                    .font(.body2M)
-                    .foregroundStyle(.gray)
+                .font(.body2M)
+                .foregroundStyle(.gray)
             }
             .padding(.top)
         }
         .frame(height: 160)
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
+    }
+    
+    func menuView(_ viewModel: PauseListViewModel) -> some View {
+        Menu {
+            Button {
+                viewModel.action(.restartBtnDidTap(habit: habit))
+            } label: {
+                Text("다시 시작")
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .padding(20)
+                .rotationEffect(.degrees(90))
+                .padding(.top, 4)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
     }
 }
 
