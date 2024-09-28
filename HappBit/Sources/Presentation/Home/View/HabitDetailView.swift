@@ -42,7 +42,7 @@ struct HabitDetailView: View {
         .toolbar {
             Menu {
                 Button {
-                    viewModel.action(.editBtnDidTap(habit: viewModel.output.data.0))
+                    viewModel.action(.editBtnDidTap)
                 } label: {
                     Text("수정")
                 }
@@ -65,6 +65,10 @@ struct HabitDetailView: View {
         }, message: {
             Text("습관 보관함으로 이동합니다.")
         })
+        .navigationTitle("")
+        .navigationDestination(isPresented: $viewModel.output.showEditHabitView) {
+            UpdateHabitView(type: .edit(habit: viewModel.output.data.0))
+        }
         .onAppear {
             viewModel.action(.viewOnAppear(habit: habit, status: status))
         }

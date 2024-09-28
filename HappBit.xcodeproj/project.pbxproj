@@ -13,8 +13,8 @@
 		C03760DB2CA717D2005FB0B7 /* PauseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760DA2CA717D2005FB0B7 /* PauseListView.swift */; };
 		C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */; };
 		C03760E32CA7DE52005FB0B7 /* SubTitleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760E22CA7DE52005FB0B7 /* SubTitleWrapper.swift */; };
-		C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC422C9FBC72001DED55 /* AddHabitView.swift */; };
-		C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC462CA07018001DED55 /* AddHabitViewModel.swift */; };
+		C048DC432C9FBC72001DED55 /* UpdateHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC422C9FBC72001DED55 /* UpdateHabitView.swift */; };
+		C048DC472CA07018001DED55 /* UpdateHabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC462CA07018001DED55 /* UpdateHabitViewModel.swift */; };
 		C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC492CA0707C001DED55 /* ViewModelType.swift */; };
 		C06B0BC42C9A76F0005451D5 /* HappBitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BC32C9A76F0005451D5 /* HappBitApp.swift */; };
 		C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BC52C9A76F0005451D5 /* ContentView.swift */; };
@@ -58,8 +58,8 @@
 		C03760DA2CA717D2005FB0B7 /* PauseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseListView.swift; sourceTree = "<group>"; };
 		C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseListViewModel.swift; sourceTree = "<group>"; };
 		C03760E22CA7DE52005FB0B7 /* SubTitleWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleWrapper.swift; sourceTree = "<group>"; };
-		C048DC422C9FBC72001DED55 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
-		C048DC462CA07018001DED55 /* AddHabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewModel.swift; sourceTree = "<group>"; };
+		C048DC422C9FBC72001DED55 /* UpdateHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHabitView.swift; sourceTree = "<group>"; };
+		C048DC462CA07018001DED55 /* UpdateHabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHabitViewModel.swift; sourceTree = "<group>"; };
 		C048DC492CA0707C001DED55 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C06B0BC02C9A76F0005451D5 /* HappBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06B0BC32C9A76F0005451D5 /* HappBitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappBitApp.swift; sourceTree = "<group>"; };
@@ -154,12 +154,36 @@
 			path = Wrapper;
 			sourceTree = "<group>";
 		};
+		C03760E42CA7DFFC005FB0B7 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				C03760E62CA7E039005FB0B7 /* View */,
+				C03760E52CA7E032005FB0B7 /* ViewModel */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		C03760E52CA7E032005FB0B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C048DC462CA07018001DED55 /* UpdateHabitViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C03760E62CA7E039005FB0B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C048DC422C9FBC72001DED55 /* UpdateHabitView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C048DC442CA06A65001DED55 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				C06B0BEA2C9DD535005451D5 /* HomeView.swift */,
 				C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */,
-				C048DC422C9FBC72001DED55 /* AddHabitView.swift */,
 				C0E163DC2CA5431700DB118C /* HabitDetailView.swift */,
 			);
 			path = View;
@@ -169,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */,
-				C048DC462CA07018001DED55 /* AddHabitViewModel.swift */,
 				C0E163E52CA5735900DB118C /* HabitDetailViewModel.swift */,
 			);
 			path = ViewModel;
@@ -265,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				C06B0BE92C9DD520005451D5 /* Home */,
+				C03760E42CA7DFFC005FB0B7 /* Update */,
 				C03760D02CA6C312005FB0B7 /* My */,
 				C03760D72CA7177B005FB0B7 /* Box */,
 				C06B0BC52C9A76F0005451D5 /* ContentView.swift */,
@@ -390,9 +414,9 @@
 				C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */,
 				C03760DB2CA717D2005FB0B7 /* PauseListView.swift in Sources */,
 				C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */,
-				C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */,
+				C048DC432C9FBC72001DED55 /* UpdateHabitView.swift in Sources */,
 				C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */,
-				C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */,
+				C048DC472CA07018001DED55 /* UpdateHabitViewModel.swift in Sources */,
 				C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */,
 				C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,

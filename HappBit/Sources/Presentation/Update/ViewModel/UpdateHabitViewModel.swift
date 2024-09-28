@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class AddHabitViewModel: ViewModelType {
+class UpdateHabitViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
     var input = Input()
     @Published
@@ -20,14 +20,16 @@ class AddHabitViewModel: ViewModelType {
 }
 
 // MARK: Input/Output
-extension AddHabitViewModel {
+extension UpdateHabitViewModel {
     struct Input {
+        var viewOnAppear = PassthroughSubject<UpdateType, Never>()
         var editingTitle = PassthroughSubject<String, Never>()
         var selectedColor = PassthroughSubject<Int?, Never>()
         var addHabit = PassthroughSubject<Void, Never>()
     }
     
     struct Output {
+        var updateType: UpdateType = .add
         var currentTitle: String = ""
         var currentColorIndex: Int?
         var buttonState: Bool = false
@@ -35,6 +37,19 @@ extension AddHabitViewModel {
     }
     
     func transform() {
+        input
+            .viewOnAppear
+            .sink { [weak self] type in
+                guard let self else { return }
+                switch type {
+                case .add: break
+                case .edit(let habit):
+                    output.updateType = .edit(habit: habit)
+                    output.currentTitle = habit.title
+                    output.currentColorIndex = habit.color
+                }
+            }.store(in: &cancellables)
+        
         input
             .editingTitle
             .sink { [weak self] text in
@@ -45,7 +60,7 @@ extension AddHabitViewModel {
                 }
                 
                 output.currentTitle = text
-                output.buttonState = ((2...15) ~= text.count) && output.currentColorIndex != nil
+                output.buttonState = checkButtonEnable()
             }.store(in: &cancellables)
         
         input
@@ -53,7 +68,7 @@ extension AddHabitViewModel {
             .sink { [weak self] index in
                 guard let self else { return }
                 output.currentColorIndex = index
-                output.buttonState = ((2...15) ~= output.currentTitle.count)
+                output.buttonState = checkButtonEnable()
             }.store(in: &cancellables)
         
         input
@@ -64,11 +79,21 @@ extension AddHabitViewModel {
                 output.popView = true
             }.store(in: &cancellables)
     }
+    
+    func checkButtonEnable() -> Bool {
+        switch output.updateType {
+        case .add:
+            return ((2...15) ~= output.currentTitle.count) && output.currentColorIndex != nil
+        case .edit(let habit):
+            return ((2...15) ~= output.currentTitle.count) && output.currentColorIndex != nil && (output.currentTitle != habit.title || output.currentColorIndex != habit.color)
+        }
+    }
 }
 
 // MARK: Action
-extension AddHabitViewModel {
+extension UpdateHabitViewModel {
     enum Action {
+        case viewOnAppear(type: UpdateType)
         case editingTitle(text: String)
         case selectedColor(index: Int?)
         case addHabit
@@ -76,6 +101,8 @@ extension AddHabitViewModel {
     
     func action(_ action: Action) {
         switch action {
+        case .viewOnAppear(let type):
+            input.viewOnAppear.send(type)
         case .editingTitle(let text):
             input.editingTitle.send(text)
         case .selectedColor(let index):

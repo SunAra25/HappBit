@@ -7,19 +7,27 @@
 
 import SwiftUI
 
-struct AddHabitView: View {
-    @StateObject var viewModel = AddHabitViewModel()
+enum UpdateType {
+    case add
+    case edit(habit: Habit)
+    
+    var title: String {
+        switch self {
+        case .add: "습관 추가"
+        case .edit: "습관 수정"
+        }
+    }
+}
+
+struct UpdateHabitView: View {
+    @StateObject var viewModel = UpdateHabitViewModel()
     @State private var titleInput = ""
-    @State private var selectedColor: Color?
+    @State private var selectedColorIndex: Int?
     @Environment(\.dismiss) private var dismiss
+    let type: UpdateType
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("습관 추가하기")
-                .font(.head)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.bottom, 8)
-            
             Text("습관 이름")
                 .font(.body1B)
                 .foregroundStyle(.gray)
@@ -31,10 +39,10 @@ struct AddHabitView: View {
                     TextField("title", text: Binding(
                         get: { viewModel.output.currentTitle },
                         set: { viewModel.action(.editingTitle(text: ($0))) } ),
-                        prompt: Text("어떤 습관을 형성해볼까요?"))
-                        .font(.body1M)
-                        .padding(.horizontal)
-                        .tint(.primary)
+                              prompt: Text("어떤 습관을 형성해볼까요?"))
+                    .font(.body1M)
+                    .padding(.horizontal)
+                    .tint(.primary)
                     
                     Text("\(titleInput.count)/15")
                         .font(.body2M)
@@ -69,11 +77,16 @@ struct AddHabitView: View {
         }
         .padding()
         .background(Color.hbSecondary)
+        .navigationTitle(type.title)
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            viewModel.action(.viewOnAppear(type: type))
+        }
     }
 }
 
 private struct ColorPickerView: View {
-    @ObservedObject var viewModel: AddHabitViewModel
+    @ObservedObject var viewModel: UpdateHabitViewModel
     var colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
@@ -108,8 +121,9 @@ private struct ColorPickerView: View {
         }
     }
 }
-#Preview {
-    NavigationView {
-        AddHabitView()
-    }
-}
+
+//#Preview {
+//    NavigationView {
+//        UpdateHabitView()
+//    }
+//}

@@ -54,7 +54,7 @@ struct HomeView: View {
         }
         .navigationTitle("")
         .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
-            AddHabitView()
+            UpdateHabitView(type: .add)
         }
         .navigationDestination(isPresented: $viewModel.output.showDetailView.2) {
             HabitDetailView(habit: $viewModel.output.showDetailView.0, status: $viewModel.output.showDetailView.1)
