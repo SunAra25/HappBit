@@ -44,12 +44,14 @@ struct HomeView: View {
                     .font(.head)
             }
             
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    viewModel.action(.addButtonTapped)
-                } label: {
-                    Image(systemName: "plus")
-                        .foregroundStyle(Color.primary)
+            if !viewModel.output.habitList.isEmpty {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        viewModel.action(.addButtonTapped)
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundStyle(Color.primary)
+                    }
                 }
             }
         }
