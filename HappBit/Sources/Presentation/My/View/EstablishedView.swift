@@ -92,9 +92,13 @@ struct ActionDaysCardView: View {
     var body: some View {
         GeometryReader { geometry in
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.hbQuarterly)
+                .fill(Color.hbThirdary)
                 .frame(height: geometry.size.width)
+                .shadow(color: .gray.opacity(0.15), radius: 10)
                 .overlay {
+                    Image("Clover")
+                        .resizable()
+                        .scaledToFit()
                     switch type {
                     case .clover: cloverCountView
                     case .date: dateCountView
@@ -110,7 +114,7 @@ struct ActionDaysCardView: View {
             HStack(alignment: .bottom) {
                 Text(habitList.count.formatted())
                     .font(.head)
-                    .foregroundStyle(Color.hbPrimary)
+                    .foregroundStyle(Color.primary)
                 
                 Text("개의")
             }
@@ -119,7 +123,7 @@ struct ActionDaysCardView: View {
             Text("습관이 자리잡았어요")
         }
         .font(.body2B)
-        .foregroundStyle(Color.hbSecondary)
+        .foregroundStyle(Color.primary.opacity(0.7))
     }
     
     var dateCountView: some View {
@@ -130,7 +134,7 @@ struct ActionDaysCardView: View {
                 Text("\(habitList.reduce(0) { $0 + $1.1.practiceDates.count }.formatted() )")
                     .font(.head)
                     .padding(.horizontal, -5)
-                    .foregroundStyle(Color.hbPrimary)
+                    .foregroundStyle(Color.primary)
                 
                 Text("일")
             }
@@ -139,7 +143,7 @@ struct ActionDaysCardView: View {
             Text("실천하셨어요")
         }
         .font(.body2B)
-        .foregroundStyle(Color.hbSecondary)
+        .foregroundStyle(Color.primary.opacity(0.7))
     }
 }
 
