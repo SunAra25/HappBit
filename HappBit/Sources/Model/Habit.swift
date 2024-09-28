@@ -97,14 +97,14 @@ final class PracticeStatus: Object, ObjectKeyIdentifiable {
     
     func checkYesterdayPractice() -> Bool {
         var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "UTC")!
         
         guard let lastDate = practiceDates.last else { return true }
-        guard let dateGap = calendar.dateComponents([.day], from: Date() , to: lastDate).day else {
-            return calendar.isDateInYesterday(lastDate)
-        }
+        let todayStart = calendar.startOfDay(for: Date())
+        let lastDateStart = calendar.startOfDay(for: lastDate)
         
-        if dateGap > 0 {
+        let dateGap = calendar.dateComponents([.day], from: lastDateStart, to: todayStart).day ?? 0
+        
+        if dateGap > 1 {
             resetAll()
         }
         
