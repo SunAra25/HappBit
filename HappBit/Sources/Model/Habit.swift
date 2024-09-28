@@ -25,6 +25,14 @@ final class Habit: Object, ObjectKeyIdentifiable {
         self.createdAt = createdAt
         self.endDate = endDate
     }
+    
+    func pauseHabit() {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            endDate = Date()
+        }
+    }
 }
 
 //final class Category: Object, ObjectKeyIdentifiable {

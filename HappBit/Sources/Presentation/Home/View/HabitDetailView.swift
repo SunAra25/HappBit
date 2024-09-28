@@ -48,22 +48,22 @@ struct HabitDetailView: View {
                 }
                 
                 Button {
-                    viewModel.action(.deleteBtnDidTap)
+                    viewModel.action(.pauseBtnDidTap)
                 } label: {
-                    Text("삭제")
+                    Text("중지")
                 }
             } label: {
                 Image(systemName: "ellipsis")
             }
         }
-        .alert(Text("☘️\(viewModel.output.data.0.title)☘️ 삭제"), isPresented: $viewModel.output.showDeleteAlert, actions: {
-            Button("삭제", role: .destructive) {
-                viewModel.action(.deleteAgreeBtnDidTap(habit: viewModel.output.data.0, status: viewModel.output.data.1))
+        .alert(Text("[\(viewModel.output.data.0.title)] 중지"), isPresented: $viewModel.output.showDeleteAlert, actions: {
+            Button("확인") {
+                viewModel.action(.pauseAgreeBtnDidTap(habit: viewModel.output.data.0))
                 dismiss()
             }
             Button("취소", role: .cancel) {}
         }, message: {
-            Text("습관 실천 기록이 모두 지워집니다.")
+            Text("습관 보관함으로 이동합니다.")
         })
         .onAppear {
             viewModel.action(.viewOnAppear(habit: habit, status: status))
