@@ -79,7 +79,13 @@ extension UpdateHabitViewModel {
             .addHabit
             .sink { [weak self] _ in
                 guard let self, let colorIndex = output.currentColorIndex else { return }
-                Habit.addHabit(Habit(title: output.currentTitle, color: colorIndex))
+                switch output.updateType {
+                case .add:
+                    Habit.addHabit(Habit(title: output.currentTitle, color: colorIndex))
+                case .edit(let habit):
+                    guard let colorIdx = output.currentColorIndex else { break }
+                    habit.updateHabit(newTitle: output.currentTitle, newColorIdx: colorIdx)
+                }
                 output.popView = true
             }.store(in: &cancellables)
     }

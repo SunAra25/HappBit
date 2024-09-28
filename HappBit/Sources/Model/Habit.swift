@@ -41,6 +41,15 @@ final class Habit: Object, ObjectKeyIdentifiable {
             endDate = nil
         }
     }
+    
+    func updateHabit(newTitle: String, newColorIdx: Int) {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            title = newTitle
+            color = newColorIdx
+        }
+    }
 }
 
 //final class Category: Object, ObjectKeyIdentifiable {
