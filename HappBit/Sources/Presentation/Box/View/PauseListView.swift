@@ -12,6 +12,9 @@ struct PauseListView: View {
     
     var body: some View {
         VStack {
+            Text("잠시 실천 중지한 습관 모음 ☘️")
+                .asSubTitle()
+            
             if viewModel.output.habitList.isEmpty {
                 EmptyPauseView()
             } else {
@@ -25,7 +28,7 @@ struct PauseListView: View {
         .background(Color.hbSecondary)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Text("습관 보관함")
+                Text("햇빛")
                     .font(.head)
             }
         }

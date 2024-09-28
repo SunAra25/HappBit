@@ -12,10 +12,19 @@ struct EstablishedView: View {
     
     var body: some View {
         VStack {
+            Text("내 습관 현황 ☘️")
+                .asSubTitle()
+            
             if viewModel.output.habitList.isEmpty {
                 EmptyEstablishedView()
             } else {
                 ExistEstablishedView(viewModel: viewModel)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Text("햇빛")
+                    .font(.head)
             }
         }
         .onAppear {

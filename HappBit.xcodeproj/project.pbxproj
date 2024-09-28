@@ -12,6 +12,7 @@
 		C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */; };
 		C03760DB2CA717D2005FB0B7 /* PauseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760DA2CA717D2005FB0B7 /* PauseListView.swift */; };
 		C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */; };
+		C03760E32CA7DE52005FB0B7 /* SubTitleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760E22CA7DE52005FB0B7 /* SubTitleWrapper.swift */; };
 		C048DC432C9FBC72001DED55 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC422C9FBC72001DED55 /* AddHabitView.swift */; };
 		C048DC472CA07018001DED55 /* AddHabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC462CA07018001DED55 /* AddHabitViewModel.swift */; };
 		C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DC492CA0707C001DED55 /* ViewModelType.swift */; };
@@ -56,6 +57,7 @@
 		C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedViewModel.swift; sourceTree = "<group>"; };
 		C03760DA2CA717D2005FB0B7 /* PauseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseListView.swift; sourceTree = "<group>"; };
 		C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseListViewModel.swift; sourceTree = "<group>"; };
+		C03760E22CA7DE52005FB0B7 /* SubTitleWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleWrapper.swift; sourceTree = "<group>"; };
 		C048DC422C9FBC72001DED55 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		C048DC462CA07018001DED55 /* AddHabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewModel.swift; sourceTree = "<group>"; };
 		C048DC492CA0707C001DED55 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
@@ -142,6 +144,14 @@
 				C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C03760E12CA7DE37005FB0B7 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				C03760E22CA7DE52005FB0B7 /* SubTitleWrapper.swift */,
+			);
+			path = Wrapper;
 			sourceTree = "<group>";
 		};
 		C048DC442CA06A65001DED55 /* View */ = {
@@ -244,6 +254,7 @@
 				C0E163E22CA54E5A00DB118C /* Enum */,
 				C06B0BD62C9A7C5B005451D5 /* Extension */,
 				C048DC482CA07064001DED55 /* Protocol */,
+				C03760E12CA7DE37005FB0B7 /* Wrapper */,
 				C06B0BE62C9D64C9005451D5 /* Model */,
 				C06B0BE42C9D645B005451D5 /* Presentation */,
 			);
@@ -385,6 +396,7 @@
 				C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */,
 				C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
+				C03760E32CA7DE52005FB0B7 /* SubTitleWrapper.swift in Sources */,
 				C0E163E12CA54E3A00DB118C /* Date+.swift in Sources */,
 				C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */,
 				C0E163E42CA54E6600DB118C /* DateFormatter.swift in Sources */,

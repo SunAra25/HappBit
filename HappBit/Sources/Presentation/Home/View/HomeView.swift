@@ -12,11 +12,8 @@ struct HomeView: View {
     
     var body: some View {
         ScrollView {
-            Text("행복한 습관을 실천해보아요☘️")
-                .font(.body2M)
-                .foregroundStyle(.gray)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 16)
+            Text("행복한 습관을 실천해보아요 ☘️")
+                .asSubTitle()
             
             if viewModel.output.practiceStatusList.isEmpty {
                 EmptyHabitView(viewModel: viewModel)
