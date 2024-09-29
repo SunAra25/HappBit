@@ -23,16 +23,16 @@ class HabitDetailViewModel: ViewModelType {
 // MARK: Input/Output
 extension HabitDetailViewModel {
     struct Input {
-        var viewOnAppear = PassthroughSubject<(Habit, PracticeStatus), Never>()
+        var viewOnAppear = PassthroughSubject<Habit, Never>()
         var editBtnDidTap = PassthroughSubject<Bool, Never>()
         var pauseBtnDidTap = PassthroughSubject<Void, Never>()
         var pauseAgreeBtnDidTap = PassthroughSubject<Habit, Never>()
         var deleteBtnDidTap = PassthroughSubject<Void, Never>()
-        var deleteAgreeBtnDidTap = PassthroughSubject<(Habit, PracticeStatus), Never>()
+        var deleteAgreeBtnDidTap = PassthroughSubject<Habit, Never>()
     }
     
     struct Output {
-        var data: (Habit, PracticeStatus) = (Habit(), PracticeStatus())
+        var data: Habit = Habit()
         var showEditHabitView: Bool = false
         var showPauseAlert: Bool = false
         var pauseHabit: Bool = false
@@ -43,9 +43,9 @@ extension HabitDetailViewModel {
     func transform() {
         input
             .viewOnAppear
-            .sink { [weak self] values in
+            .sink { [weak self] habit in
                 guard let self else { return }
-                output.data = values
+                output.data = habit
             }.store(in: &cancellables)
         
         input
@@ -79,11 +79,12 @@ extension HabitDetailViewModel {
         
         input
             .deleteAgreeBtnDidTap
-            .sink { [weak self] values in
+            .sink { [weak self] habit in
                 guard let self else { return }
                 output.deleteHabit = true
-                Habit.deleteHabit(values.0, values.1)
-                output.data = (Habit(), PracticeStatus())
+//                output.data
+                Habit.deleteHabit(habit)
+                output.data = Habit()
             }.store(in: &cancellables)
     }
 }
@@ -91,18 +92,18 @@ extension HabitDetailViewModel {
 // MARK: Action
 extension HabitDetailViewModel {
     enum Action {
-        case viewOnAppear(habit: Habit, status: PracticeStatus)
+        case viewOnAppear(habit: Habit)
         case editBtnDidTap
         case pauseBtnDidTap
         case pauseAgreeBtnDidTap(habit: Habit)
         case deleteBtnDidTap
-        case deleteAgreeBtnDidTap(habit: Habit, status: PracticeStatus)
+        case deleteAgreeBtnDidTap(habit: Habit)
     }
     
     func action(_ action: Action) {
         switch action {
-        case .viewOnAppear(let habit, let status):
-            input.viewOnAppear.send((habit, status))
+        case .viewOnAppear(let habit):
+            input.viewOnAppear.send(habit)
         case .editBtnDidTap:
             input.editBtnDidTap.send(true)
         case .pauseBtnDidTap:
@@ -111,8 +112,8 @@ extension HabitDetailViewModel {
             input.pauseAgreeBtnDidTap.send(habit)
         case .deleteBtnDidTap:
             input.deleteBtnDidTap.send(())
-        case .deleteAgreeBtnDidTap(let habit, let status):
-            input.deleteAgreeBtnDidTap.send((habit, status))
+        case .deleteAgreeBtnDidTap(let habit):
+            input.deleteAgreeBtnDidTap.send(habit)
         }
     }
 }

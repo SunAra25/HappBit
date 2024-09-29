@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import RealmSwift
 
 class PauseListViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
@@ -27,7 +28,7 @@ extension PauseListViewModel {
     }
     
     struct Output {
-        var habitList: [(Habit, PracticeStatus)] = []
+        var habitList: Results<Habit> = Habit.readPauseHabit()
     }
     
     func transform() {
@@ -48,16 +49,7 @@ extension PauseListViewModel {
     }
     
     func reloadList() {
-        let habitList = Array(Habit.readEstablishedHabit())
-        let statusList = Array(PracticeStatus.readPracticeStatusList()).filter { $0.consecutiveDays < 66 }
-        
-        let matchedItems = statusList.compactMap { status in
-            habitList.first { habit in
-                status.habitID == habit.id
-            }.map { ($0, status) }
-        }
-        
-        output.habitList = matchedItems
+        output.habitList = Habit.readPauseHabit()
     }
 }
 

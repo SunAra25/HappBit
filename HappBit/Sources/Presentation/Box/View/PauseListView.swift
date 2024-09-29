@@ -19,8 +19,8 @@ struct PauseListView: View {
                 EmptyPauseView()
             } else {
                 ScrollView {
-                    ForEach(viewModel.output.habitList, id: \.0.id) { values in
-                        PauseCardView(viewModel: viewModel, habit: values.0, status: values.1)
+                    ForEach(viewModel.output.habitList, id: \.id) { habit in
+                        PauseCardView(viewModel: viewModel, habit: habit)
                     }
                 }
             }
@@ -56,14 +56,13 @@ struct EmptyPauseView: View {
 struct PauseCardView: View {
     let viewModel: PauseListViewModel
     let habit: Habit
-    let status: PracticeStatus
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color.hbThirdary)
             
-            menuView(viewModel)
+            menuView()
             
             VStack {
                 Text(habit.title)
@@ -75,14 +74,14 @@ struct PauseCardView: View {
                     .padding(.vertical, 4)
                 
                 HStack {
-                    Text("☘️ \(status.consecutiveDays / 3)개")
+                    Text("☘️ \(habit.consecutiveDays / 3)개")
                         .padding(8)
                         .overlay {
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(Color.gray.opacity(0.1))
                         }
                     
-                    Text("실천 \(status.practiceDates.count)일")
+                    Text("실천 \(habit.practiceDates.count)일")
                         .padding(8)
                         .overlay {
                             RoundedRectangle(cornerRadius: 8)
@@ -100,7 +99,7 @@ struct PauseCardView: View {
         .padding(.vertical, 8)
     }
     
-    func menuView(_ viewModel: PauseListViewModel) -> some View {
+    func menuView() -> some View {
         Menu {
             Button {
                 viewModel.action(.restartBtnDidTap(habit: habit))

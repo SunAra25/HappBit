@@ -26,18 +26,18 @@ enum Status: Int {
 struct HabitCardView: View {
     @ObservedObject var viewModel: HomeViewModel
     var habit: Habit
-    var status: PracticeStatus
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
+    
     var body: some View {
         ZStack {
             Button {
-                viewModel.action(.habitDidTap(habit: habit, status: status))
+                viewModel.action(.habitDidTap(habit: habit))
             } label: {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.hbThirdary)
             }
             
-            Text("☘️ × \(status.consecutiveDays / 3)")
+            Text("☘️ × \(habit.consecutiveDays / 3)")
                 .foregroundStyle(.gray)
                 .font(.captionM)
                 .padding(20)
@@ -50,20 +50,20 @@ struct HabitCardView: View {
                 
                 HStack {
                     ForEach(0..<3) { index in
-                        if status.isTodayList[index] {
-                            if status.currentIndex > 0 || status.checkTodayPractice() {
-                                if let practice = Status(rawValue: 3) {
-                                    practiceButton(for: practice, color: colorList[habit.color])
+                        if habit.isTodayList[index] {
+                            if habit.currentIndex > 0 || habit.checkTodayPractice() {
+                                if let status = Status(rawValue: 3) {
+                                    practiceButton(for: status, color: colorList[habit.colorIndex])
                                 }
-                            } else if status.checkYesterdayPractice() {
-                                if let practice = Status(rawValue: index) {
-                                    practiceButton(for: practice, color: colorList[habit.color])
+                            } else if habit.checkYesterdayPractice() {
+                                if let status = Status(rawValue: index) {
+                                    practiceButton(for: status, color: colorList[habit.colorIndex])
                                 }
                             }
                         } else {
-                            if let practice = Status(rawValue: index) {
-                                let isToday = status.currentIndex == index && status.checkYesterdayPractice()
-                                practiceButton(for: practice, color: isToday ? colorList[habit.color].opacity(0.2) : .gray.opacity(0.2))
+                            if let status = Status(rawValue: index) {
+                                let isToday = habit.currentIndex == index && habit.checkYesterdayPractice()
+                                practiceButton(for: status, color: isToday ? colorList[habit.colorIndex].opacity(0.2) : .gray.opacity(0.2))
                             }
                         }
                     }
@@ -77,18 +77,18 @@ struct HabitCardView: View {
         .padding(.vertical, 8)
     }
     
-    func practiceButton(for practice: Status, color: Color) -> some View {
+    func practiceButton(for status: Status, color: Color) -> some View {
         Button {
-            viewModel.action(.completePractice(status: status))
+            viewModel.action(.completeToday(habit: habit))
         } label: {
-            Image(systemName: practice.name)
+            Image(systemName: status.name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 44)
                 .padding(.horizontal, 4)
                 .foregroundStyle(color)
         }
-        .disabled(practice == .complete || color == .gray.opacity(0.2))
+        .disabled(status == .complete || color == .gray.opacity(0.2))
     }
 }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import RealmSwift
 
 class EstablishedViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
@@ -26,7 +27,7 @@ extension EstablishedViewModel {
     }
     
     struct Output {
-        var habitList: [(Habit, PracticeStatus)] = []
+        var habitList: Results<Habit> = Habit.readEstablishedHabit()
     }
     
     func transform() {
@@ -34,15 +35,7 @@ extension EstablishedViewModel {
             .viewOnAppear
             .sink { [weak self] _ in
                 guard let self else { return }
-                let habitList = Array(Habit.readEstablishedHabit())
-                let statusList = Array(PracticeStatus.readPracticeStatusList())
-                
-                let matchedItems = habitList.compactMap { habit in
-                    statusList.first { status in
-                        status.habitID == habit.id
-                    }.map { (habit, $0) }
-                }
-                output.habitList = matchedItems
+                output.habitList = Habit.readEstablishedHabit()
             }.store(in: &cancellables)
     }
 }

@@ -46,7 +46,7 @@ extension UpdateHabitViewModel {
                 case .edit(let habit):
                     output.updateType = .edit(habit: habit)
                     output.currentTitle = habit.title
-                    output.currentColorIndex = habit.color
+                    output.currentColorIndex = habit.colorIndex
                 }
             }.store(in: &cancellables)
         
@@ -81,7 +81,7 @@ extension UpdateHabitViewModel {
                 guard let self, let colorIndex = output.currentColorIndex else { return }
                 switch output.updateType {
                 case .add:
-                    Habit.addHabit(Habit(title: output.currentTitle, color: colorIndex))
+                    Habit.addHabit(Habit(title: output.currentTitle, colorIndex: colorIndex))
                 case .edit(let habit):
                     guard let colorIdx = output.currentColorIndex else { break }
                     habit.updateHabit(newTitle: output.currentTitle, newColorIdx: colorIdx)
@@ -95,7 +95,7 @@ extension UpdateHabitViewModel {
         case .add:
             return ((2...15) ~= output.currentTitle.count) && output.currentColorIndex != nil
         case .edit(let habit):
-            return ((2...15) ~= output.currentTitle.count) && output.currentColorIndex != nil && (output.currentTitle != habit.title || output.currentColorIndex != habit.color)
+            return ((2...15) ~= output.currentTitle.count) && output.currentColorIndex != nil && (output.currentTitle != habit.title || output.currentColorIndex != habit.colorIndex)
         }
     }
 }

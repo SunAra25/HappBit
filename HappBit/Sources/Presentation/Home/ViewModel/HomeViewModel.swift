@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import RealmSwift
 
 class HomeViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
@@ -23,15 +24,15 @@ class HomeViewModel: ViewModelType {
 extension HomeViewModel {
     struct Input {
         var viewOnAppear = PassthroughSubject<Void, Never>()
-        var completePractice = PassthroughSubject<PracticeStatus, Never>()
+        var completeToday = PassthroughSubject<Habit, Never>()
         var addButtonTapped = PassthroughSubject<Void, Never>()
-        var habitDidTap = PassthroughSubject<(Habit,PracticeStatus), Never>()
+        var habitDidTap = PassthroughSubject<Habit, Never>()
     }
     
     struct Output {
-        var habitList: [(Habit, PracticeStatus)] = []
+        var habitList: Results<Habit> = Habit.readProgressHabit()
         var showAddHabitView: Bool = false
-        var showDetailView: (Habit, PracticeStatus, Bool) = (Habit(), PracticeStatus(), false)
+        var showDetailView: (Habit, Bool) = (Habit(), false)
     }
     
     func transform() {
@@ -39,16 +40,15 @@ extension HomeViewModel {
             .viewOnAppear
             .sink { [weak self] _ in
                 guard let self else { return }
-                output.habitList = []
                 reloadList()
                 print(output.habitList, "🦊")
             }.store(in: &cancellables)
         
         input
-            .completePractice
-            .sink { [weak self] status in
+            .completeToday
+            .sink { [weak self] habit in
                 guard let self else { return }
-                status.recordPractice()
+                habit.completeToday()
                 reloadList()
             }.store(in: &cancellables)
         
@@ -61,30 +61,18 @@ extension HomeViewModel {
         
         input
             .habitDidTap
-            .sink { [weak self] values in
+            .sink { [weak self] habit in
                 guard let self else { return }
-                let (habit, status) = values
-                output.showDetailView = (habit, status, true)
+                output.showDetailView = (habit, true)
             }.store(in: &cancellables)
     }
     
     func reloadList() {
-        let habitList = Array(Habit.readProgressHabit())
-        let statusList = Array(PracticeStatus.readPracticeStatusList())
+//        let habitList = Array(Habit.readProgressHabit())
+//        
+//        let validHabitList = habitList.filter { !$0.isInvalidated }
         
-        let validHabitList = habitList.filter { !$0.isInvalidated }
-        let invalid = habitList.filter { $0.isInvalidated }
-        if !invalid.isEmpty {
-            print(invalid, "🐷")
-        }
-        let matchedItems = validHabitList.compactMap { habit in
-            statusList.first { status in
-                
-                return status.habitID == habit.id && !status.isInvalidated
-            }.map { (habit, $0) }
-        }
-        
-        output.habitList = matchedItems
+        output.habitList = Habit.readProgressHabit()
     }
 }
 
@@ -92,21 +80,21 @@ extension HomeViewModel {
 extension HomeViewModel {
     enum Action {
         case viewOnAppear
-        case completePractice(status: PracticeStatus)
+        case completeToday(habit: Habit)
         case addButtonTapped
-        case habitDidTap(habit: Habit, status: PracticeStatus)
+        case habitDidTap(habit: Habit)
     }
     
     func action(_ action: Action) {
         switch action {
         case .viewOnAppear:
             input.viewOnAppear.send(())
-        case .completePractice(let status):
-            input.completePractice.send(status)
+        case .completeToday(let habit):
+            input.completeToday.send(habit)
         case .addButtonTapped:
             input.addButtonTapped.send(())
-        case .habitDidTap(let habit, let status):
-            input.habitDidTap.send((habit, status))
+        case .habitDidTap(let habit):
+            input.habitDidTap.send(habit)
         }
     }
 }

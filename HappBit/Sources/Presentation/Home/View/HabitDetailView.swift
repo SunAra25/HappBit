@@ -16,18 +16,17 @@ enum DetailData: String, CaseIterable {
 struct HabitDetailView: View {
     @ObservedObject var  viewModel = HabitDetailViewModel()
     @Binding var habit: Habit
-    @Binding var status: PracticeStatus
     @Environment(\.dismiss) private var dismiss
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
         ScrollView {
-            Text(viewModel.output.data.0.title)
+            Text(viewModel.output.data.title)
                 .font(.head)
             
             HStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(colorList[viewModel.output.data.0.color].opacity(0.15))
+                    .fill(colorList[viewModel.output.data.colorIndex].opacity(0.15))
                     .frame(height: 120)
                     .overlay {
                         HStack {
@@ -62,20 +61,19 @@ struct HabitDetailView: View {
                 Image(systemName: "ellipsis")
             }
         }
-        .alert(Text("[\(viewModel.output.data.0.title)] 중지"), isPresented: $viewModel.output.showPauseAlert, actions: {
+        .alert(Text("[\(viewModel.output.data.title)] 중지"), isPresented: $viewModel.output.showPauseAlert, actions: {
             Button("확인") {
-                viewModel.action(.pauseAgreeBtnDidTap(habit: viewModel.output.data.0))
-                habit = viewModel.output.data.0
-                status = viewModel.output.data.1
+                viewModel.action(.pauseAgreeBtnDidTap(habit: viewModel.output.data))
+                habit = viewModel.output.data
                 dismiss()
             }
             Button("취소", role: .cancel) {}
         }, message: {
             Text("습관 보관함으로 이동합니다.")
         })
-        .alert(Text("[\(viewModel.output.data.0.title)] 삭제"), isPresented: $viewModel.output.showDeleteAlert, actions: {
+        .alert(Text("[\(viewModel.output.data.title)] 삭제"), isPresented: $viewModel.output.showDeleteAlert, actions: {
             Button("확인", role: .destructive) {
-                viewModel.action(.deleteAgreeBtnDidTap(habit: viewModel.output.data.0, status: viewModel.output.data.1))
+                viewModel.action(.deleteAgreeBtnDidTap(habit: viewModel.output.data))
                 dismiss()
             }
             Button("취소", role: .cancel) {}
@@ -85,10 +83,10 @@ struct HabitDetailView: View {
 
         .navigationTitle("")
         .navigationDestination(isPresented: $viewModel.output.showEditHabitView) {
-            UpdateHabitView(type: .edit(habit: viewModel.output.data.0))
+            UpdateHabitView(type: .edit(habit: viewModel.output.data))
         }
         .onAppear {
-            viewModel.action(.viewOnAppear(habit: habit, status: status))
+            viewModel.action(.viewOnAppear(habit: habit))
         }
     }
     
@@ -101,13 +99,13 @@ struct HabitDetailView: View {
                 .padding(.vertical, 4)
             switch data {
             case .all:
-                Text("\(viewModel.output.data.1.practiceDates.count)")
+                Text("\(viewModel.output.data.practiceDates.count)")
                     .font(.head)
             case .sequence:
-                Text("\(viewModel.output.data.1.consecutiveDays)")
+                Text("\(viewModel.output.data.consecutiveDays)")
                     .font(.head)
             case .clover:
-                Text("\(viewModel.output.data.1.consecutiveDays / 3)")
+                Text("\(viewModel.output.data.consecutiveDays / 3)")
                     .font(.head)
             }
         }

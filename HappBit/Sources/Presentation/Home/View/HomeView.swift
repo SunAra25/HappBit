@@ -7,27 +7,30 @@
 
 import SwiftUI
 import RealmSwift
+
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
+    @ObservedResults(Habit.self)
+    var habitList
     
     var body: some View {
         ScrollView {
             Text("행복한 습관을 실천해보아요 ☘️")
                 .asSubTitle()
             
-            if viewModel.output.habitList.isEmpty {
+            if habitList.isEmpty {
                 EmptyHabitView(viewModel: viewModel)
                     .scrollDisabled(true)
             } else {
-                ForEach(viewModel.output.habitList.filter { !$0.0.isInvalidated && !$0.1.isInvalidated }, id: \.0.id) { habit, status in
-                    HabitCardView(viewModel: viewModel, habit: habit, status: status)
+                ForEach(habitList, id: \.id) { habit in
+                    HabitCardView(viewModel: viewModel, habit: habit)
                 }
             }
         }
         .background(Color.hbSecondary)
         .shadow(color: .gray.opacity(0.15), radius: 10)
         .onAppear {
-            viewModel.action(.viewOnAppear)
+//            viewModel.action(.viewOnAppear)
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -35,7 +38,7 @@ struct HomeView: View {
                     .font(.head)
             }
             
-            if !viewModel.output.habitList.isEmpty {
+            if !habitList.isEmpty {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         viewModel.action(.addButtonTapped)
@@ -50,8 +53,8 @@ struct HomeView: View {
         .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
             UpdateHabitView(type: .add)
         }
-        .navigationDestination(isPresented: $viewModel.output.showDetailView.2) {
-            HabitDetailView(habit: $viewModel.output.showDetailView.0, status: $viewModel.output.showDetailView.1)
+        .navigationDestination(isPresented: $viewModel.output.showDetailView.1) {
+            HabitDetailView(habit: $viewModel.output.showDetailView.0)
         }
     }
 }
@@ -94,8 +97,8 @@ struct EmptyHabitView: View {
     }
 }
 
-#Preview {
-    NavigationView {
-        HomeView()
-    }
-}
+//#Preview {
+//    NavigationView {
+//        HomeView()
+//    }
+//}

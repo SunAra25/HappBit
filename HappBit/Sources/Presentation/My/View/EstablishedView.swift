@@ -55,7 +55,7 @@ struct ExistEstablishedView: View {
         ScrollView {
             HStack {
                 ForEach(ActionDays.allCases, id: \.self) { type in
-                    ActionDaysCardView(habitList: viewModel.output.habitList, type: type)
+                    ActionDaysCardView(viewModel: viewModel, type: type)
                 }
             }
             .padding(.top)
@@ -67,8 +67,8 @@ struct ExistEstablishedView: View {
                     .foregroundStyle(.gray)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ForEach(viewModel.output.habitList, id: \.0.id) { values in
-                    rowView(values.0)
+                ForEach(viewModel.output.habitList, id: \.id) { habit in
+                    rowView(habit)
                 }
             }.padding()
         }
@@ -94,7 +94,7 @@ struct ExistEstablishedView: View {
 }
 
 struct ActionDaysCardView: View {
-    let habitList: [(Habit, PracticeStatus)]
+    @ObservedObject var viewModel: EstablishedViewModel
     let type: ActionDays
     
     var body: some View {
@@ -120,7 +120,7 @@ struct ActionDaysCardView: View {
     var cloverCountView: some View {
         VStack {
             HStack(alignment: .bottom) {
-                Text(habitList.count.formatted())
+                Text(viewModel.output.habitList.count.formatted())
                     .font(.head)
                     .foregroundStyle(Color.primary)
                 
@@ -139,7 +139,7 @@ struct ActionDaysCardView: View {
             HStack(alignment: .bottom) {
                 Text("총")
                 
-                Text("\(habitList.reduce(0) { $0 + $1.1.practiceDates.count }.formatted() )")
+                Text("\(viewModel.output.habitList.reduce(0) { $0 + $1.practiceDates.count }.formatted() )")
                     .font(.head)
                     .padding(.horizontal, -5)
                     .foregroundStyle(Color.primary)
