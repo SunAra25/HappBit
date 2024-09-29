@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import RealmSwift
 
 class HabitDetailViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
@@ -26,13 +27,17 @@ extension HabitDetailViewModel {
         var editBtnDidTap = PassthroughSubject<Bool, Never>()
         var pauseBtnDidTap = PassthroughSubject<Void, Never>()
         var pauseAgreeBtnDidTap = PassthroughSubject<Habit, Never>()
+        var deleteBtnDidTap = PassthroughSubject<Void, Never>()
+        var deleteAgreeBtnDidTap = PassthroughSubject<(Habit, PracticeStatus), Never>()
     }
     
     struct Output {
         var data: (Habit, PracticeStatus) = (Habit(), PracticeStatus())
         var showEditHabitView: Bool = false
-        var showDeleteAlert: Bool = false
+        var showPauseAlert: Bool = false
         var pauseHabit: Bool = false
+        var showDeleteAlert: Bool = false
+        var deleteHabit: Bool = false
     }
     
     func transform() {
@@ -54,7 +59,7 @@ extension HabitDetailViewModel {
             .pauseBtnDidTap
             .sink { [weak self] _ in
                 guard let self else { return }
-                output.showDeleteAlert = true
+                output.showPauseAlert = true
             }.store(in: &cancellables)
         
         input
@@ -63,6 +68,21 @@ extension HabitDetailViewModel {
                 guard let self else { return }
                 output.pauseHabit = true
                 habit.pauseHabit()
+            }.store(in: &cancellables)
+        
+        input
+            .deleteBtnDidTap
+            .sink { [weak self] _ in
+                guard let self else { return }
+                output.showDeleteAlert = true
+            }.store(in: &cancellables)
+        
+        input
+            .deleteAgreeBtnDidTap
+            .sink { [weak self] values in
+                guard let self else { return }
+                output.deleteHabit = true
+                Habit.deleteHabit(values.0, values.1)
                 output.data = (Habit(), PracticeStatus())
             }.store(in: &cancellables)
     }
@@ -75,6 +95,8 @@ extension HabitDetailViewModel {
         case editBtnDidTap
         case pauseBtnDidTap
         case pauseAgreeBtnDidTap(habit: Habit)
+        case deleteBtnDidTap
+        case deleteAgreeBtnDidTap(habit: Habit, status: PracticeStatus)
     }
     
     func action(_ action: Action) {
@@ -87,6 +109,10 @@ extension HabitDetailViewModel {
             input.pauseBtnDidTap.send(())
         case .pauseAgreeBtnDidTap(let habit):
             input.pauseAgreeBtnDidTap.send(habit)
+        case .deleteBtnDidTap:
+            input.deleteBtnDidTap.send(())
+        case .deleteAgreeBtnDidTap(let habit, let status):
+            input.deleteAgreeBtnDidTap.send((habit, status))
         }
     }
 }

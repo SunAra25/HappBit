@@ -24,7 +24,7 @@ enum Status: Int {
 }
 
 struct HabitCardView: View {
-    @StateObject var viewModel: HomeViewModel
+    @ObservedObject var viewModel: HomeViewModel
     var habit: Habit
     var status: PracticeStatus
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]

@@ -15,17 +15,11 @@ struct HomeView: View {
             Text("행복한 습관을 실천해보아요 ☘️")
                 .asSubTitle()
             
-            if viewModel.output.practiceStatusList.isEmpty {
+            if viewModel.output.habitList.isEmpty {
                 EmptyHabitView(viewModel: viewModel)
                     .scrollDisabled(true)
-            }else {
-                let matchedItems = viewModel.output.habitList.compactMap { habit in
-                    viewModel.output.practiceStatusList.first { status in
-                        status.habitID == habit.id
-                    }.map { (habit, $0) }
-                }
-                
-                ForEach(matchedItems, id: \.0.id) { habit, status in
+            } else {
+                ForEach(viewModel.output.habitList.filter { !$0.0.isInvalidated && !$0.1.isInvalidated }, id: \.0.id) { habit, status in
                     HabitCardView(viewModel: viewModel, habit: habit, status: status)
                 }
             }

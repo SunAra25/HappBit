@@ -29,8 +29,7 @@ extension HomeViewModel {
     }
     
     struct Output {
-        var habitList: [Habit] = []
-        var practiceStatusList: [PracticeStatus] = []
+        var habitList: [(Habit, PracticeStatus)] = []
         var showAddHabitView: Bool = false
         var showDetailView: (Habit, PracticeStatus, Bool) = (Habit(), PracticeStatus(), false)
     }
@@ -40,9 +39,9 @@ extension HomeViewModel {
             .viewOnAppear
             .sink { [weak self] _ in
                 guard let self else { return }
-                output.showDetailView = (Habit(), PracticeStatus(), false)
-                output.habitList = Habit.readProgressHabit().map { $0 }
-                output.practiceStatusList = PracticeStatus.readPracticeStatusList().map { $0 }
+                output.habitList = []
+                reloadList()
+                print(output.habitList, "🦊")
             }.store(in: &cancellables)
         
         input
@@ -50,7 +49,7 @@ extension HomeViewModel {
             .sink { [weak self] status in
                 guard let self else { return }
                 status.recordPractice()
-                output.practiceStatusList = PracticeStatus.readPracticeStatusList().map { $0 }
+                reloadList()
             }.store(in: &cancellables)
         
         input
@@ -67,6 +66,25 @@ extension HomeViewModel {
                 let (habit, status) = values
                 output.showDetailView = (habit, status, true)
             }.store(in: &cancellables)
+    }
+    
+    func reloadList() {
+        let habitList = Array(Habit.readProgressHabit())
+        let statusList = Array(PracticeStatus.readPracticeStatusList())
+        
+        let validHabitList = habitList.filter { !$0.isInvalidated }
+        let invalid = habitList.filter { $0.isInvalidated }
+        if !invalid.isEmpty {
+            print(invalid, "🐷")
+        }
+        let matchedItems = validHabitList.compactMap { habit in
+            statusList.first { status in
+                
+                return status.habitID == habit.id && !status.isInvalidated
+            }.map { (habit, $0) }
+        }
+        
+        output.habitList = matchedItems
     }
 }
 
