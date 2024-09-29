@@ -29,52 +29,62 @@ struct HabitCardView: View {
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
-        ZStack {
-            Button {
-                viewModel.action(.habitDidTap(habit: habit))
-            } label: {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.hbThirdary)
-            }
-            
-            Text("☘️ × \(habit.consecutiveDays / 3)")
-                .foregroundStyle(.gray)
-                .font(.captionM)
-                .padding(20)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-            
-            VStack {
-                Text(habit.title)
-                    .font(.sub)
-                    .fontWeight(.semibold)
+        if !habit.isInvalidated {
+            ZStack {
+                Button {
+                    viewModel.action(.habitDidTap(habit: habit))
+                } label: {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color.hbThirdary)
+                }
                 
-                HStack {
-                    ForEach(0..<3) { index in
-                        if habit.isTodayList[index] {
-                            if habit.currentIndex > 0 || habit.checkTodayPractice() {
-                                if let status = Status(rawValue: 3) {
-                                    practiceButton(for: status, color: colorList[habit.colorIndex])
+                Text("☘️ × \(habit.consecutiveDays / 3)")
+                    .foregroundStyle(.gray)
+                    .font(.captionM)
+                    .padding(20)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                
+                VStack {
+                    Text(habit.title)
+                        .font(.sub)
+                        .fontWeight(.semibold)
+                    
+                    HStack {
+                        ForEach(0..<3) { index in
+                            if habit.isTodayList[index] {
+                                if habit.currentIndex > 0 || habit.checkTodayPractice() {
+                                    if let status = Status(rawValue: 3) {
+                                        practiceButton(for: status, color: colorList[habit.colorIndex])
+                                    }
+                                } else if habit.checkYesterdayPractice() {
+                                    if let status = Status(rawValue: index) {
+                                        practiceButton(for: status, color: colorList[habit.colorIndex])
+                                    }
                                 }
-                            } else if habit.checkYesterdayPractice() {
+                            } else {
                                 if let status = Status(rawValue: index) {
-                                    practiceButton(for: status, color: colorList[habit.colorIndex])
+                                    let isToday = habit.currentIndex == index && habit.checkYesterdayPractice()
+                                    practiceButton(for: status, color: isToday ? colorList[habit.colorIndex].opacity(0.2) : .gray.opacity(0.2))
                                 }
-                            }
-                        } else {
-                            if let status = Status(rawValue: index) {
-                                let isToday = habit.currentIndex == index && habit.checkYesterdayPractice()
-                                practiceButton(for: status, color: isToday ? colorList[habit.colorIndex].opacity(0.2) : .gray.opacity(0.2))
                             }
                         }
                     }
+                    .padding(.top, 8)
                 }
-                .padding(.top, 8)
+                .padding(.top)
             }
-            .padding(.top)
+            .frame(height: 180)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 8)
+            .onAppear {
+                //            if !habit.isInvalidated {
+                //                print(habit, "🌼")
+                //            }
+                //            print(habit, "🌼")
+            }
+        } else {
+            EmptyView()
         }
-        .frame(height: 180)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 8)
     }
     
     func practiceButton(for status: Status, color: Color) -> some View {

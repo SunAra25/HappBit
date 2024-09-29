@@ -14,7 +14,8 @@ enum DetailData: String, CaseIterable {
 }
 
 struct HabitDetailView: View {
-    @ObservedObject var  viewModel = HabitDetailViewModel()
+    @StateObject var viewModel = HabitDetailViewModel()
+    @ObservedObject var homeVM: HomeViewModel
     @Binding var habit: Habit
     @Environment(\.dismiss) private var dismiss
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
@@ -74,6 +75,7 @@ struct HabitDetailView: View {
         .alert(Text("[\(viewModel.output.data.title)] 삭제"), isPresented: $viewModel.output.showDeleteAlert, actions: {
             Button("확인", role: .destructive) {
                 viewModel.action(.deleteAgreeBtnDidTap(habit: viewModel.output.data))
+//                homeVM.action(.viewOnAppear)
                 dismiss()
             }
             Button("취소", role: .cancel) {}

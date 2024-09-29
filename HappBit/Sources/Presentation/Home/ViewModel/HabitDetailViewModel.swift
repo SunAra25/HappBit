@@ -81,10 +81,13 @@ extension HabitDetailViewModel {
             .deleteAgreeBtnDidTap
             .sink { [weak self] habit in
                 guard let self else { return }
-                output.deleteHabit = true
-//                output.data
+                //                output.deleteHabit = true
+                ////                output.data
+                //                Habit.deleteHabit(habit)
+                //                output.data = Habit()
                 Habit.deleteHabit(habit)
-                output.data = Habit()
+                output.data = Habit() // 초기화
+                output.deleteHabit = true
             }.store(in: &cancellables)
     }
 }

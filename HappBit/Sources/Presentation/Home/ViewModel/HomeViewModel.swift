@@ -64,6 +64,7 @@ extension HomeViewModel {
             .sink { [weak self] habit in
                 guard let self else { return }
                 output.showDetailView = (habit, true)
+//                output.habitList =
             }.store(in: &cancellables)
     }
     

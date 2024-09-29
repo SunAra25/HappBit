@@ -10,20 +10,22 @@ import RealmSwift
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
-    @ObservedResults(Habit.self)
-    var habitList
+//    @ObservedResults(Habit.self)
+//    var habitList
     
     var body: some View {
         ScrollView {
             Text("행복한 습관을 실천해보아요 ☘️")
                 .asSubTitle()
             
-            if habitList.isEmpty {
+            if viewModel.output.habitList.isEmpty {
                 EmptyHabitView(viewModel: viewModel)
                     .scrollDisabled(true)
             } else {
-                ForEach(habitList, id: \.id) { habit in
-                    HabitCardView(viewModel: viewModel, habit: habit)
+                ForEach(viewModel.output.habitList, id: \.id) { habit in
+                    if !habit.isInvalidated {
+                        HabitCardView(viewModel: viewModel, habit: habit)
+                    }
                 }
             }
         }
@@ -31,6 +33,7 @@ struct HomeView: View {
         .shadow(color: .gray.opacity(0.15), radius: 10)
         .onAppear {
 //            viewModel.action(.viewOnAppear)
+            print(viewModel.output.habitList, "🧶")
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -38,7 +41,7 @@ struct HomeView: View {
                     .font(.head)
             }
             
-            if !habitList.isEmpty {
+            if !viewModel.output.habitList.isEmpty {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         viewModel.action(.addButtonTapped)
@@ -54,7 +57,7 @@ struct HomeView: View {
             UpdateHabitView(type: .add)
         }
         .navigationDestination(isPresented: $viewModel.output.showDetailView.1) {
-            HabitDetailView(habit: $viewModel.output.showDetailView.0)
+            HabitDetailView(homeVM: viewModel, habit: $viewModel.output.showDetailView.0)
         }
     }
 }
