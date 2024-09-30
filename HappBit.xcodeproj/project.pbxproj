@@ -25,17 +25,14 @@
 		C06B0BDB2C9D0E40005451D5 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD42C9A7B6B005451D5 /* Pretendard-Bold.otf */; };
 		C06B0BDC2C9D0E43005451D5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */; };
 		C06B0BE22C9D16DE005451D5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; };
-		C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BE72C9D9445005451D5 /* Habit.swift */; };
 		C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEA2C9DD535005451D5 /* HomeView.swift */; };
 		C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */; };
-		C0A8EB752CA945F100D21CF6 /* NewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A8EB742CA945F100D21CF6 /* NewModel.swift */; };
+		C0A8EB752CA945F100D21CF6 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A8EB742CA945F100D21CF6 /* Habit.swift */; };
 		C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163DC2CA5431700DB118C /* HabitDetailView.swift */; };
 		C0E163DF2CA54E3200DB118C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163DE2CA54E3200DB118C /* String+.swift */; };
 		C0E163E12CA54E3A00DB118C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E02CA54E3A00DB118C /* Date+.swift */; };
 		C0E163E42CA54E6600DB118C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E32CA54E6600DB118C /* DateFormatter.swift */; };
 		C0E163E62CA5735900DB118C /* HabitDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E52CA5735900DB118C /* HabitDetailViewModel.swift */; };
-		C0E163E82CA6783800DB118C /* _Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E72CA6783800DB118C /* _Habit.swift */; };
-		C0E163EA2CA6890B00DB118C /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E92CA6890B00DB118C /* HabitStore.swift */; };
 		C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,17 +69,14 @@
 		C06B0BD72C9D09A3005451D5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		C06B0BD92C9D09C2005451D5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C06B0BDF2C9D151D005451D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C06B0BE72C9D9445005451D5 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		C06B0BEA2C9DD535005451D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
-		C0A8EB742CA945F100D21CF6 /* NewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewModel.swift; sourceTree = "<group>"; };
+		C0A8EB742CA945F100D21CF6 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		C0E163DC2CA5431700DB118C /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		C0E163DE2CA54E3200DB118C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C0E163E02CA54E3A00DB118C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C0E163E32CA54E6600DB118C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		C0E163E52CA5735900DB118C /* HabitDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailViewModel.swift; sourceTree = "<group>"; };
-		C0E163E72CA6783800DB118C /* _Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Habit.swift; sourceTree = "<group>"; };
-		C0E163E92CA6890B00DB118C /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
 		C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -309,10 +303,7 @@
 		C06B0BE62C9D64C9005451D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C06B0BE72C9D9445005451D5 /* Habit.swift */,
-				C0E163E72CA6783800DB118C /* _Habit.swift */,
-				C0E163E92CA6890B00DB118C /* HabitStore.swift */,
-				C0A8EB742CA945F100D21CF6 /* NewModel.swift */,
+				C0A8EB742CA945F100D21CF6 /* Habit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -417,9 +408,8 @@
 				C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */,
 				C03760DB2CA717D2005FB0B7 /* PauseListView.swift in Sources */,
 				C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */,
-				C0A8EB752CA945F100D21CF6 /* NewModel.swift in Sources */,
+				C0A8EB752CA945F100D21CF6 /* Habit.swift in Sources */,
 				C048DC432C9FBC72001DED55 /* UpdateHabitView.swift in Sources */,
-				C06B0BE82C9D9445005451D5 /* Habit.swift in Sources */,
 				C048DC472CA07018001DED55 /* UpdateHabitViewModel.swift in Sources */,
 				C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */,
 				C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */,
@@ -429,12 +419,10 @@
 				C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */,
 				C0E163E42CA54E6600DB118C /* DateFormatter.swift in Sources */,
 				C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */,
-				C0E163EA2CA6890B00DB118C /* HabitStore.swift in Sources */,
 				C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,
 				C0E163E62CA5735900DB118C /* HabitDetailViewModel.swift in Sources */,
 				C0E163DF2CA54E3200DB118C /* String+.swift in Sources */,
-				C0E163E82CA6783800DB118C /* _Habit.swift in Sources */,
 				C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */,
 				C06B0BC42C9A76F0005451D5 /* HappBitApp.swift in Sources */,
 			);
