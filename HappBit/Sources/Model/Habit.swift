@@ -30,6 +30,10 @@ final class Habit: Object, ObjectKeyIdentifiable {
     
     func pauseHabit() {
         try! Habit.realm.write {
+            for i in 0...currentIndex {
+                isTodayList[i] = false
+            }
+            currentIndex = 0
             endDate = Date()
         }
     }
