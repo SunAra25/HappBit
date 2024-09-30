@@ -54,49 +54,61 @@ struct EmptyPauseView: View {
 }
 
 struct PauseCardView: View {
-    let viewModel: PauseListViewModel
+    @StateObject var viewModel: PauseListViewModel
     let habit: Habit
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.hbThirdary)
-            
-            menuView()
-            
-            VStack {
-                Text(habit.title)
-                    .font(.sub)
+        if habit.isInvalidated {
+            EmptyView()
+        } else {
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.hbThirdary)
                 
-                Text(habit.createdAt.toString() + "-" + (habit.endDate?.toString() ?? ""))
+                menuView()
+                
+                VStack {
+                    Text(habit.title)
+                        .font(.sub)
+                    
+                    Text(habit.createdAt.toString() + "-" + (habit.endDate?.toString() ?? ""))
+                        .font(.body2M)
+                        .foregroundStyle(.gray)
+                        .padding(.vertical, 4)
+                    
+                    HStack {
+                        Text("☘️ \(habit.consecutiveDays / 3)개")
+                            .padding(8)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.gray.opacity(0.1))
+                            }
+                        
+                        Text("실천 \(habit.practiceDates.count)일")
+                            .padding(8)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.gray.opacity(0.1))
+                            }
+                    }
+                    
                     .font(.body2M)
                     .foregroundStyle(.gray)
-                    .padding(.vertical, 4)
-                
-                HStack {
-                    Text("☘️ \(habit.consecutiveDays / 3)개")
-                        .padding(8)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.gray.opacity(0.1))
-                        }
-                    
-                    Text("실천 \(habit.practiceDates.count)일")
-                        .padding(8)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.gray.opacity(0.1))
-                        }
                 }
-                
-                .font(.body2M)
-                .foregroundStyle(.gray)
+                .padding(.top)
             }
-            .padding(.top)
+            .frame(height: 160)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 8)
+            .alert(Text("[\(habit.title)] 삭제"), isPresented: $viewModel.output.showDeleteAlert, actions: {
+                Button("확인", role: .destructive) {
+                    viewModel.action(.deleteAgreeBtnDidTap(habit: habit))
+                }
+                Button("취소", role: .cancel) {}
+            }, message: {
+                Text("습관 실천 기록이 모두 지워집니다.")
+            })
         }
-        .frame(height: 160)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 8)
     }
     
     func menuView() -> some View {
@@ -105,6 +117,12 @@ struct PauseCardView: View {
                 viewModel.action(.restartBtnDidTap(habit: habit))
             } label: {
                 Text("다시 시작")
+            }
+            
+            Button {
+                viewModel.action(.deleteBtnDidTap)
+            } label: {
+                Text("삭제")
             }
         } label: {
             Image(systemName: "ellipsis")
