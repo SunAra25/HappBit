@@ -16,7 +16,9 @@ struct EstablishedView: View {
                 .asSubTitle()
             
             if viewModel.output.habitList.isEmpty {
+                Spacer()
                 EmptyEstablishedView()
+                Spacer()
             } else {
                 ExistEstablishedView(viewModel: viewModel)
             }
@@ -41,7 +43,7 @@ struct EmptyEstablishedView: View {
             Text("아직 자리잡은 습관이 없어요!")
                 .font(.head)
                 .padding()
-            Text("66일간의 습관 실천을 통해 내 습관으로 만들어보세요☘️")
+            Text("66일간의 습관 실천을 통해 내 습관으로 만들어보세요 ☘️")
                 .font(.body2M)
                 .foregroundStyle(.gray)
         }
