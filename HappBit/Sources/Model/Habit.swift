@@ -115,11 +115,14 @@ extension Habit {
     static func readEstablishedHabit() -> Results<Habit> {
         realm.objects(Habit.self)
             .filter("endDate != nil")
+            .where { $0.practiceDates.count >= 66 }
+        
     }
     
     static func readPauseHabit() -> Results<Habit> {
-        readEstablishedHabit()
-            .filter("practiceDates.@count < 66")
+        realm.objects(Habit.self)
+            .filter("endDate != nil")
+            .where { $0.practiceDates.count < 66 }
     }
 
     static func addHabit(_ habit: Habit) {
