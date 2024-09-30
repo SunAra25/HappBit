@@ -53,6 +53,9 @@ struct HomeView: View {
         .navigationDestination(isPresented: $viewModel.output.showDetailView.1) {
             HabitDetailView(homeVM: viewModel, habit: $viewModel.output.showDetailView.0)
         }
+        .onAppear {
+            viewModel.action(.viewOnAppear)
+        }
     }
 }
 
