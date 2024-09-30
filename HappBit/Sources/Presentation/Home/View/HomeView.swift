@@ -10,8 +10,6 @@ import RealmSwift
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
-//    @ObservedResults(Habit.self)
-//    var habitList
     
     var body: some View {
         ScrollView {
@@ -31,10 +29,6 @@ struct HomeView: View {
         }
         .background(Color.hbSecondary)
         .shadow(color: .gray.opacity(0.15), radius: 10)
-        .onAppear {
-//            viewModel.action(.viewOnAppear)
-            print(viewModel.output.habitList, "🧶")
-        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Text("햇빛")

@@ -41,7 +41,6 @@ extension HomeViewModel {
             .sink { [weak self] _ in
                 guard let self else { return }
                 reloadList()
-                print(output.habitList, "🦊")
             }.store(in: &cancellables)
         
         input
@@ -64,15 +63,10 @@ extension HomeViewModel {
             .sink { [weak self] habit in
                 guard let self else { return }
                 output.showDetailView = (habit, true)
-//                output.habitList =
             }.store(in: &cancellables)
     }
     
     func reloadList() {
-//        let habitList = Array(Habit.readProgressHabit())
-//        
-//        let validHabitList = habitList.filter { !$0.isInvalidated }
-        
         output.habitList = Habit.readProgressHabit()
     }
 }

@@ -76,12 +76,6 @@ struct HabitCardView: View {
             .frame(height: 180)
             .padding(.horizontal, 20)
             .padding(.vertical, 8)
-            .onAppear {
-                //            if !habit.isInvalidated {
-                //                print(habit, "🌼")
-                //            }
-                //            print(habit, "🌼")
-            }
         } else {
             EmptyView()
         }

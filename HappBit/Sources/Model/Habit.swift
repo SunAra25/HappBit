@@ -29,24 +29,18 @@ final class Habit: Object, ObjectKeyIdentifiable {
     }
     
     func pauseHabit() {
-//        let realm = try! Realm()
-        
         try! Habit.realm.write {
             endDate = Date()
         }
     }
     
     func restartHabit() {
-//        let realm = try! Realm()
-        
         try! Habit.realm.write {
             endDate = nil
         }
     }
     
     func updateHabit(newTitle: String, newColorIdx: Int) {
-//        let realm = try! Realm()
-        
         try! Habit.realm.write {
             title = newTitle
             colorIndex = newColorIdx
@@ -54,8 +48,6 @@ final class Habit: Object, ObjectKeyIdentifiable {
     }
     
     func completeToday() {
-//        let realm = try! Realm()
-        
         try! Habit.realm.write {
             isTodayList.replace(index: currentIndex, object: true)
             consecutiveDays += 1
