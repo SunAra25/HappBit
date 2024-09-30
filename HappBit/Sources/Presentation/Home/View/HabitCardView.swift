@@ -51,19 +51,18 @@ struct HabitCardView: View {
                     
                     HStack {
                         ForEach(0..<3) { index in
+                            let isTodayComplete = habit.isTodayList[index]
+                            let isCurrentIndex = habit.currentIndex == index
+                            let isYesterdayPractice = habit.checkYesterdayPractice()
+                            let isInitialState = !habit.isTodayList.contains(true) && index == 0
+                            
                             if habit.isTodayList[index] {
-                                if habit.currentIndex > 0 || habit.checkTodayPractice() {
-                                    if let status = Status(rawValue: 3) {
-                                        practiceButton(for: status, color: colorList[habit.colorIndex])
-                                    }
-                                } else if habit.checkYesterdayPractice() {
-                                    if let status = Status(rawValue: index) {
-                                        practiceButton(for: status, color: colorList[habit.colorIndex])
-                                    }
+                                if let status = Status(rawValue: 3) {
+                                    practiceButton(for: status, color: colorList[habit.colorIndex])
                                 }
                             } else {
                                 if let status = Status(rawValue: index) {
-                                    let isToday = habit.currentIndex == index && habit.checkYesterdayPractice()
+                                    let isToday = isCurrentIndex && (isYesterdayPractice || isInitialState)
                                     practiceButton(for: status, color: isToday ? colorList[habit.colorIndex].opacity(0.2) : .gray.opacity(0.2))
                                 }
                             }
