@@ -10,7 +10,7 @@ import SwiftUI
 enum DetailData: String, CaseIterable {
     case all = "전체 실천일"
     case sequence = "연속 실천일"
-    case clover = "획든한 클로버"
+    case clover = "획득한 클로버"
 }
 
 struct HabitDetailView: View {
