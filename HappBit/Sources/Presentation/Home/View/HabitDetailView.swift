@@ -27,9 +27,12 @@ struct HabitDetailView: View {
             
             HStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(colorList[viewModel.output.data.colorIndex].opacity(0.15))
+                    .fill(Color.hbThirdary)
                     .frame(height: 120)
                     .overlay {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(colorList[viewModel.output.data.colorIndex].opacity(0.15))
+                        
                         HStack {
                             ForEach(DetailData.allCases, id: \.self) { data in
                                 dataView(data)
