@@ -31,7 +31,7 @@ struct HomeView: View {
         .shadow(color: .gray.opacity(0.15), radius: 10)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Text("햇빛")
+                Text("happbit")
                     .font(.head)
             }
             

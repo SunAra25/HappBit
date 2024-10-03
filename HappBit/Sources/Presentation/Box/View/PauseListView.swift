@@ -28,7 +28,7 @@ struct PauseListView: View {
         .background(Color.hbSecondary)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Text("햇빛")
+                Text("happbit")
                     .font(.head)
             }
         }
