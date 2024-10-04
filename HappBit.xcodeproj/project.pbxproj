@@ -34,6 +34,7 @@
 		C0E163E42CA54E6600DB118C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E32CA54E6600DB118C /* DateFormatter.swift */; };
 		C0E163E62CA5735900DB118C /* HabitDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E52CA5735900DB118C /* HabitDetailViewModel.swift */; };
 		C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */; };
+		C0EE215D2CAF7A0600B4EBFF /* Habit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0EE215B2CAF7A0600B4EBFF /* Habit.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +79,7 @@
 		C0E163E32CA54E6600DB118C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		C0E163E52CA5735900DB118C /* HabitDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailViewModel.swift; sourceTree = "<group>"; };
 		C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C0EE215C2CAF7A0600B4EBFF /* Habit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Habit.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 		C06B0BE62C9D64C9005451D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C0EE215B2CAF7A0600B4EBFF /* Habit.xcdatamodeld */,
 				C0A8EB742CA945F100D21CF6 /* Habit.swift */,
 			);
 			path = Model;
@@ -420,6 +423,7 @@
 				C0E163E42CA54E6600DB118C /* DateFormatter.swift in Sources */,
 				C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */,
 				C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */,
+				C0EE215D2CAF7A0600B4EBFF /* Habit.xcdatamodeld in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,
 				C0E163E62CA5735900DB118C /* HabitDetailViewModel.swift in Sources */,
 				C0E163DF2CA54E3200DB118C /* String+.swift in Sources */,
@@ -661,6 +665,19 @@
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		C0EE215B2CAF7A0600B4EBFF /* Habit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C0EE215C2CAF7A0600B4EBFF /* Habit.xcdatamodel */,
+			);
+			currentVersion = C0EE215C2CAF7A0600B4EBFF /* Habit.xcdatamodel */;
+			path = Habit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C06B0BB82C9A76F0005451D5 /* Project object */;
 }
