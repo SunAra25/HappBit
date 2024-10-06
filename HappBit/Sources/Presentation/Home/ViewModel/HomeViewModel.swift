@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import RealmSwift
+import CoreData
 
 class HomeViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
@@ -24,15 +24,15 @@ class HomeViewModel: ViewModelType {
 extension HomeViewModel {
     struct Input {
         var viewOnAppear = PassthroughSubject<Void, Never>()
-        var completeToday = PassthroughSubject<Habit, Never>()
-        var addButtonTapped = PassthroughSubject<Void, Never>()
-        var habitDidTap = PassthroughSubject<Habit, Never>()
+//        var completeToday = PassthroughSubject<HabitEntity, Never>()
+//        var addButtonTapped = PassthroughSubject<Void, Never>()
+//        var habitDidTap = PassthroughSubject<HabitEntity, Never>()
     }
     
     struct Output {
-        var habitList: Results<Habit> = Habit.readProgressHabit()
-        var showAddHabitView: Bool = false
-        var showDetailView: (Habit, Bool) = (Habit(), false)
+        var habitList: [HabitEntity] = []
+//        var showAddHabitView: Bool = false
+//        var showDetailView: (NSManagedObjectID, Bool) = (NSManagedObjectID(), false)
     }
     
     func transform() {
@@ -40,34 +40,30 @@ extension HomeViewModel {
             .viewOnAppear
             .sink { [weak self] _ in
                 guard let self else { return }
-                reloadList()
+                output.habitList = manager.fetchHabit()
             }.store(in: &cancellables)
         
-        input
-            .completeToday
-            .sink { [weak self] habit in
-                guard let self else { return }
-                habit.completeToday()
-                reloadList()
-            }.store(in: &cancellables)
-        
-        input
-            .addButtonTapped
-            .sink { [weak self] status in
-                guard let self else { return }
-                output.showAddHabitView = true
-            }.store(in: &cancellables)
-        
-        input
-            .habitDidTap
-            .sink { [weak self] habit in
-                guard let self else { return }
-                output.showDetailView = (habit, true)
-            }.store(in: &cancellables)
-    }
-    
-    func reloadList() {
-        output.habitList = Habit.readProgressHabit()
+//        input
+//            .completeToday
+//            .sink { [weak self] habit in
+//                guard let self else { return }
+////                habit.completeToday()
+//                reloadList()
+//            }.store(in: &cancellables)
+//        
+//        input
+//            .addButtonTapped
+//            .sink { [weak self] status in
+//                guard let self else { return }
+//                output.showAddHabitView = true
+//            }.store(in: &cancellables)
+//        
+//        input
+//            .habitDidTap
+//            .sink { [weak self] habit in
+//                guard let self else { return }
+////                output.showDetailView = (habit, true)
+//            }.store(in: &cancellables)
     }
 }
 
@@ -75,21 +71,21 @@ extension HomeViewModel {
 extension HomeViewModel {
     enum Action {
         case viewOnAppear
-        case completeToday(habit: Habit)
-        case addButtonTapped
-        case habitDidTap(habit: Habit)
+//        case completeToday(habit: Habit)
+//        case addButtonTapped
+//        case habitDidTap(habit: Habit)
     }
     
     func action(_ action: Action) {
         switch action {
         case .viewOnAppear:
             input.viewOnAppear.send(())
-        case .completeToday(let habit):
-            input.completeToday.send(habit)
-        case .addButtonTapped:
-            input.addButtonTapped.send(())
-        case .habitDidTap(let habit):
-            input.habitDidTap.send(habit)
+//        case .completeToday(let habit):
+//            input.completeToday.send(habit)
+//        case .addButtonTapped:
+//            input.addButtonTapped.send(())
+//        case .habitDidTap(let habit):
+//            input.habitDidTap.send(habit)
         }
     }
 }

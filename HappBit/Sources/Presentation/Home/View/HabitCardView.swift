@@ -25,64 +25,60 @@ enum Status: Int {
 
 struct HabitCardView: View {
     @ObservedObject var viewModel: HomeViewModel
-    var habit: Habit
+    var habit: HabitEntity
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
-        if !habit.isInvalidated {
-            ZStack {
-                Button {
-                    viewModel.action(.habitDidTap(habit: habit))
-                } label: {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.hbThirdary)
-                }
-                
-                Text("☘️ × \(habit.consecutiveDays / 3)")
-                    .foregroundStyle(.gray)
-                    .font(.captionM)
-                    .padding(20)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                
-                VStack {
-                    Text(habit.title)
-                        .font(.sub)
-                        .fontWeight(.semibold)
-                    
-                    HStack {
-                        ForEach(0..<3) { index in
-                            let isTodayComplete = habit.isTodayList[index]
-                            let isCurrentIndex = habit.currentIndex == index
-                            let isYesterdayPractice = habit.checkYesterdayPractice()
-                            let isInitialState = !habit.isTodayList.contains(true) && index == 0
-                            
-                            if habit.isTodayList[index] {
-                                if let status = Status(rawValue: 3) {
-                                    practiceButton(for: status, color: colorList[habit.colorIndex])
-                                }
-                            } else {
-                                if let status = Status(rawValue: index) {
-                                    let isToday = isCurrentIndex && (isYesterdayPractice || isInitialState)
-                                    practiceButton(for: status, color: isToday ? colorList[habit.colorIndex].opacity(0.2) : .gray.opacity(0.2))
-                                }
-                            }
-                        }
-                    }
-                    .padding(.top, 8)
-                }
-                .padding(.top)
+        ZStack {
+            Button {
+//                viewModel.action(.habitDidTap(habit: habit))
+            } label: {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.hbThirdary)
             }
-            .frame(height: 180)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 8)
-        } else {
-            EmptyView()
+            
+            Text("☘️ × ")
+                .foregroundStyle(.gray)
+                .font(.captionM)
+                .padding(20)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            
+            VStack {
+                Text(habit.title ?? "")
+                    .font(.sub)
+                    .fontWeight(.semibold)
+                
+                HStack {
+                    ForEach(0..<3) { index in
+//                        let isTodayComplete = habit.isTodayList[index]
+//                        let isCurrentIndex = habit.currentIndex == index
+//                        let isYesterdayPractice = habit.checkYesterdayPractice()
+//                        let isInitialState = !habit.isTodayList.contains(true) && index == 0
+//                        
+//                        if habit.isTodayList[index] {
+//                            if let status = Status(rawValue: 3) {
+//                                practiceButton(for: status, color: colorList[habit.colorIndex])
+//                            }
+//                        } else {
+//                            if let status = Status(rawValue: index) {
+//                                let isToday = isCurrentIndex && (isYesterdayPractice || isInitialState)
+//                                practiceButton(for: status, color: isToday ? colorList[habit.colorIndex].opacity(0.2) : .gray.opacity(0.2))
+//                            }
+//                        }
+                    }
+                }
+                .padding(.top, 8)
+            }
+            .padding(.top)
         }
+        .frame(height: 180)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 8)
     }
     
     func practiceButton(for status: Status, color: Color) -> some View {
         Button {
-            viewModel.action(.completeToday(habit: habit))
+//            viewModel.action(.completeToday(habit: habit))
         } label: {
             Image(systemName: status.name)
                 .resizable()

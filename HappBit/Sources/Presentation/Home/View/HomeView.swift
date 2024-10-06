@@ -21,9 +21,7 @@ struct HomeView: View {
                     .scrollDisabled(true)
             } else {
                 ForEach(viewModel.output.habitList, id: \.id) { habit in
-                    if !habit.isInvalidated {
-                        HabitCardView(viewModel: viewModel, habit: habit)
-                    }
+                    HabitCardView(viewModel: viewModel, habit: habit)
                 }
             }
         }
@@ -38,7 +36,7 @@ struct HomeView: View {
             if !viewModel.output.habitList.isEmpty {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        viewModel.action(.addButtonTapped)
+//                        viewModel.action(.addButtonTapped)
                     } label: {
                         Image(systemName: "plus")
                             .foregroundStyle(Color.primary)
@@ -47,12 +45,12 @@ struct HomeView: View {
             }
         }
         .navigationTitle("")
-        .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
-            UpdateHabitView(type: .add)
-        }
-        .navigationDestination(isPresented: $viewModel.output.showDetailView.1) {
-            HabitDetailView(homeVM: viewModel, habit: $viewModel.output.showDetailView.0)
-        }
+//        .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
+//            UpdateHabitView(type: .add)
+//        }
+//        .navigationDestination(isPresented: $viewModel.output.showDetailView.1) {
+//            HabitDetailView(homeVM: viewModel, habit: $viewModel.output.showDetailView.0)
+//        }
         .onAppear {
             viewModel.action(.viewOnAppear)
         }
@@ -71,7 +69,7 @@ struct EmptyHabitView: View {
             .padding(.top, 40)
             
             Button {
-                viewModel.action(.addButtonTapped)
+//                viewModel.action(.addButtonTapped)
             } label: {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.hbThirdary)
