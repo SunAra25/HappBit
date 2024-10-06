@@ -37,6 +37,7 @@
 		C0EE215D2CAF7A0600B4EBFF /* Happbit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0EE215B2CAF7A0600B4EBFF /* Happbit.xcdatamodeld */; };
 		C0EE21612CB1631100B4EBFF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE21602CB1631100B4EBFF /* CoreDataManager.swift */; };
 		C0EE21632CB16F8B00B4EBFF /* _Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE21622CB16F8B00B4EBFF /* _Habit.swift */; };
+		C0EE216F2CB2BE4400B4EBFF /* HabitCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE216E2CB2BE4400B4EBFF /* HabitCardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -84,6 +85,7 @@
 		C0EE215C2CAF7A0600B4EBFF /* Habit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Habit.xcdatamodel; sourceTree = "<group>"; };
 		C0EE21602CB1631100B4EBFF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C0EE21622CB16F8B00B4EBFF /* _Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Habit.swift; sourceTree = "<group>"; };
+		C0EE216E2CB2BE4400B4EBFF /* HabitCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitCardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */,
+				C0EE216E2CB2BE4400B4EBFF /* HabitCardViewModel.swift */,
 				C0E163E52CA5735900DB118C /* HabitDetailViewModel.swift */,
 			);
 			path = ViewModel;
@@ -420,6 +423,7 @@
 				C0A8EB752CA945F100D21CF6 /* Habit.swift in Sources */,
 				C0EE21612CB1631100B4EBFF /* CoreDataManager.swift in Sources */,
 				C048DC432C9FBC72001DED55 /* UpdateHabitView.swift in Sources */,
+				C0EE216F2CB2BE4400B4EBFF /* HabitCardViewModel.swift in Sources */,
 				C048DC472CA07018001DED55 /* UpdateHabitViewModel.swift in Sources */,
 				C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */,
 				C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */,

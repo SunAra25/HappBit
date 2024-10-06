@@ -50,6 +50,21 @@ extension CoreDataManager {
         }
     }
     
+    func fetchHabit(id: NSManagedObjectID) -> HabitEntity? {
+        let request = NSFetchRequest<HabitEntity>(entityName: "Habit")
+        request.relationshipKeyPathsForPrefetching = ["practiceRecords"]
+        
+        do {
+            let item = try container.viewContext.existingObject(with: id) as? HabitEntity
+            return item
+        } catch {
+            print("ERROR FETCHING CORE DATA")
+            print(error.localizedDescription)
+        }
+        
+        return nil
+    }
+    
     func addHabit(_ data: _Habit) {
         let habit = HabitEntity(context: container.viewContext)
         habit.title = data.title

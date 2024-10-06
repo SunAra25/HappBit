@@ -21,7 +21,7 @@ struct HomeView: View {
                     .scrollDisabled(true)
             } else {
                 ForEach(viewModel.output.habitList, id: \.id) { habit in
-                    HabitCardView(viewModel: viewModel, habit: habit)
+                    HabitCardView(habitID: habit.objectID)
                 }
             }
         }

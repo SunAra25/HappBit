@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import CoreData
 
-enum Status: Int {
+enum ButtonAttribute: Int {
     case one = 0
     case two = 1
     case three = 2
@@ -24,8 +25,8 @@ enum Status: Int {
 }
 
 struct HabitCardView: View {
-    @ObservedObject var viewModel: HomeViewModel
-    var habit: HabitEntity
+    @StateObject var viewModel = HabitCardViewModel()
+    var habitID: NSManagedObjectID
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
@@ -37,34 +38,31 @@ struct HabitCardView: View {
                     .fill(Color.hbThirdary)
             }
             
-            Text("☘️ × ")
+            Text("☘️ × \(viewModel.output.countConsecutiveDays)")
                 .foregroundStyle(.gray)
                 .font(.captionM)
                 .padding(20)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             
             VStack {
-                Text(habit.title ?? "")
+                Text(viewModel.output.habit?.title ?? "")
                     .font(.sub)
                     .fontWeight(.semibold)
                 
                 HStack {
                     ForEach(0..<3) { index in
-//                        let isTodayComplete = habit.isTodayList[index]
-//                        let isCurrentIndex = habit.currentIndex == index
-//                        let isYesterdayPractice = habit.checkYesterdayPractice()
-//                        let isInitialState = !habit.isTodayList.contains(true) && index == 0
-//                        
-//                        if habit.isTodayList[index] {
-//                            if let status = Status(rawValue: 3) {
-//                                practiceButton(for: status, color: colorList[habit.colorIndex])
-//                            }
-//                        } else {
-//                            if let status = Status(rawValue: index) {
-//                                let isToday = isCurrentIndex && (isYesterdayPractice || isInitialState)
-//                                practiceButton(for: status, color: isToday ? colorList[habit.colorIndex].opacity(0.2) : .gray.opacity(0.2))
-//                            }
-//                        }
+                        if index < viewModel.output.currentIndex {
+                            if let attr = ButtonAttribute(rawValue: 3),
+                               let colorIndex = viewModel.output.habit?.colorIndex {
+                                practiceButton(for: attr, color: colorList[Int(colorIndex)])
+                            }
+                        } else {
+                            if let attr = ButtonAttribute(rawValue: index),
+                               let colorIndex = viewModel.output.habit?.colorIndex {
+                                practiceButton(for: attr, 
+                                               color: viewModel.output.currentIndex == index ? colorList[Int(colorIndex)].opacity(0.2) : .gray.opacity(0.2))
+                            }
+                        }
                     }
                 }
                 .padding(.top, 8)
@@ -74,20 +72,23 @@ struct HabitCardView: View {
         .frame(height: 180)
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
+        .onAppear {
+            viewModel.action(.viewOnAppear(id: habitID))
+        }
     }
     
-    func practiceButton(for status: Status, color: Color) -> some View {
+    func practiceButton(for attribute: ButtonAttribute, color: Color) -> some View {
         Button {
 //            viewModel.action(.completeToday(habit: habit))
         } label: {
-            Image(systemName: status.name)
+            Image(systemName: attribute.name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 44)
                 .padding(.horizontal, 4)
                 .foregroundStyle(color)
         }
-        .disabled(status == .complete || color == .gray.opacity(0.2))
+        .disabled(attribute == .complete || color == .gray.opacity(0.2))
     }
 }
 

@@ -50,14 +50,14 @@ extension HomeViewModel {
 ////                habit.completeToday()
 //                reloadList()
 //            }.store(in: &cancellables)
-//        
+//
 //        input
 //            .addButtonTapped
 //            .sink { [weak self] status in
 //                guard let self else { return }
 //                output.showAddHabitView = true
 //            }.store(in: &cancellables)
-//        
+//
 //        input
 //            .habitDidTap
 //            .sink { [weak self] habit in
