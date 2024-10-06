@@ -13,9 +13,16 @@ protocol ViewModelType: AnyObject, ObservableObject {
     associatedtype Output
     
     var cancellables: Set<AnyCancellable> { get set }
+    var manager: CoreDataManager { get }
     
     var input: Input { get set }
     var output: Output { get set }
     
     func transform()
+}
+
+extension ViewModelType {
+    var manager: CoreDataManager {
+        return CoreDataManager.shared
+    }
 }

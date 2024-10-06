@@ -37,7 +37,7 @@ struct CoreDataManager {
 
 extension CoreDataManager {
     func fetchHabit() -> [HabitEntity] {
-        let request = NSFetchRequest<HabitEntity>(entityName: "Happbit")
+        let request = NSFetchRequest<HabitEntity>(entityName: "Habit")
         request.relationshipKeyPathsForPrefetching = ["practiceRecords"]
         
         do {
