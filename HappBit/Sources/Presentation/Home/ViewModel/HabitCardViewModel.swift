@@ -25,6 +25,7 @@ extension HabitCardViewModel {
     struct Input {
         var viewOnAppear = PassthroughSubject<NSManagedObjectID, Never>()
         var setButton = PassthroughSubject<Int, Never>()
+        var recordToday =  PassthroughSubject<Void, Never>()
     }
     
     struct Output {
@@ -32,6 +33,7 @@ extension HabitCardViewModel {
         var countConsecutiveDays: Int = 0
         var records: [Date] = []
         var currentIndex: Int = 0
+        var isRecordToday: Bool = false
         var buttonAttribute: (ButtonAttribute, Bool) = (.complete, false)
     }
     
@@ -39,15 +41,8 @@ extension HabitCardViewModel {
         input
             .viewOnAppear
             .sink { [weak self] id in
-                guard let self, let habit = manager.fetchHabit(id: id),
-                let records = habit.practiceRecords as? Set<RecordEntity> else { return }
-                let dates = records.compactMap { $0.date }.sorted()
-                let count = countConsecutiveDays(dates)
-                
-                output.habit = habit
-                output.countConsecutiveDays = count
-                output.records = dates
-                output.currentIndex = count > 0 ? count % 3 : 0
+                guard let self, let habit = manager.fetchHabit(id: id) else { return }
+                fetchRecord(to: habit)
             }.store(in: &cancellables)
         
         input.setButton
@@ -65,6 +60,25 @@ extension HabitCardViewModel {
                     output.buttonAttribute = (attr, isRecordToday())
                 }
             }.store(in: &cancellables)
+        
+        input.recordToday
+            .sink { [weak self] id in
+                guard let self, let habit = output.habit else { return }
+                manager.addRecord(habit)
+                fetchRecord(to: habit)
+                output.isRecordToday = isRecordToday()
+            }.store(in: &cancellables)
+        
+        func fetchRecord(to habit: HabitEntity) {
+            guard let records = habit.practiceRecords as? Set<RecordEntity> else { return }
+            let dates = records.compactMap { $0.date }.sorted()
+            let count = countConsecutiveDays(dates)
+            output.habit = habit
+            output.countConsecutiveDays = count
+            output.records = dates
+            output.isRecordToday = isRecordToday()
+            output.currentIndex = count > 0 ? count % 3 : 0
+        }
     }
     
     func countConsecutiveDays(_ dates: [Date]) -> Int {
@@ -89,12 +103,12 @@ extension HabitCardViewModel {
             }
         }
         
-        return currentCount
+        return sortedDates.count
     }
     
     func isRecordToday() -> Bool {
         let calendar = Calendar.current
-        return output.records.contains(where: { calendar.isDate($0, inSameDayAs: Date()) })
+        return output.records.contains(where: { calendar.isDateInToday($0) })
     }
 }
 
@@ -103,6 +117,7 @@ extension HabitCardViewModel {
     enum Action {
         case viewOnAppear(id: NSManagedObjectID)
         case setButton(index: Int)
+        case recordToday
     }
     
     func action(_ action: Action) {
@@ -111,6 +126,8 @@ extension HabitCardViewModel {
             input.viewOnAppear.send(id)
         case .setButton(let index):
             input.setButton.send(index)
+        case .recordToday:
+            input.recordToday.send(())
         }
     }
 }

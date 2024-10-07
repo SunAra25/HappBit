@@ -60,7 +60,7 @@ struct HabitCardView: View {
                             if let attr = ButtonAttribute(rawValue: index),
                                let colorIndex = viewModel.output.habit?.colorIndex {
                                 practiceButton(for: attr, 
-                                               color: viewModel.output.currentIndex == index ? colorList[Int(colorIndex)].opacity(0.2) : .gray.opacity(0.2))
+                                               color: viewModel.output.currentIndex < index || viewModel.output.isRecordToday ? .gray.opacity(0.2) : colorList[Int(colorIndex)].opacity(0.2))
                             }
                         }
                     }
@@ -79,7 +79,7 @@ struct HabitCardView: View {
     
     func practiceButton(for attribute: ButtonAttribute, color: Color) -> some View {
         Button {
-//            viewModel.action(.completeToday(habit: habit))
+            viewModel.action(.recordToday)
         } label: {
             Image(systemName: attribute.name)
                 .resizable()
