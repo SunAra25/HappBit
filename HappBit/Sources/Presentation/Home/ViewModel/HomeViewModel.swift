@@ -26,13 +26,13 @@ extension HomeViewModel {
         var viewOnAppear = PassthroughSubject<Void, Never>()
 //        var completeToday = PassthroughSubject<HabitEntity, Never>()
 //        var addButtonTapped = PassthroughSubject<Void, Never>()
-//        var habitDidTap = PassthroughSubject<HabitEntity, Never>()
+        var habitDidTap = PassthroughSubject<HabitEntity, Never>()
     }
     
     struct Output {
         var habitList: [HabitEntity] = []
 //        var showAddHabitView: Bool = false
-//        var showDetailView: (NSManagedObjectID, Bool) = (NSManagedObjectID(), false)
+        var showDetailView: (HabitEntity?, Bool) = (nil, false)
     }
     
     func transform() {
@@ -58,12 +58,12 @@ extension HomeViewModel {
 //                output.showAddHabitView = true
 //            }.store(in: &cancellables)
 //
-//        input
-//            .habitDidTap
-//            .sink { [weak self] habit in
-//                guard let self else { return }
-////                output.showDetailView = (habit, true)
-//            }.store(in: &cancellables)
+        input
+            .habitDidTap
+            .sink { [weak self] habit in
+                guard let self else { return }
+                output.showDetailView = (habit, true)
+            }.store(in: &cancellables)
     }
 }
 
@@ -73,7 +73,7 @@ extension HomeViewModel {
         case viewOnAppear
 //        case completeToday(habit: Habit)
 //        case addButtonTapped
-//        case habitDidTap(habit: Habit)
+        case habitDidTap(habit: HabitEntity)
     }
     
     func action(_ action: Action) {
@@ -84,8 +84,8 @@ extension HomeViewModel {
 //            input.completeToday.send(habit)
 //        case .addButtonTapped:
 //            input.addButtonTapped.send(())
-//        case .habitDidTap(let habit):
-//            input.habitDidTap.send(habit)
+        case .habitDidTap(let habit):
+            input.habitDidTap.send(habit)
         }
     }
 }

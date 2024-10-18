@@ -21,7 +21,11 @@ struct HomeView: View {
                     .scrollDisabled(true)
             } else {
                 ForEach(viewModel.output.habitList, id: \.id) { habit in
-                    HabitCardView(habitID: habit.objectID)
+                    Button {
+                        viewModel.action(.habitDidTap(habit: habit))
+                    } label: {
+                        HabitCardView(habitID: habit.objectID)
+                    }
                 }
             }
         }
@@ -48,9 +52,9 @@ struct HomeView: View {
 //        .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
 //            UpdateHabitView(type: .add)
 //        }
-//        .navigationDestination(isPresented: $viewModel.output.showDetailView.1) {
-//            HabitDetailView(homeVM: viewModel, habit: $viewModel.output.showDetailView.0)
-//        }
+        .navigationDestination(isPresented: $viewModel.output.showDetailView.1) {
+            HabitDetailView(homeVM: viewModel, habitID: viewModel.output.showDetailView.0?.objectID)
+        }
         .onAppear {
             viewModel.action(.viewOnAppear)
         }

@@ -31,12 +31,8 @@ struct HabitCardView: View {
     
     var body: some View {
         ZStack {
-            Button {
-//                viewModel.action(.habitDidTap(habit: habit))
-            } label: {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.hbThirdary)
-            }
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.hbThirdary)
             
             Text("☘️ × \(viewModel.output.countConsecutiveDays)")
                 .foregroundStyle(.gray)
