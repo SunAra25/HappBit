@@ -40,7 +40,7 @@ struct HomeView: View {
             if !viewModel.output.habitList.isEmpty {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-//                        viewModel.action(.addButtonTapped)
+                        viewModel.action(.addButtonTapped)
                     } label: {
                         Image(systemName: "plus")
                             .foregroundStyle(Color.primary)
@@ -49,9 +49,9 @@ struct HomeView: View {
             }
         }
         .navigationTitle("")
-//        .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
-//            UpdateHabitView(type: .add)
-//        }
+        .navigationDestination(isPresented: $viewModel.output.showAddHabitView) {
+            UpdateHabitView(type: .add)
+        }
         .navigationDestination(isPresented: $viewModel.output.showDetailView.1) {
             HabitDetailView(homeVM: viewModel, habitID: viewModel.output.showDetailView.0?.objectID)
         }
@@ -73,7 +73,7 @@ struct EmptyHabitView: View {
             .padding(.top, 40)
             
             Button {
-//                viewModel.action(.addButtonTapped)
+                viewModel.action(.addButtonTapped)
             } label: {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.hbThirdary)
