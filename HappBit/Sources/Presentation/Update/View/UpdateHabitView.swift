@@ -9,7 +9,7 @@ import SwiftUI
 
 enum UpdateType {
     case add
-    case edit(habit: Habit)
+    case edit(habit: HabitEntity?)
     
     var title: String {
         switch self {

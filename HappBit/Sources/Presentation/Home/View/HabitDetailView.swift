@@ -67,29 +67,29 @@ struct HabitDetailView: View {
                 Image(systemName: "ellipsis")
             }
         }
-//        .alert(Text("[\(viewModel.output.data.title)] 중지"), isPresented: $viewModel.output.showPauseAlert, actions: {
-//            Button("확인") {
-//                viewModel.action(.pauseAgreeBtnDidTap(habit: viewModel.output.data))
-//                dismiss()
-//            }
-//            Button("취소", role: .cancel) {}
-//        }, message: {
-//            Text("습관 보관함으로 이동합니다.")
-//        })
-//        .alert(Text("[\(viewModel.output.data.title)] 삭제"), isPresented: $viewModel.output.showDeleteAlert, actions: {
-//            Button("확인", role: .destructive) {
-//                viewModel.action(.deleteAgreeBtnDidTap(habit: viewModel.output.data))
-////                homeVM.action(.viewOnAppear)
-//                dismiss()
-//            }
-//            Button("취소", role: .cancel) {}
-//        }, message: {
-//            Text("습관 실천 기록이 모두 지워집니다.")
-//        })
+        .alert(Text("[\(viewModel.output.data?.title ?? "")] 중지"), isPresented: $viewModel.output.showPauseAlert, actions: {
+            Button("확인") {
+                viewModel.action(.pauseAgreeBtnDidTap(habit: viewModel.output.data))
+                dismiss()
+            }
+            Button("취소", role: .cancel) {}
+        }, message: {
+            Text("습관 보관함으로 이동합니다.")
+        })
+        .alert(Text("[\(viewModel.output.data?.title ?? "")] 삭제"), isPresented: $viewModel.output.showDeleteAlert, actions: {
+            Button("확인", role: .destructive) {
+                viewModel.action(.deleteAgreeBtnDidTap(habit: viewModel.output.data))
+                homeVM.action(.viewOnAppear)
+                dismiss()
+            }
+            Button("취소", role: .cancel) {}
+        }, message: {
+            Text("습관 실천 기록이 모두 지워집니다.")
+        })
 
         .navigationTitle("")
         .navigationDestination(isPresented: $viewModel.output.showEditHabitView) {
-//            UpdateHabitView(type: .edit(habit: viewModel.output.data))
+            UpdateHabitView(type: .edit(habit: viewModel.output.data))
         }
         .onAppear {
             viewModel.action(.viewOnAppear(habitID: habitID))

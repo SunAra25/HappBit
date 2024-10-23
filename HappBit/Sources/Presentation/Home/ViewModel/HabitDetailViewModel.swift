@@ -27,9 +27,9 @@ extension HabitDetailViewModel {
         var viewOnAppear = PassthroughSubject<NSManagedObjectID?, Never>()
         var editBtnDidTap = PassthroughSubject<Bool, Never>()
         var pauseBtnDidTap = PassthroughSubject<Void, Never>()
-        var pauseAgreeBtnDidTap = PassthroughSubject<HabitEntity, Never>()
+        var pauseAgreeBtnDidTap = PassthroughSubject<HabitEntity?, Never>()
         var deleteBtnDidTap = PassthroughSubject<Void, Never>()
-        var deleteAgreeBtnDidTap = PassthroughSubject<HabitEntity, Never>()
+        var deleteAgreeBtnDidTap = PassthroughSubject<HabitEntity?, Never>()
     }
     
     struct Output {
@@ -76,7 +76,7 @@ extension HabitDetailViewModel {
         input
             .pauseAgreeBtnDidTap
             .sink { [weak self] habit in
-                guard let self else { return }
+                guard let self, let habit else { return }
                 output.pauseHabit = true
                 manager.pauseHabit(habit)
             }.store(in: &cancellables)
@@ -91,9 +91,8 @@ extension HabitDetailViewModel {
         input
             .deleteAgreeBtnDidTap
             .sink { [weak self] habit in
-                guard let self else { return }
+                guard let self, let habit else { return }
                 manager.deleteHabit(habit)
-                output.data = HabitEntity() // 초기화
                 output.deleteHabit = true
             }.store(in: &cancellables)
     }
@@ -105,9 +104,9 @@ extension HabitDetailViewModel {
         case viewOnAppear(habitID: NSManagedObjectID?)
         case editBtnDidTap
         case pauseBtnDidTap
-        case pauseAgreeBtnDidTap(habit: HabitEntity)
+        case pauseAgreeBtnDidTap(habit: HabitEntity?)
         case deleteBtnDidTap
-        case deleteAgreeBtnDidTap(habit: HabitEntity)
+        case deleteAgreeBtnDidTap(habit: HabitEntity?)
     }
     
     func action(_ action: Action) {
