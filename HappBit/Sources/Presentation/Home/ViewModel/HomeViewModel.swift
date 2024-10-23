@@ -24,7 +24,6 @@ class HomeViewModel: ViewModelType {
 extension HomeViewModel {
     struct Input {
         var viewOnAppear = PassthroughSubject<Void, Never>()
-//        var completeToday = PassthroughSubject<HabitEntity, Never>()
         var addButtonTapped = PassthroughSubject<Void, Never>()
         var habitDidTap = PassthroughSubject<HabitEntity, Never>()
     }
@@ -43,14 +42,6 @@ extension HomeViewModel {
                 output.habitList = manager.fetchHabit()
             }.store(in: &cancellables)
         
-//        input
-//            .completeToday
-//            .sink { [weak self] habit in
-//                guard let self else { return }
-////                habit.completeToday()
-//                reloadList()
-//            }.store(in: &cancellables)
-//
         input
             .addButtonTapped
             .sink { [weak self] status in
@@ -71,7 +62,6 @@ extension HomeViewModel {
 extension HomeViewModel {
     enum Action {
         case viewOnAppear
-//        case completeToday(habit: Habit)
         case addButtonTapped
         case habitDidTap(habit: HabitEntity)
     }
@@ -80,8 +70,6 @@ extension HomeViewModel {
         switch action {
         case .viewOnAppear:
             input.viewOnAppear.send(())
-//        case .completeToday(let habit):
-//            input.completeToday.send(habit)
         case .addButtonTapped:
             input.addButtonTapped.send(())
         case .habitDidTap(let habit):
