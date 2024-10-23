@@ -39,17 +39,24 @@ extension HabitDetailViewModel {
         var pauseHabit: Bool = false
         var showDeleteAlert: Bool = false
         var deleteHabit: Bool = false
+        var consecutiveDays: Int = 0
+        var cloverCount: Int = 0
+        var allDays: Int = 0
     }
     
     func transform() {
         input
             .viewOnAppear
             .sink { [weak self] habitID in
-//                guard let self,
-//                      let habitID,
-//                      let habit = manager.fetchHabit(id: habitID) else { return }
-//                output.data = habit
-                print("🦁")
+                guard let self,
+                      let habitID,
+                      let habit = manager.fetchHabit(id: habitID),
+                      let recordSet = habit.practiceRecords as? Set<RecordEntity> else { return }
+                let records = recordSet.compactMap { $0.date }.sorted { $0 > $1 }
+                output.data = habit
+                output.consecutiveDays = manager.calculateConsecutiveDays(records)
+                output.cloverCount = manager.calculateCloverCount(records)
+                output.allDays = records.count
             }.store(in: &cancellables)
         
         input

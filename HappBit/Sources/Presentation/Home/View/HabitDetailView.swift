@@ -103,17 +103,17 @@ struct HabitDetailView: View {
                 .foregroundStyle(.gray)
                 .padding(.horizontal, 4)
                 .padding(.vertical, 4)
-//            switch data {
-//            case .all:
-//                Text("\(viewModel.output.data.practiceDates.count)")
-//                    .font(.head)
-//            case .sequence:
-//                Text("\(viewModel.output.data.consecutiveDays)")
-//                    .font(.head)
-//            case .clover:
-//                Text("\(viewModel.output.data.consecutiveDays / 3)")
-//                    .font(.head)
-//            }
+            switch data {
+            case .all:
+                Text("\(viewModel.output.allDays)")
+                    .font(.head)
+            case .sequence:
+                Text("\(viewModel.output.consecutiveDays)")
+                    .font(.head)
+            case .clover:
+                Text("\(viewModel.output.cloverCount)")
+                    .font(.head)
+            }
         }
     }
 }
