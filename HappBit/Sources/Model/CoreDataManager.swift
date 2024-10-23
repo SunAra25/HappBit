@@ -102,3 +102,47 @@ extension CoreDataManager {
         saveContext()
     }
 }
+
+extension CoreDataManager {
+    func calculateConsecutiveDays(_ array: [Date]) -> Int {
+        let calendar = Calendar.current
+        var count = 0
+        
+        for i in 1..<array.count {
+            let target = array[i - 1]
+            let current = array[i]
+            let currentDay = calendar.date(byAdding: .day, value: 1, to: current) ?? Date()
+            let isSameDay = calendar.isDate(currentDay, inSameDayAs: target)
+            
+            if !isSameDay {
+                break
+            }
+            
+            count += 1
+        }
+        
+        return count
+    }
+    
+    func calculateCloverCount(_ array: [Date]) -> Int {
+        let calendar = Calendar.current
+        var currentCount = 0
+        var cloverCount = 0
+        
+        for i in 1..<array.count {
+            let target = array[i - 1]
+            let current = array[i]
+            let currentDay = calendar.date(byAdding: .day, value: 1, to: current) ?? Date()
+            let isSameDay = calendar.isDate(currentDay, inSameDayAs: target)
+            
+            if !isSameDay {
+                cloverCount += currentCount / 3
+                currentCount = 0
+            }
+            
+            currentCount += 1
+        }
+        
+        return cloverCount
+    }
+}
