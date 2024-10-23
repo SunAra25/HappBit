@@ -115,6 +115,7 @@ extension CoreDataManager {
             let isSameDay = calendar.isDate(currentDay, inSameDayAs: target)
             
             if !isSameDay {
+                count += 1
                 break
             }
             
@@ -136,7 +137,7 @@ extension CoreDataManager {
             let isSameDay = calendar.isDate(currentDay, inSameDayAs: target)
             
             if !isSameDay {
-                cloverCount += currentCount / 3
+                cloverCount += (currentCount + 1) / 3
                 currentCount = 0
             }
             
