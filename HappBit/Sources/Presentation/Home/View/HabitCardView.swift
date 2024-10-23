@@ -34,7 +34,7 @@ struct HabitCardView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color.hbThirdary)
             
-            Text("☘️ × \(viewModel.output.countConsecutiveDays)")
+            Text("☘️ × \(viewModel.output.cloverCount)")
                 .foregroundStyle(.gray)
                 .font(.captionM)
                 .padding(20)

@@ -31,6 +31,7 @@ extension HabitCardViewModel {
     struct Output {
         var habit: HabitEntity? = nil
         var countConsecutiveDays: Int = 0
+        var cloverCount: Int = 0
         var records: [Date] = []
         var currentIndex: Int = 0
         var isRecordToday: Bool = false
@@ -50,9 +51,8 @@ extension HabitCardViewModel {
                 guard let self,
                 let records = output.habit?.practiceRecords as? Array<RecordEntity> else { return }
                 let dates = records.compactMap { $0.date }.sorted()
-                output.countConsecutiveDays = countConsecutiveDays(dates)
-                let currentIndex = countConsecutiveDays(dates) > 0 ? countConsecutiveDays(dates) % 3 : 0
-                if currentIndex < index {
+                
+                if output.currentIndex < index {
                     guard let attr = ButtonAttribute(rawValue: 3) else { return }
                     output.buttonAttribute = (attr, true)
                 } else {
@@ -71,39 +71,14 @@ extension HabitCardViewModel {
         
         func fetchRecord(to habit: HabitEntity) {
             guard let records = habit.practiceRecords as? Set<RecordEntity> else { return }
-            let dates = records.compactMap { $0.date }.sorted()
-            let count = countConsecutiveDays(dates)
+            let dates = records.compactMap { $0.date }.sorted { $0 > $1 }
             output.habit = habit
-            output.countConsecutiveDays = count
+            output.countConsecutiveDays = manager.calculateConsecutiveDays(dates)
+            output.cloverCount = manager.calculateCloverCount(dates)
             output.records = dates
             output.isRecordToday = isRecordToday()
-            output.currentIndex = count > 0 ? count % 3 : 0
+            output.currentIndex = output.countConsecutiveDays > 0 ? output.countConsecutiveDays % 3 : 0
         }
-    }
-    
-    func countConsecutiveDays(_ dates: [Date]) -> Int {
-        guard !dates.isEmpty else { return 0 }
-        let calendar = Calendar.current
-        let sortedDates = dates.sorted(by: >)
-        var currentCount = 0
-        
-        for i in 0..<sortedDates.count - 1 {
-            let currentDate = sortedDates[i]
-            let nextDate = sortedDates[i + 1]
-            
-            let currentDateStart = calendar.startOfDay(for: currentDate)
-            let nextDateStart = calendar.startOfDay(for: nextDate)
-            
-            let dateGap = calendar.dateComponents([.day], from: nextDateStart, to: currentDateStart).day ?? 0
-            
-            if dateGap > 1 {
-                return currentCount
-            } else {
-                currentCount += 1
-            }
-        }
-        
-        return sortedDates.count
     }
     
     func isRecordToday() -> Bool {
