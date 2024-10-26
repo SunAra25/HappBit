@@ -24,13 +24,13 @@ class PauseListViewModel: ViewModelType {
 extension PauseListViewModel {
     struct Input {
         var viewOnAppear = PassthroughSubject<Void, Never>()
-        var restartBtnDidTap = PassthroughSubject<Habit, Never>()
+        var restartBtnDidTap = PassthroughSubject<HabitEntity, Never>()
         var deleteBtnDidTap = PassthroughSubject<Void, Never>()
-        var deleteAgreeBtnDidTap = PassthroughSubject<Habit, Never>()
+        var deleteAgreeBtnDidTap = PassthroughSubject<HabitEntity, Never>()
     }
     
     struct Output {
-        var habitList: Results<Habit> = Habit.readPauseHabit()
+        var habitList: [HabitEntity] = []
         var showDeleteAlert: Bool = false
         var deleteHabit: Bool = false
     }
@@ -47,7 +47,7 @@ extension PauseListViewModel {
             .restartBtnDidTap
             .sink { [weak self] habit in
                 guard let self else { return }
-                habit.restartHabit()
+                manager.restartHabit(habit)
                 reloadList()
             }.store(in: &cancellables)
         
@@ -62,14 +62,14 @@ extension PauseListViewModel {
             .deleteAgreeBtnDidTap
             .sink { [weak self] habit in
                 guard let self else { return }
-                Habit.deleteHabit(habit)
+                manager.deleteHabit(habit)
                 output.deleteHabit = true
                 reloadList()
             }.store(in: &cancellables)
     }
     
     func reloadList() {
-        output.habitList = Habit.readPauseHabit()
+        output.habitList = manager.fetchHabit().filter { $0.isPause }
     }
 }
 
@@ -77,9 +77,9 @@ extension PauseListViewModel {
 extension PauseListViewModel {
     enum Action {
         case viewOnAppear
-        case restartBtnDidTap(habit: Habit)
+        case restartBtnDidTap(habit: HabitEntity)
         case deleteBtnDidTap
-        case deleteAgreeBtnDidTap(habit: Habit)
+        case deleteAgreeBtnDidTap(habit: HabitEntity)
     }
     
     func action(_ action: Action) {

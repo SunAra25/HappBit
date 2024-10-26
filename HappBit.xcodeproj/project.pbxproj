@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C0090FDD2CA41D8600827E7A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C021282E2CC916D100083C18 /* PauseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282D2CC916D100083C18 /* PauseCardView.swift */; };
+		C02128302CC9176500083C18 /* PauseCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282F2CC9176500083C18 /* PauseCardViewModel.swift */; };
 		C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D12CA6C359005FB0B7 /* EstablishedView.swift */; };
 		C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */; };
 		C03760DB2CA717D2005FB0B7 /* PauseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760DA2CA717D2005FB0B7 /* PauseListView.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C021282D2CC916D100083C18 /* PauseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCardView.swift; sourceTree = "<group>"; };
+		C021282F2CC9176500083C18 /* PauseCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCardViewModel.swift; sourceTree = "<group>"; };
 		C03760D12CA6C359005FB0B7 /* EstablishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedView.swift; sourceTree = "<group>"; };
 		C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedViewModel.swift; sourceTree = "<group>"; };
 		C03760DA2CA717D2005FB0B7 /* PauseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseListView.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				C03760DA2CA717D2005FB0B7 /* PauseListView.swift */,
+				C021282D2CC916D100083C18 /* PauseCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				C03760DF2CA71FB1005FB0B7 /* PauseListViewModel.swift */,
+				C021282F2CC9176500083C18 /* PauseCardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 				C0EE216F2CB2BE4400B4EBFF /* HabitCardViewModel.swift in Sources */,
 				C048DC472CA07018001DED55 /* UpdateHabitViewModel.swift in Sources */,
 				C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */,
+				C02128302CC9176500083C18 /* PauseCardViewModel.swift in Sources */,
 				C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
 				C03760E32CA7DE52005FB0B7 /* SubTitleWrapper.swift in Sources */,
@@ -435,6 +442,7 @@
 				C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */,
 				C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */,
 				C0EE215D2CAF7A0600B4EBFF /* Happbit.xcdatamodeld in Sources */,
+				C021282E2CC916D100083C18 /* PauseCardView.swift in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,
 				C0E163E62CA5735900DB118C /* HabitDetailViewModel.swift in Sources */,
 				C0E163DF2CA54E3200DB118C /* String+.swift in Sources */,
