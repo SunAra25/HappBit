@@ -76,13 +76,13 @@ struct ExistEstablishedView: View {
         }
     }
     
-    func rowView(_ habit: Habit) -> some View {
+    func rowView(_ habit: HabitEntity) -> some View {
         RoundedRectangle(cornerRadius: 8)
             .fill(Color.hbThirdary)
             .frame(height: 56)
             .overlay {
                 HStack {
-                    Text(habit.title)
+                    Text(habit.title ?? "")
                         .font(.body1M)
                     
                     Spacer()
@@ -141,7 +141,7 @@ struct ActionDaysCardView: View {
             HStack(alignment: .bottom) {
                 Text("총")
                 
-                Text("\(viewModel.output.habitList.reduce(0) { $0 + $1.practiceDates.count }.formatted() )")
+                Text("\(viewModel.output.consecutiveDays)")
                     .font(.head)
                     .padding(.horizontal, -5)
                     .foregroundStyle(Color.primary)
@@ -162,6 +162,6 @@ enum ActionDays: CaseIterable {
     case date
 }
 
-#Preview {
-    EstablishedView()
-}
+//#Preview {
+//    EstablishedView()
+//}
