@@ -10,6 +10,7 @@ import CoreData
 
 struct CoreDataManager {
     static let shared = CoreDataManager()
+    private let calendar = Calendar.current
     
     let container: NSPersistentContainer
     
@@ -97,6 +98,20 @@ extension CoreDataManager {
         saveContext()
     }
     
+    func cancelRecord(_ entity: HabitEntity) {
+        guard let records = entity.practiceRecords as? Set<RecordEntity> else { return }
+        
+        let record = records.filter { record in
+            guard let date = record.date else { return false }
+            return calendar.isDateInToday(date)
+        }
+        
+        guard let target = record.first else { return }
+        
+        container.viewContext.delete(target)
+        saveContext()
+    }
+    
     func completeHabit(_ entity: HabitEntity) {
         entity.endDate = Date()
         saveContext()
@@ -105,8 +120,11 @@ extension CoreDataManager {
 
 extension CoreDataManager {
     func calculateConsecutiveDays(_ array: [Date]) -> Int {
-        let calendar = Calendar.current
         var count = 0
+        
+        if array.count < 2 {
+            return array.count
+        }
         
         for i in 1..<array.count {
             let target = array[i - 1]
@@ -126,9 +144,12 @@ extension CoreDataManager {
     }
     
     func calculateCloverCount(_ array: [Date]) -> Int {
-        let calendar = Calendar.current
         var currentCount = 0
         var cloverCount = 0
+        
+        if array.count < 3 {
+            return 0
+        }
         
         for i in 1..<array.count {
             let target = array[i - 1]

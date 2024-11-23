@@ -64,7 +64,12 @@ extension HabitCardViewModel {
         input.recordToday
             .sink { [weak self] id in
                 guard let self, let habit = output.habit else { return }
-                manager.addRecord(habit)
+                
+                if output.isRecordToday {
+                    manager.cancelRecord(habit)
+                } else {
+                    manager.addRecord(habit)
+                }
                 fetchRecord(to: habit)
                 output.isRecordToday = isRecordToday()
             }.store(in: &cancellables)

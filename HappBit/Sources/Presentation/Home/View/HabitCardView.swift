@@ -47,17 +47,16 @@ struct HabitCardView: View {
                 
                 HStack {
                     ForEach(0..<3) { index in
-                        if index < viewModel.output.currentIndex {
-                            if let attr = ButtonAttribute(rawValue: 3),
-                               let colorIndex = viewModel.output.habit?.colorIndex {
-                                practiceButton(for: attr, color: colorList[Int(colorIndex)])
-                            }
-                        } else {
-                            if let attr = ButtonAttribute(rawValue: index),
-                               let colorIndex = viewModel.output.habit?.colorIndex {
-                                practiceButton(for: attr, 
-                                               color: viewModel.output.currentIndex < index || viewModel.output.isRecordToday ? .gray.opacity(0.2) : colorList[Int(colorIndex)].opacity(0.2))
-                            }
+                        let isDisabled = isDisableButton(for: index)
+                        let isPastIndex = index < viewModel.output.currentIndex
+                        
+                        if let attr = ButtonAttribute(rawValue: isPastIndex ? 3 : index),
+                           let colorIndex = viewModel.output.habit?.colorIndex {
+                            let buttonColor = isPastIndex ? colorList[Int(colorIndex)] :
+                            viewModel.output.currentIndex < index || viewModel.output.isRecordToday ?
+                                .gray.opacity(0.2) : colorList[Int(colorIndex)].opacity(0.2)
+                            
+                            practiceButton(for: attr, color: buttonColor, isDisabled: isDisabled)
                         }
                     }
                 }
@@ -73,7 +72,7 @@ struct HabitCardView: View {
         }
     }
     
-    func practiceButton(for attribute: ButtonAttribute, color: Color) -> some View {
+    private func practiceButton(for attribute: ButtonAttribute, color: Color, isDisabled: Bool) -> some View {
         Button {
             viewModel.action(.recordToday)
         } label: {
@@ -84,7 +83,29 @@ struct HabitCardView: View {
                 .padding(.horizontal, 4)
                 .foregroundStyle(color)
         }
-        .disabled(attribute == .complete || color == .gray.opacity(0.2))
+        .disabled(isDisabled)
+    }
+    
+    private func getButtonColor(for index: Int, isPastIndex: Bool) -> Color {
+        guard let colorIndex = viewModel.output.habit?.colorIndex else { return .gray.opacity(0.2) }
+        
+        if isPastIndex {
+            return colorList[Int(colorIndex)]
+        } else {
+            return viewModel.output.currentIndex < index || viewModel.output.isRecordToday
+                ? .gray.opacity(0.2) : colorList[Int(colorIndex)].opacity(0.2)
+        }
+    }
+    
+    private func isDisableButton(for index: Int) -> Bool {
+        let currentIndex = viewModel.output.currentIndex
+        let isRecordToday = viewModel.output.isRecordToday
+        
+        if isRecordToday {
+            return index != currentIndex - 1
+        } else {
+            return index != currentIndex
+        }
     }
 }
 
