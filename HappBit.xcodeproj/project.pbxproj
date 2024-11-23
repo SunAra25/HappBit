@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C0090FDD2CA41D8600827E7A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C021282E2CC916D100083C18 /* PauseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282D2CC916D100083C18 /* PauseCardView.swift */; };
 		C02128302CC9176500083C18 /* PauseCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282F2CC9176500083C18 /* PauseCardViewModel.swift */; };
 		C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D12CA6C359005FB0B7 /* EstablishedView.swift */; };
@@ -26,7 +25,6 @@
 		C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BD92C9D09C2005451D5 /* Color+.swift */; };
 		C06B0BDB2C9D0E40005451D5 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD42C9A7B6B005451D5 /* Pretendard-Bold.otf */; };
 		C06B0BDC2C9D0E43005451D5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */; };
-		C06B0BE22C9D16DE005451D5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; };
 		C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEA2C9DD535005451D5 /* HomeView.swift */; };
 		C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */; };
 		C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163DC2CA5431700DB118C /* HabitDetailView.swift */; };
@@ -48,7 +46,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C0090FDD2CA41D8600827E7A /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,7 +92,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C06B0BE22C9D16DE005451D5 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +354,6 @@
 			);
 			name = HappBit;
 			packageProductDependencies = (
-				C06B0BE12C9D16DE005451D5 /* RealmSwift */,
 			);
 			productName = HappBit;
 			productReference = C06B0BC02C9A76F0005451D5 /* HappBit.app */;
@@ -389,7 +384,6 @@
 			);
 			mainGroup = C06B0BB72C9A76F0005451D5;
 			packageReferences = (
-				C06B0BE02C9D16DE005451D5 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = C06B0BC12C9A76F0005451D5 /* Products */;
 			projectDirPath = "";
@@ -662,25 +656,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C06B0BE02C9D16DE005451D5 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = exactVersion;
-				version = 20.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C06B0BE12C9D16DE005451D5 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C06B0BE02C9D16DE005451D5 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C0EE215B2CAF7A0600B4EBFF /* Happbit.xcdatamodeld */ = {

@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import RealmSwift
 
 class PauseListViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()

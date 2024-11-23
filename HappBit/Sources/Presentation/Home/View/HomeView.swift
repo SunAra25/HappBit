@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()

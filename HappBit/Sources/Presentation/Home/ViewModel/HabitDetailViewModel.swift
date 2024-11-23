@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import RealmSwift
 import CoreData
 
 class HabitDetailViewModel: ViewModelType {
