@@ -83,7 +83,7 @@ extension UpdateHabitViewModel {
                 guard let self, let colorIndex = output.currentColorIndex else { return }
                 switch output.updateType {
                 case .add:
-                    manager.addHabit(_Habit(title: output.currentTitle, colorIndex: Int16(colorIndex)))
+                    manager.addHabit(Habit(title: output.currentTitle, colorIndex: Int16(colorIndex)))
                 case .edit(let habit):
                     guard let habit else { return }
                     manager.updateHabit(habit, newTitle: output.currentTitle, newColorIndex: output.currentColorIndex)

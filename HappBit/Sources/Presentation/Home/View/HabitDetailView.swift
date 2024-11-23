@@ -17,7 +17,6 @@ enum DetailData: String, CaseIterable {
 struct HabitDetailView: View {
     @StateObject var viewModel = HabitDetailViewModel()
     @ObservedObject var homeVM: HomeViewModel
-//    @Binding var habit: Habit
     let habitID: NSManagedObjectID?
     @Environment(\.dismiss) private var dismiss
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]

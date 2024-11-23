@@ -29,7 +29,6 @@
 		C06B0BE22C9D16DE005451D5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06B0BE12C9D16DE005451D5 /* RealmSwift */; };
 		C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEA2C9DD535005451D5 /* HomeView.swift */; };
 		C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */; };
-		C0A8EB752CA945F100D21CF6 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A8EB742CA945F100D21CF6 /* Habit.swift */; };
 		C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163DC2CA5431700DB118C /* HabitDetailView.swift */; };
 		C0E163DF2CA54E3200DB118C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163DE2CA54E3200DB118C /* String+.swift */; };
 		C0E163E12CA54E3A00DB118C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E02CA54E3A00DB118C /* Date+.swift */; };
@@ -38,7 +37,7 @@
 		C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */; };
 		C0EE215D2CAF7A0600B4EBFF /* Happbit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0EE215B2CAF7A0600B4EBFF /* Happbit.xcdatamodeld */; };
 		C0EE21612CB1631100B4EBFF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE21602CB1631100B4EBFF /* CoreDataManager.swift */; };
-		C0EE21632CB16F8B00B4EBFF /* _Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE21622CB16F8B00B4EBFF /* _Habit.swift */; };
+		C0EE21632CB16F8B00B4EBFF /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE21622CB16F8B00B4EBFF /* Habit.swift */; };
 		C0EE216F2CB2BE4400B4EBFF /* HabitCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE216E2CB2BE4400B4EBFF /* HabitCardViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +78,6 @@
 		C06B0BDF2C9D151D005451D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06B0BEA2C9DD535005451D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
-		C0A8EB742CA945F100D21CF6 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		C0E163DC2CA5431700DB118C /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		C0E163DE2CA54E3200DB118C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C0E163E02CA54E3A00DB118C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -88,7 +86,7 @@
 		C0E3D9362CA2A77F0023131B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C0EE215C2CAF7A0600B4EBFF /* Habit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Habit.xcdatamodel; sourceTree = "<group>"; };
 		C0EE21602CB1631100B4EBFF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		C0EE21622CB16F8B00B4EBFF /* _Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Habit.swift; sourceTree = "<group>"; };
+		C0EE21622CB16F8B00B4EBFF /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		C0EE216E2CB2BE4400B4EBFF /* HabitCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitCardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,9 +317,8 @@
 			isa = PBXGroup;
 			children = (
 				C0EE215B2CAF7A0600B4EBFF /* Happbit.xcdatamodeld */,
-				C0A8EB742CA945F100D21CF6 /* Habit.swift */,
 				C0EE21602CB1631100B4EBFF /* CoreDataManager.swift */,
-				C0EE21622CB16F8B00B4EBFF /* _Habit.swift */,
+				C0EE21622CB16F8B00B4EBFF /* Habit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -426,7 +423,6 @@
 				C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */,
 				C03760DB2CA717D2005FB0B7 /* PauseListView.swift in Sources */,
 				C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */,
-				C0A8EB752CA945F100D21CF6 /* Habit.swift in Sources */,
 				C0EE21612CB1631100B4EBFF /* CoreDataManager.swift in Sources */,
 				C048DC432C9FBC72001DED55 /* UpdateHabitView.swift in Sources */,
 				C0EE216F2CB2BE4400B4EBFF /* HabitCardViewModel.swift in Sources */,
@@ -447,7 +443,7 @@
 				C0E163E62CA5735900DB118C /* HabitDetailViewModel.swift in Sources */,
 				C0E163DF2CA54E3200DB118C /* String+.swift in Sources */,
 				C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */,
-				C0EE21632CB16F8B00B4EBFF /* _Habit.swift in Sources */,
+				C0EE21632CB16F8B00B4EBFF /* Habit.swift in Sources */,
 				C06B0BC42C9A76F0005451D5 /* HappBitApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

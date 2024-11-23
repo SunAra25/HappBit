@@ -66,7 +66,7 @@ extension CoreDataManager {
         return nil
     }
     
-    func addHabit(_ data: _Habit) {
+    func addHabit(_ data: Habit) {
         let habit = HabitEntity(context: container.viewContext)
         habit.title = data.title
         habit.colorIndex = data.colorIndex
