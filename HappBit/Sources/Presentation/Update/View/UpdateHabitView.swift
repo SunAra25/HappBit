@@ -73,6 +73,7 @@ struct UpdateHabitView: View {
                             .font(.body1B)
                     }
             }
+            .disabled(!viewModel.output.buttonState)
         }
         .padding()
         .background(Color.hbSecondary)

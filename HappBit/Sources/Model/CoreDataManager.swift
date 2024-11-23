@@ -75,6 +75,14 @@ extension CoreDataManager {
         saveContext()
     }
     
+    func updateHabit(_ entity: HabitEntity, newTitle: String, newColorIndex: Int?) {
+        entity.title = newTitle
+        if let newColorIndex {
+            entity.colorIndex = Int16(newColorIndex)
+        }
+        saveContext()
+    }
+    
     func deleteHabit(_ entity: HabitEntity) {
         container.viewContext.delete(entity)
         saveContext()

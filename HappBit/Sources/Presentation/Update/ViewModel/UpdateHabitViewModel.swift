@@ -66,7 +66,7 @@ extension UpdateHabitViewModel {
                 }
                 
                 output.currentTitle = String(newText)
-//                output.buttonState = checkButtonEnable()
+                output.buttonState = checkButtonEnable()
             }.store(in: &cancellables)
         
         input
@@ -74,7 +74,7 @@ extension UpdateHabitViewModel {
             .sink { [weak self] index in
                 guard let self else { return }
                 output.currentColorIndex = index
-//                output.buttonState = checkButtonEnable()
+                output.buttonState = checkButtonEnable()
             }.store(in: &cancellables)
         
         input
@@ -83,23 +83,24 @@ extension UpdateHabitViewModel {
                 guard let self, let colorIndex = output.currentColorIndex else { return }
                 switch output.updateType {
                 case .add:
-                    Habit.addHabit(Habit(title: output.currentTitle, colorIndex: colorIndex))
+                    manager.addHabit(_Habit(title: output.currentTitle, colorIndex: Int16(colorIndex)))
                 case .edit(let habit):
-                    guard let colorIdx = output.currentColorIndex else { break }
-//                    habit.updateHabit(newTitle: output.currentTitle, newColorIdx: colorIdx)
+                    guard let habit else { return }
+                    manager.updateHabit(habit, newTitle: output.currentTitle, newColorIndex: output.currentColorIndex)
                 }
                 output.popView = true
             }.store(in: &cancellables)
     }
     
-//    func checkButtonEnable() -> Bool {
-//        switch output.updateType {
-//        case .add:
-//            return ((2...15) ~= output.currentTitle.count) && output.currentColorIndex != nil
-//        case .edit(let habit):
-//            return ((2...15) ~= output.currentTitle.count) && output.currentColorIndex != nil && (output.currentTitle != habit.title || output.currentColorIndex != habit.colorIndex)
-//        }
-//    }
+    func checkButtonEnable() -> Bool {
+        switch output.updateType {
+        case .add:
+            return ((2...15) ~= output.currentTitle.count) && output.currentColorIndex != nil
+        case .edit(let habit):
+            guard let habit else { return false }
+            return ((2...15) ~= output.currentTitle.count) && (output.currentTitle != habit.title || output.currentColorIndex ?? -1 != habit.colorIndex)
+        }
+    }
 }
 
 // MARK: Action
