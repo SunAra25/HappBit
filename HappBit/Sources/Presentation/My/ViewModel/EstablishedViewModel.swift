@@ -23,12 +23,15 @@ class EstablishedViewModel: ViewModelType {
 extension EstablishedViewModel {
     struct Input {
         var viewOnAppear = PassthroughSubject<Void, Never>()
+        var rowDidTap = PassthroughSubject<HabitEntity, Never>()
     }
     
     struct Output {
         var habitList: [HabitEntity] = []
         var counts: Int = 0
         var consecutiveDays: Int = 0
+        var showDetailView: Bool = false
+        var detailHabit: HabitEntity?
     }
     
     func transform() {
@@ -47,6 +50,15 @@ extension EstablishedViewModel {
                 
                 output.consecutiveDays = records.reduce(0) { $0 + $1.count }
             }.store(in: &cancellables)
+        
+        input
+            .rowDidTap
+            .sink { [weak self] habit in
+                guard let self else { return }
+                output.detailHabit = habit
+                output.showDetailView.toggle()
+                print(output.showDetailView)
+            }.store(in: &cancellables)
     }
 }
 
@@ -54,12 +66,15 @@ extension EstablishedViewModel {
 extension EstablishedViewModel {
     enum Action {
         case viewOnAppear
+        case rowDidTap(HabitEntity)
     }
     
     func action(_ action: Action) {
         switch action {
         case .viewOnAppear:
             input.viewOnAppear.send(())
+        case .rowDidTap(let habit):
+            input.rowDidTap.send(habit)
         }
     }
 }

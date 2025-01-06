@@ -70,9 +70,17 @@ struct ExistEstablishedView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ForEach(viewModel.output.habitList, id: \.id) { habit in
-                    rowView(habit)
+                    Button {
+                        viewModel.action(.rowDidTap(habit))
+                    } label: {
+                        rowView(habit)
+                    }
                 }
             }.padding()
+        }
+        .navigationTitle("")
+        .navigationDestination(isPresented: $viewModel.output.showDetailView) {
+            EstablishedDetailView(habitID: viewModel.output.detailHabit?.objectID)
         }
     }
     

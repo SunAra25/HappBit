@@ -20,7 +20,7 @@ struct ContentView: View {
             }
             .tag(0)
             
-            NavigationView {
+            NavigationStack {
                 EstablishedView()
             }
             .tabItem {

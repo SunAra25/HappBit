@@ -10,13 +10,10 @@ import CoreData
 
 struct EstablishedDetailView: View {
     @StateObject private var viewModel = EstablishedDetailViewModel()
+    let habitID: NSManagedObjectID?
     
     var body: some View {
         ScrollView {
-            Text(viewModel.output.title)
-                .font(.head)
-                .padding(.top)
-            
             HStack {
                 Text(viewModel.output.startDate.toString())
                     .padding(.vertical, 8)
@@ -52,6 +49,10 @@ struct EstablishedDetailView: View {
             
             Spacer()
         }
+        .onAppear {
+            viewModel.action(.viewOnAppear(id: habitID))
+        }
+        .navigationTitle(viewModel.output.title)
     }
     
     var recordTextView: some View {
@@ -96,6 +97,6 @@ enum EstablishedCardType: CaseIterable {
     case clover
 }
 
-#Preview {
-    EstablishedDetailView()
-}
+//#Preview {
+//    EstablishedDetailView()
+//}

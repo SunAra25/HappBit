@@ -23,7 +23,7 @@ class EstablishedDetailViewModel: ViewModelType {
 // MARK: Input/Output
 extension EstablishedDetailViewModel {
     struct Input {
-        var viewOnAppear = PassthroughSubject<NSManagedObjectID, Never>()
+        var viewOnAppear = PassthroughSubject<NSManagedObjectID?, Never>()
         var changeMonthBtnDidTap = PassthroughSubject<Int, Never>()
     }
     
@@ -40,7 +40,7 @@ extension EstablishedDetailViewModel {
         input
             .viewOnAppear
             .sink { [weak self] id in
-                guard let self,
+                guard let self, let id,
                       let habit = manager.fetchHabit(id: id),
                       let records = habit.practiceRecords?.allObjects as? Array<RecordEntity> else { return }
                 
@@ -58,7 +58,7 @@ extension EstablishedDetailViewModel {
 // MARK: Action
 extension EstablishedDetailViewModel {
     enum Action {
-        case viewOnAppear(id: NSManagedObjectID)
+        case viewOnAppear(id: NSManagedObjectID?)
         case changeMonthBtnDidTap(Int)
     }
     
