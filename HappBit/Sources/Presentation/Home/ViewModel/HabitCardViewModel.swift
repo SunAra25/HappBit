@@ -20,11 +20,17 @@ class HabitCardViewModel: ViewModelType {
     }
 }
 
+struct ButtonAttribute {
+    let type: ButtonType
+    let imageName: String
+    let isEnable: Bool
+}
+
 // MARK: Input/Output
 extension HabitCardViewModel {
     struct Input {
         var viewOnAppear = PassthroughSubject<NSManagedObjectID, Never>()
-        var setButton = PassthroughSubject<Int, Never>()
+        var setButton = PassthroughSubject<Void, Never>()
         var recordToday =  PassthroughSubject<Void, Never>()
     }
     
@@ -35,7 +41,7 @@ extension HabitCardViewModel {
         var records: [Date] = []
         var currentIndex: Int = 0
         var isRecordToday: Bool = false
-        var buttonAttribute: (ButtonAttribute, Bool) = (.complete, false)
+        var buttonAttributes: [ButtonAttribute] = Array(repeating: ButtonAttribute(type: .inactive, imageName: "", isEnable: false), count: 3)
     }
     
     func transform() {
@@ -46,18 +52,34 @@ extension HabitCardViewModel {
                 fetchRecord(to: habit)
             }.store(in: &cancellables)
         
-        input.setButton
-            .sink { [weak self] index in
-                guard let self,
-                let records = output.habit?.practiceRecords as? Array<RecordEntity> else { return }
-                let dates = records.compactMap { $0.date }.sorted()
+        input
+            .setButton
+            .sink { [weak self] _ in
+                guard let self, let habit = output.habit else { return }
                 
-                if output.currentIndex < index {
-                    guard let attr = ButtonAttribute(rawValue: 3) else { return }
-                    output.buttonAttribute = (attr, true)
-                } else {
-                    guard let attr = ButtonAttribute(rawValue: index) else { return }
-                    output.buttonAttribute = (attr, isRecordToday())
+                for index in 0..<3 {
+                    var type: ButtonType = .inactive
+                    var image: ButtonImage?
+                    var isEnable = false
+                    let isRecordToday = output.isRecordToday
+                    let currentIdx = output.currentIndex
+                    let isMultipleOfThree = currentIdx == 0 // 연속 실천일 수가 3의 배수인지?
+                    let enableIdx = currentIdx - (isRecordToday ? 1 : 0 ) // 활성화 된 버튼의 index
+                    let colorIdx = Int(habit.colorIndex)
+                    
+                    if index < currentIdx {
+                        type = .complete(index: colorIdx)
+                        image = ButtonImage(rawValue: 3)
+                        isEnable = index == currentIdx - (isRecordToday ? 1 : 0)
+                    } else {
+                        type = index > enableIdx ? .inactive : isRecordToday ? .complete(index: colorIdx) : .active(index: colorIdx)
+                        image = ButtonImage(rawValue: isMultipleOfThree && isRecordToday ? 3 : index)
+                        isEnable = index == (isMultipleOfThree ? (isRecordToday ? 2 : 0) : enableIdx)
+                    }
+                    
+                    guard let image else { return }
+                    
+                    output.buttonAttributes[index] = ButtonAttribute(type: type, imageName: image.name, isEnable: isEnable)
                 }
             }.store(in: &cancellables)
         
@@ -83,6 +105,7 @@ extension HabitCardViewModel {
             output.records = dates
             output.isRecordToday = isRecordToday()
             output.currentIndex = output.countConsecutiveDays > 0 ? output.countConsecutiveDays % 3 : 0
+            action(.setButton)
         }
     }
     
@@ -96,7 +119,7 @@ extension HabitCardViewModel {
 extension HabitCardViewModel {
     enum Action {
         case viewOnAppear(id: NSManagedObjectID)
-        case setButton(index: Int)
+        case setButton
         case recordToday
     }
     
@@ -104,8 +127,8 @@ extension HabitCardViewModel {
         switch action {
         case .viewOnAppear(let id):
             input.viewOnAppear.send(id)
-        case .setButton(let index):
-            input.setButton.send(index)
+        case .setButton:
+            input.setButton.send(())
         case .recordToday:
             input.recordToday.send(())
         }

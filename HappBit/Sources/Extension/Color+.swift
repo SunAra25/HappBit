@@ -19,4 +19,6 @@ extension Color {
     static let hbSecondary = Color("Secondary")
     static let hbThirdary = Color("Thirdary")
     static let hbQuarterly = Color("Quarterly")
+    
+    static let colorList = [hapRed, hapYellow, hapGreen, hapMint, hapBlue, hapPurple]
 }

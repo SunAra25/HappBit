@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C00D9E232D898AC800D1B7C8 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D9E222D898AC800D1B7C8 /* CircleProgressView.swift */; };
+		C00D9E272D8AC41C00D1B7C8 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D9E262D8AC41C00D1B7C8 /* RecordButton.swift */; };
 		C021282E2CC916D100083C18 /* PauseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282D2CC916D100083C18 /* PauseCardView.swift */; };
 		C02128302CC9176500083C18 /* PauseCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282F2CC9176500083C18 /* PauseCardViewModel.swift */; };
 		C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D12CA6C359005FB0B7 /* EstablishedView.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		C00D9E222D898AC800D1B7C8 /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		C00D9E262D8AC41C00D1B7C8 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		C021282D2CC916D100083C18 /* PauseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCardView.swift; sourceTree = "<group>"; };
 		C021282F2CC9176500083C18 /* PauseCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCardViewModel.swift; sourceTree = "<group>"; };
 		C03760D12CA6C359005FB0B7 /* EstablishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedView.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				C0E163E32CA54E6600DB118C /* DateFormatter.swift */,
+				C00D9E262D8AC41C00D1B7C8 /* RecordButton.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				C0EE215D2CAF7A0600B4EBFF /* Happbit.xcdatamodeld in Sources */,
 				C021282E2CC916D100083C18 /* PauseCardView.swift in Sources */,
 				C06B0BC62C9A76F0005451D5 /* ContentView.swift in Sources */,
+				C00D9E272D8AC41C00D1B7C8 /* RecordButton.swift in Sources */,
 				C0E163E62CA5735900DB118C /* HabitDetailViewModel.swift in Sources */,
 				C0E163DF2CA54E3200DB118C /* String+.swift in Sources */,
 				C048DC4A2CA0707C001DED55 /* ViewModelType.swift in Sources */,

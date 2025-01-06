@@ -128,7 +128,7 @@ extension CoreDataManager {
 
 extension CoreDataManager {
     func calculateConsecutiveDays(_ array: [Date]) -> Int {
-        var count = 0
+        var count = 1
         
         if array.count < 2 {
             return array.count
@@ -141,7 +141,6 @@ extension CoreDataManager {
             let isSameDay = calendar.isDate(currentDay, inSameDayAs: target)
             
             if !isSameDay {
-                count += 1
                 break
             }
             

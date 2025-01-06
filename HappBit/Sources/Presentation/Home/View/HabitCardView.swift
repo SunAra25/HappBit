@@ -8,26 +8,9 @@
 import SwiftUI
 import CoreData
 
-enum ButtonAttribute: Int {
-    case one = 0
-    case two = 1
-    case three = 2
-    case complete = 3
-    
-    var name: String {
-        switch self {
-        case .one: "1.circle.fill"
-        case .two: "2.circle.fill"
-        case .three: "3.circle.fill"
-        case .complete: "checkmark.circle.fill"
-        }
-    }
-}
-
 struct HabitCardView: View {
     @StateObject var viewModel = HabitCardViewModel()
     var habitID: NSManagedObjectID
-    let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
         ZStack {
@@ -47,17 +30,7 @@ struct HabitCardView: View {
                 
                 HStack {
                     ForEach(0..<3) { index in
-                        let isDisabled = isDisableButton(for: index)
-                        let isPastIndex = index < viewModel.output.currentIndex
-                        
-                        if let attr = ButtonAttribute(rawValue: isPastIndex ? 3 : index),
-                           let colorIndex = viewModel.output.habit?.colorIndex {
-                            let buttonColor = isPastIndex ? colorList[Int(colorIndex)] :
-                            viewModel.output.currentIndex < index || viewModel.output.isRecordToday ?
-                                .gray.opacity(0.2) : colorList[Int(colorIndex)].opacity(0.2)
-                            
-                            practiceButton(for: attr, color: buttonColor, isDisabled: isDisabled)
-                        }
+                        practiceButton(index: index)
                     }
                 }
                 .padding(.top, 8)
@@ -72,40 +45,18 @@ struct HabitCardView: View {
         }
     }
     
-    private func practiceButton(for attribute: ButtonAttribute, color: Color, isDisabled: Bool) -> some View {
+    private func practiceButton(index: Int) -> some View {
         Button {
             viewModel.action(.recordToday)
         } label: {
-            Image(systemName: attribute.name)
+            Image(systemName: viewModel.output.buttonAttributes[index].imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 44)
                 .padding(.horizontal, 4)
-                .foregroundStyle(color)
+                .foregroundStyle(viewModel.output.buttonAttributes[index].type.color)
         }
-        .disabled(isDisabled)
-    }
-    
-    private func getButtonColor(for index: Int, isPastIndex: Bool) -> Color {
-        guard let colorIndex = viewModel.output.habit?.colorIndex else { return .gray.opacity(0.2) }
-        
-        if isPastIndex {
-            return colorList[Int(colorIndex)]
-        } else {
-            return viewModel.output.currentIndex < index || viewModel.output.isRecordToday
-                ? .gray.opacity(0.2) : colorList[Int(colorIndex)].opacity(0.2)
-        }
-    }
-    
-    private func isDisableButton(for index: Int) -> Bool {
-        let currentIndex = viewModel.output.currentIndex
-        let isRecordToday = viewModel.output.isRecordToday
-        
-        if isRecordToday {
-            return index != currentIndex - 1
-        } else {
-            return index != currentIndex
-        }
+        .disabled(!viewModel.output.buttonAttributes[index].isEnable)
     }
 }
 
