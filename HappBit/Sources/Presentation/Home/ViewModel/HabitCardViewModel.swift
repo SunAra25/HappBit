@@ -64,7 +64,7 @@ extension HabitCardViewModel {
                     let isRecordToday = output.isRecordToday
                     let currentIdx = output.currentIndex
                     let isMultipleOfThree = currentIdx == 0 // 연속 실천일 수가 3의 배수인지?
-                    let enableIdx = currentIdx - (isRecordToday ? 1 : 0 ) // 활성화 된 버튼의 index
+                    let enableIdx = isMultipleOfThree ? isRecordToday ? 2 : 0 : currentIdx - (isRecordToday ? 1 : 0 ) // 활성화 된 버튼의 index
                     let colorIdx = Int(habit.colorIndex)
                     
                     if index < currentIdx {
@@ -74,7 +74,7 @@ extension HabitCardViewModel {
                     } else {
                         type = index > enableIdx ? .inactive : isRecordToday ? .complete(index: colorIdx) : .active(index: colorIdx)
                         image = ButtonImage(rawValue: isMultipleOfThree && isRecordToday ? 3 : index)
-                        isEnable = index == (isMultipleOfThree ? (isRecordToday ? 2 : 0) : enableIdx)
+                        isEnable = index == enableIdx
                     }
                     
                     guard let image else { return }
