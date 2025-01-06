@@ -12,4 +12,5 @@ enum _DateFormatter: String {
     
     case dateWithTime = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     case date = "yyyy년 M월 d일"
+    case header = "yyyy.MM"
 }

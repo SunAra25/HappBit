@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C00D9E232D898AC800D1B7C8 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D9E222D898AC800D1B7C8 /* CircleProgressView.swift */; };
 		C00D9E272D8AC41C00D1B7C8 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D9E262D8AC41C00D1B7C8 /* RecordButton.swift */; };
+		C00D9E2B2D8AC78300D1B7C8 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D9E2A2D8AC78300D1B7C8 /* CalendarView.swift */; };
 		C021282E2CC916D100083C18 /* PauseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282D2CC916D100083C18 /* PauseCardView.swift */; };
 		C02128302CC9176500083C18 /* PauseCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282F2CC9176500083C18 /* PauseCardViewModel.swift */; };
 		C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D12CA6C359005FB0B7 /* EstablishedView.swift */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		C00D9E222D898AC800D1B7C8 /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		C00D9E262D8AC41C00D1B7C8 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		C00D9E2A2D8AC78300D1B7C8 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C021282D2CC916D100083C18 /* PauseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCardView.swift; sourceTree = "<group>"; };
 		C021282F2CC9176500083C18 /* PauseCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCardViewModel.swift; sourceTree = "<group>"; };
 		C03760D12CA6C359005FB0B7 /* EstablishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		C03760D42CA6C915005FB0B7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C00D9E2A2D8AC78300D1B7C8 /* CalendarView.swift */,
 				C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */,
 			);
 			path = ViewModel;
@@ -426,6 +429,7 @@
 				C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */,
 				C0EE21612CB1631100B4EBFF /* CoreDataManager.swift in Sources */,
 				C048DC432C9FBC72001DED55 /* UpdateHabitView.swift in Sources */,
+				C00D9E2B2D8AC78300D1B7C8 /* CalendarView.swift in Sources */,
 				C0EE216F2CB2BE4400B4EBFF /* HabitCardViewModel.swift in Sources */,
 				C048DC472CA07018001DED55 /* UpdateHabitViewModel.swift in Sources */,
 				C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */,
