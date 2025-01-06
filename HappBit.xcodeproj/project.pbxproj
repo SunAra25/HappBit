@@ -30,6 +30,8 @@
 		C06B0BDC2C9D0E43005451D5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C06B0BD52C9A7B71005451D5 /* Pretendard-Medium.otf */; };
 		C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEA2C9DD535005451D5 /* HomeView.swift */; };
 		C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */; };
+		C06F2EF42D912E9F00427F61 /* EstablishedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F2EF32D912E9F00427F61 /* EstablishedDetailView.swift */; };
+		C06F2EF62D91377700427F61 /* EstablishedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F2EF52D91377700427F61 /* EstablishedDetailViewModel.swift */; };
 		C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163DC2CA5431700DB118C /* HabitDetailView.swift */; };
 		C0E163DF2CA54E3200DB118C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163DE2CA54E3200DB118C /* String+.swift */; };
 		C0E163E12CA54E3A00DB118C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E163E02CA54E3A00DB118C /* Date+.swift */; };
@@ -81,6 +83,8 @@
 		C06B0BDF2C9D151D005451D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06B0BEA2C9DD535005451D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
+		C06F2EF32D912E9F00427F61 /* EstablishedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedDetailView.swift; sourceTree = "<group>"; };
+		C06F2EF52D91377700427F61 /* EstablishedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedDetailViewModel.swift; sourceTree = "<group>"; };
 		C0E163DC2CA5431700DB118C /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		C0E163DE2CA54E3200DB118C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C0E163E02CA54E3A00DB118C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				C03760D12CA6C359005FB0B7 /* EstablishedView.swift */,
+				C06F2EF32D912E9F00427F61 /* EstablishedDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 			children = (
 				C00D9E2A2D8AC78300D1B7C8 /* CalendarView.swift */,
 				C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */,
+				C06F2EF52D91377700427F61 /* EstablishedDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -433,12 +439,14 @@
 				C0EE216F2CB2BE4400B4EBFF /* HabitCardViewModel.swift in Sources */,
 				C048DC472CA07018001DED55 /* UpdateHabitViewModel.swift in Sources */,
 				C03760E02CA71FB1005FB0B7 /* PauseListViewModel.swift in Sources */,
+				C06F2EF42D912E9F00427F61 /* EstablishedDetailView.swift in Sources */,
 				C02128302CC9176500083C18 /* PauseCardViewModel.swift in Sources */,
 				C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */,
 				C06B0BDA2C9D09C2005451D5 /* Color+.swift in Sources */,
 				C03760E32CA7DE52005FB0B7 /* SubTitleWrapper.swift in Sources */,
 				C0E163E12CA54E3A00DB118C /* Date+.swift in Sources */,
 				C06B0BED2C9E4B62005451D5 /* HabitCardView.swift in Sources */,
+				C06F2EF62D91377700427F61 /* EstablishedDetailViewModel.swift in Sources */,
 				C0E163E42CA54E6600DB118C /* DateFormatter.swift in Sources */,
 				C03760D62CA6C920005FB0B7 /* EstablishedViewModel.swift in Sources */,
 				C06B0BEB2C9DD535005451D5 /* HomeView.swift in Sources */,
