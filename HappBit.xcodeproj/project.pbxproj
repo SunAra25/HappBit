@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C00D9E232D898AC800D1B7C8 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D9E222D898AC800D1B7C8 /* CircleProgressView.swift */; };
 		C021282E2CC916D100083C18 /* PauseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282D2CC916D100083C18 /* PauseCardView.swift */; };
 		C02128302CC9176500083C18 /* PauseCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021282F2CC9176500083C18 /* PauseCardViewModel.swift */; };
 		C03760D22CA6C359005FB0B7 /* EstablishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03760D12CA6C359005FB0B7 /* EstablishedView.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C00D9E222D898AC800D1B7C8 /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		C021282D2CC916D100083C18 /* PauseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCardView.swift; sourceTree = "<group>"; };
 		C021282F2CC9176500083C18 /* PauseCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCardViewModel.swift; sourceTree = "<group>"; };
 		C03760D12CA6C359005FB0B7 /* EstablishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishedView.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				C06B0BEA2C9DD535005451D5 /* HomeView.swift */,
 				C06B0BEC2C9E4B62005451D5 /* HabitCardView.swift */,
 				C0E163DC2CA5431700DB118C /* HabitDetailView.swift */,
+				C00D9E222D898AC800D1B7C8 /* CircleProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			files = (
 				C06B0BD82C9D09A3005451D5 /* Font+.swift in Sources */,
 				C0E3D9372CA2A77F0023131B /* HomeViewModel.swift in Sources */,
+				C00D9E232D898AC800D1B7C8 /* CircleProgressView.swift in Sources */,
 				C03760DB2CA717D2005FB0B7 /* PauseListView.swift in Sources */,
 				C0E163DD2CA5431700DB118C /* HabitDetailView.swift in Sources */,
 				C0EE21612CB1631100B4EBFF /* CoreDataManager.swift in Sources */,

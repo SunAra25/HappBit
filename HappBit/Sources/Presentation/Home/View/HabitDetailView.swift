@@ -22,7 +22,7 @@ struct HabitDetailView: View {
     let colorList = [Color.hapRed, Color.hapYellow, Color.hapGreen, Color.hapMint, Color.hapBlue, Color.hapPurple]
     
     var body: some View {
-        ScrollView {
+        VStack {
             Text(viewModel.output.data?.title ?? "")
                 .font(.head)
             
@@ -42,6 +42,13 @@ struct HabitDetailView: View {
                     }
             }
             .padding()
+            
+            Spacer()
+            
+            CircleProgressView(color: colorList[Int(viewModel.output.data?.colorIndex ?? 0)], count: viewModel.output.consecutiveDays)
+                .padding(.bottom)
+            
+            Spacer()
         }
         .toolbar {
             Menu {
