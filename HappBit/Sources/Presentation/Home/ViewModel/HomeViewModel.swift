@@ -39,7 +39,7 @@ extension HomeViewModel {
             .viewOnAppear
             .sink { [weak self] _ in
                 guard let self else { return }
-                output.habitList = manager.fetchHabit()
+                output.habitList = manager.fetchHabit().filter { $0.endDate == nil }
             }.store(in: &cancellables)
         
         input

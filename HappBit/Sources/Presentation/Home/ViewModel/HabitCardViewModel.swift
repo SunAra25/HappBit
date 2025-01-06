@@ -106,6 +106,10 @@ extension HabitCardViewModel {
             output.isRecordToday = isRecordToday()
             output.currentIndex = output.countConsecutiveDays > 0 ? output.countConsecutiveDays % 3 : 0
             action(.setButton)
+            
+            if output.countConsecutiveDays >= 66 {
+                manager.completeHabit(habit)
+            }
         }
     }
     

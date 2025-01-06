@@ -128,16 +128,17 @@ extension CoreDataManager {
 
 extension CoreDataManager {
     func calculateConsecutiveDays(_ array: [Date]) -> Int {
-        var count = 1
+        if array.isEmpty { return 0 }
         
-        if array.count < 2 {
-            return array.count
-        }
+        var count = 0
+        let diff = lastRecordDiff(array[0])
         
-        for i in 1..<array.count {
-            let target = array[i - 1]
+        if diff > 1 { return 0 }
+        
+        for i in 0..<array.count - 1 {
+            let target = array[i + 1]
             let current = array[i]
-            let currentDay = calendar.date(byAdding: .day, value: 1, to: current) ?? Date()
+            let currentDay = calendar.date(byAdding: .day, value: -1, to: current) ?? Date()
             let isSameDay = calendar.isDate(currentDay, inSameDayAs: target)
             
             if !isSameDay {
@@ -147,11 +148,13 @@ extension CoreDataManager {
             count += 1
         }
         
+        count += diff == 0 ? 1 : 0
+        
         return count
     }
     
     func calculateCloverCount(_ array: [Date]) -> Int {
-        var currentCount = 0
+        var currentCount = 1
         var cloverCount = 0
         
         if array.count < 3 {
@@ -164,14 +167,28 @@ extension CoreDataManager {
             let currentDay = calendar.date(byAdding: .day, value: 1, to: current) ?? Date()
             let isSameDay = calendar.isDate(currentDay, inSameDayAs: target)
             
-            if !isSameDay {
-                cloverCount += (currentCount + 1) / 3
-                currentCount = 0
-            }
             
-            currentCount += 1
+            if !isSameDay {
+                cloverCount += currentCount / 3
+                currentCount = 1
+            } else {
+                currentCount += 1
+            }
         }
         
-        return cloverCount
+        return cloverCount + (currentCount / 3)
+    }
+    
+    private func calculateRecordDiff(base: Date, target: Date) -> Int {
+        guard let diff = calendar.dateComponents([.day], from: base, to: target).day else { return 0 }
+        
+        return abs(diff)
+    }
+ 
+    private func lastRecordDiff(_ last: Date) -> Int {
+        let today = Date()
+        let baseDate = calendar.date(byAdding: .day, value: -1, to: today) ?? Date()
+        
+        return calculateRecordDiff(base: baseDate, target: last)
     }
 }
