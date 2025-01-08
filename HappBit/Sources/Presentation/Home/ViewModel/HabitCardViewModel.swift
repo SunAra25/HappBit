@@ -99,6 +99,7 @@ extension HabitCardViewModel {
         func fetchRecord(to habit: HabitEntity) {
             guard let records = habit.practiceRecords as? Set<RecordEntity> else { return }
             let dates = records.compactMap { $0.date }.sorted { $0 > $1 }
+            
             output.habit = habit
             output.countConsecutiveDays = manager.calculateConsecutiveDays(dates)
             output.cloverCount = manager.calculateCloverCount(dates)

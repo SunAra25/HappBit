@@ -57,7 +57,6 @@ extension EstablishedViewModel {
                 guard let self else { return }
                 output.detailHabit = habit
                 output.showDetailView.toggle()
-                print(output.showDetailView)
             }.store(in: &cancellables)
     }
 }

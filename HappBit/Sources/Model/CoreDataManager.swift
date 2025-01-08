@@ -109,10 +109,11 @@ extension CoreDataManager {
     func cancelRecord(_ entity: HabitEntity) {
         guard let records = entity.practiceRecords as? Set<RecordEntity> else { return }
         
-        let record = records.filter { record in
-            guard let date = record.date else { return false }
-            return calendar.isDateInToday(date)
-        }
+//        let record = records.filter { record in
+//            guard let date = record.date else { return false }
+//            return calendar.isDateInToday(date)
+//        }
+        let record = records.sorted { $0.date ?? Date() > $1.date ?? Date() }
         
         guard let target = record.first else { return }
         
@@ -130,7 +131,7 @@ extension CoreDataManager {
     func calculateConsecutiveDays(_ array: [Date]) -> Int {
         if array.isEmpty { return 0 }
         
-        var count = 0
+        var count = 1
         let diff = lastRecordDiff(array[0])
         
         if diff > 1 { return 0 }
@@ -147,8 +148,6 @@ extension CoreDataManager {
             
             count += 1
         }
-        
-        count += diff == 0 ? 0 : 1
         
         return count
     }
@@ -183,9 +182,9 @@ extension CoreDataManager {
     }
  
     private func lastRecordDiff(_ last: Date) -> Int {
-        let today = Date()
-        guard let diff = calendar.dateComponents([.day], from: last, to: today).day else { return 0 }
+        let today = calendar.startOfDay(for: Date())
+        let lastDay = calendar.startOfDay(for: last)
         
-        return diff
+        return calendar.dateComponents([.day], from: lastDay, to: today).day ?? 0
     }
 }
