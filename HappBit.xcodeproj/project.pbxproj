@@ -122,6 +122,7 @@
 			children = (
 				C03760D12CA6C359005FB0B7 /* EstablishedView.swift */,
 				C06F2EF32D912E9F00427F61 /* EstablishedDetailView.swift */,
+				C00D9E2A2D8AC78300D1B7C8 /* CalendarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -129,7 +130,6 @@
 		C03760D42CA6C915005FB0B7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C00D9E2A2D8AC78300D1B7C8 /* CalendarView.swift */,
 				C03760D52CA6C920005FB0B7 /* EstablishedViewModel.swift */,
 				C06F2EF52D91377700427F61 /* EstablishedDetailViewModel.swift */,
 			);
