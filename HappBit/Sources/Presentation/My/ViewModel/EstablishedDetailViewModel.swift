@@ -102,9 +102,9 @@ private extension EstablishedDetailViewModel {
             if currentGroup.isEmpty {
                 currentGroup.append(date)
             } else {
-                let preDate = currentGroup.first!
+                let lastDate = currentGroup.last!
                 
-                guard let diff = calendar.dateComponents([.day], from: preDate, to: date).day else { return [] }
+                guard let diff = calendar.dateComponents([.day], from: lastDate, to: date).day else { return [] }
                 if abs(diff) <= 1 {
                     currentGroup.append(date)
                 } else {
