@@ -148,7 +148,7 @@ extension CoreDataManager {
             count += 1
         }
         
-        count += diff == 0 ? 1 : 0
+        count += diff == 0 ? 0 : 1
         
         return count
     }
@@ -181,17 +181,11 @@ extension CoreDataManager {
         
         return cloverCount + (currentCount / 3)
     }
-    
-    private func calculateRecordDiff(base: Date, target: Date) -> Int {
-        guard let diff = calendar.dateComponents([.day], from: base, to: target).day else { return 0 }
-        
-        return abs(diff)
-    }
  
     private func lastRecordDiff(_ last: Date) -> Int {
         let today = Date()
-        let baseDate = calendar.date(byAdding: .day, value: -1, to: today) ?? Date()
+        guard let diff = calendar.dateComponents([.day], from: last, to: today).day else { return 0 }
         
-        return calculateRecordDiff(base: baseDate, target: last)
+        return diff
     }
 }
