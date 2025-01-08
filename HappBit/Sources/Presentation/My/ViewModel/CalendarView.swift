@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @State var date: Date
+    @ObservedObject var viewModel: EstablishedDetailViewModel
     @State var offset: CGSize = CGSize()
     
     var body: some View {
@@ -24,9 +24,9 @@ struct CalendarView: View {
                 }
                 .onEnded { gesture in
                   if gesture.translation.width < -100 {
-                    changeMonth(by: 1)
+                      viewModel.action(.changeMonthBtnDidTap(1))
                   } else if gesture.translation.width > 100 {
-                    changeMonth(by: -1)
+                      viewModel.action(.changeMonthBtnDidTap(-1))
                   }
                   self.offset = CGSize()
                 }
@@ -37,7 +37,7 @@ struct CalendarView: View {
         VStack {
             HStack {
                 Button {
-                    changeMonth(by: -1)
+                    viewModel.action(.changeMonthBtnDidTap(-1))
                 } label: {
                     Image(systemName: "chevron.backward")
                         .foregroundStyle(.gray)
@@ -46,13 +46,13 @@ struct CalendarView: View {
                 
                 Spacer()
                 
-                Text(date.toString(.header))
+                Text(viewModel.output.currentMonth.toString(.header))
                     .font(.sub)
                 
                 Spacer()
                 
                 Button {
-                    changeMonth(by: 1)
+                    viewModel.action(.changeMonthBtnDidTap(1))
                 } label: {
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.gray)
@@ -85,19 +85,16 @@ struct CalendarView: View {
     }
     
     private func monthView() -> some View {
-        let daysInMonth: Int = numberOfDays(in: date)
-        let firstWeekday: Int = firstWeekdayOfMonth(in: date) - 1
-        
         return VStack {
             LazyVGrid(columns: Array(repeating: GridItem(spacing: 0), count: 7)) {
-                ForEach(0 ..< daysInMonth + firstWeekday, id: \.self) { index in
-                    if index < firstWeekday {
+                ForEach(0 ..< viewModel.output.daysInMonth + viewModel.output.firstWeekday, id: \.self) { index in
+                    if index < viewModel.output.firstWeekday {
                         Rectangle()
                             .foregroundColor(Color.clear)
                     } else {
-                        let day = index - firstWeekday + 1
+                        let day = index - viewModel.output.firstWeekday + 1
                         
-                        DayCellView(day: day)
+                        DayCellView(viewModel: viewModel, day: day)
                     }
                 }
             }
@@ -106,6 +103,7 @@ struct CalendarView: View {
 }
 
 struct DayCellView: View {
+    @ObservedObject var viewModel: EstablishedDetailViewModel
     let day: Int
     
     var body: some View {
@@ -114,9 +112,12 @@ struct DayCellView: View {
             
             Text("\(day)")
                 .font(.body2M)
-            recordView(.uncomplete)
+            recordView(getRecordType(day))
             
             Spacer()
+        }
+        .onAppear {
+            
         }
     }
     
@@ -126,12 +127,12 @@ struct DayCellView: View {
             case .consecutive:
                 Rectangle()
                     .frame(height: 8)
-                    .foregroundStyle(Color.hapRed)
+                    .foregroundStyle(Color.colorList[viewModel.output.colorIndex])
                     .opacity(1)
             case .single:
                 Circle()
                     .frame(width: 8)
-                    .foregroundStyle(Color.hapRed)
+                    .foregroundStyle(Color.colorList[viewModel.output.colorIndex])
                     .opacity(1)
             case .uncomplete:
                 Rectangle()
@@ -142,37 +143,27 @@ struct DayCellView: View {
     }
 }
 
-private extension CalendarView {
-    func startOfMonth() -> Date {
-        let components = Calendar.current.dateComponents([.year, .month], from: date)
-        return Calendar.current.date(from: components)!
-    }
-    
-    func numberOfDays(in date: Date) -> Int {
-        return Calendar.current.range(of: .day, in: .month, for: date)?.count ?? 0
-    }
-    
-    func firstWeekdayOfMonth(in date: Date) -> Int {
-        let components = Calendar.current.dateComponents([.year, .month], from: date)
-        let firstDayOfMonth = Calendar.current.date(from: components)!
-        
-        return Calendar.current.component(.weekday, from: firstDayOfMonth)
-    }
-    
-    func changeMonth(by value: Int) {
-        let calendar = Calendar.current
-        if let newMonth = calendar.date(byAdding: .month, value: value, to: date) {
-            self.date = newMonth
-        }
-    }
-}
-
-#Preview {
-    CalendarView(date: Date())
-}
-
 enum RecordType {
     case consecutive
     case single
     case uncomplete
+}
+
+private extension DayCellView {
+    func getRecordType(_ day: Int) -> RecordType {
+        let currentMonth = viewModel.output.currentMonth
+        let records = viewModel.output.records
+        
+        guard let currentMonth = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: currentMonth)),
+              let date = Calendar.current.date(bySetting: .day, value: day, of: currentMonth),
+              let target = records.first(where: { isContains($0, target: date) }) else { return .uncomplete }
+        
+        return target.count == 1 ? .single : .consecutive
+    }
+    
+    func isContains(_ array: [Date], target: Date) -> Bool {
+        return array.contains { date in
+            Calendar.current.isDate(date, inSameDayAs: target)
+        }
+    }
 }

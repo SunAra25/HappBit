@@ -45,7 +45,7 @@ struct EstablishedDetailView: View {
             }
             .padding()
             
-            CalendarView(date: Date())
+            CalendarView(viewModel: viewModel)
             
             Spacer()
         }

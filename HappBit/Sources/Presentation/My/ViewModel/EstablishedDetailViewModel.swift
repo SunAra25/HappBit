@@ -31,9 +31,13 @@ extension EstablishedDetailViewModel {
         var title: String = ""
         var startDate: Date = Date()
         var endDate: Date = Date()
+        var colorIndex: Int = 0
         var recordDays: Int = 0
         var cloverCount: Int = 0
-        var records: [Date] = []
+        var records: [[Date]] = []
+        var currentMonth: Date = Date()
+        var daysInMonth: Int = 0
+        var firstWeekday: Int = 0
     }
     
     func transform() {
@@ -47,10 +51,24 @@ extension EstablishedDetailViewModel {
                 output.title = habit.title ?? ""
                 output.startDate = habit.createdAt ?? Date()
                 output.endDate = habit.endDate ?? Date()
+                output.colorIndex = Int(habit.colorIndex)
                 output.recordDays = records.count
                 let recordsDate = records.map { $0.date ?? Date() }
-                output.records = recordsDate
+                output.records = groupConsecutiveDates(recordsDate)
                 output.cloverCount = manager.calculateCloverCount(recordsDate)
+                
+                output.daysInMonth = numberOfDays(in: output.currentMonth)
+                output.firstWeekday = firstWeekdayOfMonth(in: output.currentMonth)
+            }.store(in: &cancellables)
+        
+        input
+            .changeMonthBtnDidTap
+            .sink { [weak self] amount in
+                guard let self,
+                      let newMonth = Calendar.current.date(byAdding: .month, value: amount, to: output.currentMonth) else { return }
+                output.currentMonth = newMonth
+                output.daysInMonth = numberOfDays(in: newMonth)
+                output.firstWeekday = firstWeekdayOfMonth(in: newMonth)
             }.store(in: &cancellables)
     }
 }
@@ -69,5 +87,48 @@ extension EstablishedDetailViewModel {
         case .changeMonthBtnDidTap(let amount):
             input.changeMonthBtnDidTap.send(amount)
         }
+    }
+}
+
+private extension EstablishedDetailViewModel {
+    func groupConsecutiveDates(_ dates: [Date]) -> [[Date]] {
+        let calendar = Calendar.current
+        let dates = dates.sorted { $0 > $1 }
+
+        var result: [[Date]] = []
+        var currentGroup: [Date] = []
+
+        for date in dates {
+            if currentGroup.isEmpty {
+                currentGroup.append(date)
+            } else {
+                let preDate = currentGroup.first!
+                
+                guard let diff = calendar.dateComponents([.day], from: preDate, to: date).day else { return [] }
+                if abs(diff) <= 1 {
+                    currentGroup.append(date)
+                } else {
+                    result.append(currentGroup)
+                    currentGroup = [date]
+                }
+            }
+        }
+
+        if !currentGroup.isEmpty {
+            result.append(currentGroup)
+        }
+        
+        return result
+    }
+    
+    func numberOfDays(in date: Date) -> Int {
+        return Calendar.current.range(of: .day, in: .month, for: date)?.count ?? 0
+    }
+    
+    func firstWeekdayOfMonth(in date: Date) -> Int {
+        let components = Calendar.current.dateComponents([.year, .month], from: date)
+        let firstDayOfMonth = Calendar.current.date(from: components)!
+        
+        return Calendar.current.component(.weekday, from: firstDayOfMonth)
     }
 }
