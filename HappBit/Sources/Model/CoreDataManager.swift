@@ -161,6 +161,9 @@ extension CoreDataManager {
             return 0
         }
         
+        var array = array
+        array.sort { $0 > $1 }
+        
         for i in 1..<array.count {
             let target = array[i - 1]
             let current = array[i]
