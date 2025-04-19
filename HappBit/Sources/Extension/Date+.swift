@@ -19,4 +19,9 @@ extension Date {
         _DateFormatter.standard.dateFormat = format.rawValue
         return _DateFormatter.standard.string(from: self)
     }
+    
+    func startOfDay() -> Date {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        return Calendar.current.date(from: components)!
+    }
 }

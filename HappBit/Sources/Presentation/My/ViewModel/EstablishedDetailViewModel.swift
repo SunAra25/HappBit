@@ -97,14 +97,15 @@ private extension EstablishedDetailViewModel {
 
         var result: [[Date]] = []
         var currentGroup: [Date] = []
-
+        
         for date in dates {
             if currentGroup.isEmpty {
                 currentGroup.append(date)
             } else {
                 let lastDate = currentGroup.last!
                 
-                guard let diff = calendar.dateComponents([.day], from: lastDate, to: date).day else { return [] }
+                guard let diff = calendar.dateComponents([.day], from: lastDate.startOfDay(), to: date.startOfDay()).day else { return [] }
+                
                 if abs(diff) <= 1 {
                     currentGroup.append(date)
                 } else {
@@ -113,7 +114,7 @@ private extension EstablishedDetailViewModel {
                 }
             }
         }
-
+        
         if !currentGroup.isEmpty {
             result.append(currentGroup)
         }
