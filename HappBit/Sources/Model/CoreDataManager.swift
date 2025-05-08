@@ -7,20 +7,22 @@
 
 import Foundation
 import CoreData
+import CloudKit
 
 struct CoreDataManager {
     static let shared = CoreDataManager()
     private let calendar = Calendar.current
     
-    let container: NSPersistentContainer
+    let container: NSPersistentCloudKitContainer
     
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Happbit")
+        container = NSPersistentCloudKitContainer(name: "Happbit")
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
+        container.viewContext.automaticallyMergesChangesFromParent = true
     }
     
     func saveContext() {

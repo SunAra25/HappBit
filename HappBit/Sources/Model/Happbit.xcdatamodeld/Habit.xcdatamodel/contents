@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24E263" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="Habit" representedClassName=".HabitEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="colorIndex" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="colorIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="isPause" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="title" attributeType="String"/>
-        <relationship name="practiceRecords" toMany="YES" deletionRule="Cascade" destinationEntity="Record" inverseName="habitInfo" inverseEntity="Record"/>
+        <attribute name="isPause" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="practiceRecords" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Record" inverseName="habitInfo" inverseEntity="Record"/>
     </entity>
     <entity name="Record" representedClassName=".RecordEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="habitInfo" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="practiceRecords" inverseEntity="Habit"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="habitInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="practiceRecords" inverseEntity="Habit"/>
     </entity>
 </model>
