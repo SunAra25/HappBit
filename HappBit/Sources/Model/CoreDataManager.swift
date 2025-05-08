@@ -110,11 +110,6 @@ extension CoreDataManager {
     
     func cancelRecord(_ entity: HabitEntity) {
         guard let records = entity.practiceRecords as? Set<RecordEntity> else { return }
-        
-//        let record = records.filter { record in
-//            guard let date = record.date else { return false }
-//            return calendar.isDateInToday(date)
-//        }
         let record = records.sorted { $0.date ?? Date() > $1.date ?? Date() }
         
         guard let target = record.first else { return }
