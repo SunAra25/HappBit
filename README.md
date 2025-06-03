@@ -13,8 +13,9 @@
 
 ## 기술 스택
 `SwiftUI` `MVVM` <br>
-`Realm` -> `CoreData`<br>
+`CoreData`<br>
 `Combine`
+`CloudKit`
 
 ## 핵심 기능
 |홈|습관 추가|자리잡은 습관|중단한 습관|
@@ -24,9 +25,3 @@
 ## 주요 기술
 1. MVVM + In/Output 패턴에 Action 접목
 2. Combine을 통한 반응형 프로그래밍
-3. 특정 시간 push 알림 (예정)
-4. 당일 실천 현황 확인 가능한 위젯 (예정)
-
-## 트러블 슈팅
-- Realm 데이터 삭제 시 fetal error 발생
-- 실천 현황 처리 로직에 대한 어려움
